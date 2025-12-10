@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>沙面岛 - 广州特色景点</title>
+      <!-- 引入外部资源 -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.min.js"></script>
+      <script src="js/store.js"></script>
+      <script src="js/router.js"></script>
+      <script src="js/main.js"></script>
+      
+      <!-- 引入Inter字体 -->
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      
+      <!-- 引入自定义样式 -->
+      <link rel="stylesheet" href="css/style.css">
+
+      <!-- Tailwind配置 -->
+      <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#D4AF37', // 金色（广州特色）
+                secondary: '#006400', // 深绿色（代表广州的自然景观）
+                accent: '#8B0000', // 深红色（代表传统文化）
+                neutral: '#F5F5DC', // 米色（温暖色调）
+              },
+              fontFamily: {
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                serif: ['Georgia', 'serif'],
+              },
+            },
+          }
+        }
+      </script>
+
+    </head>
+    <body>
+      <div id="app">
+      <!-- 导航栏 -->
+      <navbar></navbar>
+
+      <!-- 景点详情头部 -->
+      <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img src="assets\images\Attraction\shamiandao.webp" alt="沙面岛全景" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 z-10 text-center">
+          <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">沙面岛</h1>
+          <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+            广州重要的商埠，欧陆风情建筑的聚集地
+          </p>
+          <div class="flex justify-center">
+            <a href="#overview" class="btn-primary transform hover:scale-105">
+              了解详情 <i class="fa fa-info-circle ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 景点概述 -->
+      <section id="overview" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+            <div class="lg:col-span-2">
+              <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">景点概述</h2>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                沙面岛，又称沙面，位于广州市荔湾区珠江白鹅潭北岸，是一个椭圆形的小岛，面积约0.3平方公里。
+              </p>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                沙面岛在历史上曾是英、法两国的租界，从19世纪末开始，先后有10多个国家在这里设立领事馆、开办银行、洋行，形成了独特的欧陆风情建筑群。岛上有150多座欧洲风格建筑，其中有42座被列为全国重点文物保护单位。
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                如今，沙面岛已成为广州著名的外事游览区和历史文物保护区，岛上绿树成荫，环境幽雅，是市民和游客休闲散步、拍照留念的好去处，也是许多广州人拍摄婚纱照的首选之地。
+              </p>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-clock-o mr-2"></i> 开放时间
+                </h3>
+                <ul class="space-y-2">
+                  <li class="flex justify-between">
+                    <span>全天开放</span>
+                    <span class="font-medium">建议游览时间：2-3小时</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>最佳游览时段</span>
+                    <span class="font-medium">9:00 - 17:00 或 19:00 - 21:00</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-ticket mr-2"></i> 门票信息
+                </h3>
+                <ul class="space-y-2">
+                  <li class="flex justify-between">
+                    <span>进入沙面岛</span>
+                    <span class="font-medium">免费</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>部分景点</span>
+                    <span class="font-medium">可能收费</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 景点图片画廊 -->
+      <section class="py-16 bg-neutral-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">景点画廊</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">漫步沙面岛，欣赏欧陆风情建筑，感受历史与现代的交融。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\shamiandao1.jpg" alt="沙面岛欧陆建筑" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">欧陆风情建筑</h3>
+                <p class="text-gray-600 text-sm">沙面岛上保存完好的欧式建筑，风格多样，具有浓厚的历史韵味。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\shamiandao2.jpg" alt="沙面岛街道" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">林荫街道</h3>
+                <p class="text-gray-600 text-sm">岛上街道整洁，树木繁茂，环境幽雅，是散步休闲的好去处。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\shamiandao3.jpg" alt="沙面岛教堂" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">沙面教堂</h3>
+                <p class="text-gray-600 text-sm">岛上的天主教堂，建筑精美，是沙面岛的标志性建筑之一。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\shamiandao4.jpg" alt="沙面岛公园" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">沙面公园</h3>
+                <p class="text-gray-600 text-sm">公园环境优美，种植了许多热带植物，是休闲放松的好地方。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\shamiandao5.jpg" alt="沙面岛珠江" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">珠江风光</h3>
+                <p class="text-gray-600 text-sm">沙面岛紧邻珠江，可欣赏到美丽的珠江风光和城市天际线。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\shamiandao6.jpg" alt="沙面岛雕塑" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">城市雕塑</h3>
+                <p class="text-gray-600 text-sm">岛上分布着各种艺术雕塑，增添了浓厚的文化氛围。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 特色体验 -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">特色体验</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">探索沙面岛独特的历史文化和欧陆风情</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-neutral-50 rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
+              <div class="text-primary text-4xl mb-6">
+                <i class="fa fa-camera"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary mb-4">摄影打卡</h3>
+              <p class="text-gray-700">
+                沙面岛是摄影爱好者的天堂，各种风格的建筑、街道和景观都适合拍照留念。
+              </p>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
+              <div class="text-primary text-4xl mb-6">
+                <i class="fa fa-coffee"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary mb-4">咖啡时光</h3>
+              <p class="text-gray-700">
+                岛上有许多特色咖啡馆，可在欧式建筑中享受悠闲的咖啡时光。
+              </p>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
+              <div class="text-primary text-4xl mb-6">
+                <i class="fa fa-history"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary mb-4">历史探索</h3>
+              <p class="text-gray-700">
+                了解沙面岛的历史变迁，探索租界时期的建筑和文化遗迹。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 交通指南 -->
+      <section class="py-16 bg-neutral-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">交通指南</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">如何到达沙面岛</p>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-6">
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-subway mr-2"></i> 地铁
+                </h3>
+                <p class="text-gray-700 mb-2">乘坐地铁1号线或6号线到黄沙站下车，F出口步行约500米即可到达沙面岛。</p>
+              </div>
+              
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-bus mr-2"></i> 公交
+                </h3>
+                <p class="text-gray-700 mb-2">乘坐以下公交线路到沙面站或黄沙码头站下车：</p>
+                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                  <li>1路、9路、57路、123路、188路、208路、217路、219路</li>
+                  <li>236路、270路、297路、538路、552路、夜1路、夜26路、夜37路</li>
+                </ul>
+              </div>
+              
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-ship mr-2"></i> 水上巴士
+                </h3>
+                <p class="text-gray-700">可乘坐水上巴士S1线路到黄沙码头站，步行约200米即可到达沙面岛。</p>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-map-marker mr-2"></i> 地理位置
+              </h3>
+              <div class="relative h-80 rounded-lg overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.549352123221!2d113.23674041500821!3d23.118005184856444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3402c2876c6b780b%3A0x9518d7b30e90c0d!2z5YWs5b6u5Y2D5pu0!5e0!3m2!1szh-CN!2scn!4v1649936996528!5m2!1szh-CN!2scn" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <p class="mt-4 text-gray-700">地址：广东省广州市荔湾区沙面街道</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 用户评价 -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">用户评价</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">听听游客们怎么说</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-500 flex">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600">5.0分</span>
+              </div>
+              <p class="text-gray-700 mb-4">
+                "沙面岛的欧陆风情真的很迷人，仿佛置身于欧洲小镇。街道干净整洁，建筑保存完好，非常适合拍照。"
+              </p>
+              <div class="flex items-center">
+                <img src="assets\images\User\user4.jpg" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                <div>
+                  <h4 class="font-medium text-secondary">李小华</h4>
+                  <p class="text-sm text-gray-500">2023年5月20日</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-500 flex">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.0分</span>
+              </div>
+              <p class="text-gray-700 mb-4">
+                "沙面岛环境不错，适合散步休闲。岛上有许多咖啡馆和餐厅，可以边休息边欣赏风景。只是节假日人比较多。"
+              </p>
+              <div class="flex items-center">
+                <img src="assets\images\User\user5.jpg" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                <div>
+                  <h4 class="font-medium text-secondary">王大军</h4>
+                  <p class="text-sm text-gray-500">2023年4月15日</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-500 flex">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-half-o"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.5分</span>
+              </div>
+              <p class="text-gray-700 mb-4">
+                "沙面岛是广州的一个特别的地方，既有历史感又有现代气息。岛上的建筑风格多样，每个角落都有惊喜。"
+              </p>
+              <div class="flex items-center">
+                <img src="assets\images\User\user6.jpg" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                <div>
+                  <h4 class="font-medium text-secondary">赵小丽</h4>
+                  <p class="text-sm text-gray-500">2023年3月28日</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 相关推荐 -->
+      <section class="py-16 bg-neutral-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">相关推荐</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">探索更多广州特色景点</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+              <div class="h-56 overflow-hidden">
+                <img src="assets\images\Attraction\guangzhouta.webp" alt="广州塔" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-2">广州塔</h3>
+                <p class="text-gray-600 mb-4">中国第一高、世界第三高的旅游观光塔</p>
+                <a href="guangzhouta-detail.html" class="text-primary font-medium hover:underline">
+                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+              <div class="h-56 overflow-hidden">
+                <img src="assets\images\Attraction\chenjiaci.png" alt="陈家祠" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-2">陈家祠</h3>
+                <p class="text-gray-600 mb-4">广东规模最大、装饰最华丽、保存最完好的传统岭南祠堂式建筑</p>
+                <a href="chenjiaci-detail.html" class="text-primary font-medium hover:underline">
+                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+              <div class="h-56 overflow-hidden">
+                <img src="assets\images\Attraction\yuntai.webp" alt="云台花园" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-2">云台花园</h3>
+                <p class="text-gray-600 mb-4">东方的巴黎小花园</p>
+                <a href="yuntai-detail.html" class="text-primary font-medium hover:underline">
+                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 页脚 -->
+      <footer-component></footer-component>
+    </div>
+  </body>
+</html>

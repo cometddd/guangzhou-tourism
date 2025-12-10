@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>烧鹅 - 广式美食</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.min.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/main.js"></script>
+  
+  <!-- 引入Inter字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- 引入自定义样式 -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（代表广州的自然景观）
+            accent: '#8B0000', // 深红色（代表传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+  <!-- 导航栏 -->
+  <navbar></navbar>
+
+  <!-- 美食详情头部 -->
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/images/food/shaoe.webp" alt="烧鹅" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10 text-center">
+      <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">烧鹅</h1>
+      <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+        粤菜经典，皮脆肉嫩的传统美食
+      </p>
+      <div class="flex justify-center">
+        <a href="#overview" class="btn-primary transform hover:scale-105">
+          了解详情 <i class="fa fa-info-circle ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食概述 -->
+  <section id="overview" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+        <div class="lg:col-span-2">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">美食概述</h2>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            广州烧鹅是粤菜中的经典代表，以其皮脆、肉嫩、骨香、味美的特点而闻名中外。选用优质清远黑棕鹅，经过特殊的腌制和烤制工艺，呈现出诱人的金黄色泽和独特的香气。
+          </p>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            广州烧鹅的历史可以追溯到明代，经过数百年的发展，如今已成为广州饮食文化的重要象征。无论是在高档酒楼还是街头巷尾的烧腊店，都能品尝到这道美味佳肴。
+          </p>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+              <i class="fa fa-cutlery mr-2"></i> 主要分类
+            </h3>
+            <ul class="space-y-2">
+              <li class="flex justify-between">
+                <span>深井烧鹅</span>
+                <span class="font-medium text-primary">经典之选</span>
+              </li>
+              <li class="flex justify-between">
+                <span>荔枝木烧鹅</span>
+                <span class="font-medium text-primary">香气浓郁</span>
+              </li>
+              <li class="flex justify-between">
+                <span>脆皮烧鹅</span>
+                <span class="font-medium text-primary">皮脆肉嫩</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+              <i class="fa fa-star mr-2"></i> 特色特点
+            </h3>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>皮脆如琉璃</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>肉嫩多汁</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>骨香浓郁</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>色泽诱人</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食图片画廊 -->
+  <section class="py-16 bg-neutral-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">美食画廊</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">欣赏烧鹅的精美图片，感受这道传统美食的独特魅力。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="overflow-hidden rounded-lg shadow-md group">
+          <img src="assets/images/food/shaoe.webp" alt="传统烧鹅" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-secondary">传统烧鹅</h3>
+            <p class="text-gray-600 text-sm">经典的深井烧鹅，皮脆肉嫩，香气四溢。</p>
+          </div>
+        </div>
+        
+        <div class="overflow-hidden rounded-lg shadow-md group">
+          <img src="assets/images/food/shaoe-1.jpg" alt="荔枝木烧鹅" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-secondary">荔枝木烧鹅</h3>
+            <p class="text-gray-600 text-sm">使用荔枝木烤制，带有独特的果香，风味更加浓郁。</p>
+          </div>
+        </div>
+        
+        <div class="overflow-hidden rounded-lg shadow-md group">
+          <img src="assets/images/food/shaoe-2.jpg" alt="烧鹅拼盘" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-secondary">烧鹅拼盘</h3>
+            <p class="text-gray-600 text-sm">烧鹅与其他烧腊组合的拼盘，是粤菜中的经典搭配。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 制作方法 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">制作方法</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">了解烧鹅的制作过程，感受传统美食的魅力。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="space-y-8">
+          <div class="bg-neutral-50 rounded-lg p-8 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+              <i class="fa fa-check-circle text-primary mr-3"></i> 原料准备
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">1</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">鹅肉</h4>
+                  <p class="text-gray-600">选用12-14周龄的清远黑棕鹅，体重约3-4公斤，肉质鲜嫩，脂肪分布均匀。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">2</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">腌制料</h4>
+                  <p class="text-gray-600">五香粉、盐、糖、料酒、生抽等香料。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">3</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">脆皮水</h4>
+                  <p class="text-gray-600">麦芽糖和白醋调制的脆皮水，使鹅皮更加酥脆。</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="space-y-8">
+          <div class="bg-neutral-50 rounded-lg p-8 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+              <i class="fa fa-check-circle text-primary mr-3"></i> 制作步骤
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">1</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">腌制</h4>
+                  <p class="text-gray-600">将鹅清洗干净，用五香粉、盐、糖、料酒、生抽等香料腌制数小时，使香料充分渗透到鹅肉中。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">2</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">上色</h4>
+                  <p class="text-gray-600">用麦芽糖和白醋调制的脆皮水均匀涂抹在鹅皮上，自然晾干或用风扇吹干。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">3</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">烤制</h4>
+                  <p class="text-gray-600">放入预热至200-220℃的烤炉中烤制，先用高温使鹅皮酥脆，再用低温慢烤至鹅肉熟透，整个过程约1.5-2小时。</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐餐厅 -->
+  <section class="py-16 bg-secondary/5">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">推荐餐厅</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">品尝正宗的烧鹅，推荐以下几家广州知名餐厅。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+          <div class="h-64 overflow-hidden">
+            <img src="assets/images/food/lizhiwan.jpg" alt="荔枝湾酒家" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">荔枝湾酒家</h3>
+            <p class="text-gray-600 mb-4">位于荔枝湾景区内，环境优雅，烧鹅皮脆肉嫩，是广州传统粤菜的代表。</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex text-yellow-400">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-half-o"></i>
+                </div>
+                <span class="text-gray-600 text-sm ml-2">4.5/5</span>
+              </div>
+              <a href="#" class="text-primary hover:text-accent transition-colors">
+                查看详情 <i class="fa fa-arrow-right ml-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+          <div class="h-64 overflow-hidden">
+            <img src="assets/images/food/huangjuewan.jpg" alt="黄爵记" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">黄爵记</h3>
+            <p class="text-gray-600 mb-4">老字号烧腊店，烧鹅皮脆肉嫩，价格实惠，深受广州本地人的喜爱。</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex text-yellow-400">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                </div>
+                <span class="text-gray-600 text-sm ml-2">4.2/5</span>
+              </div>
+              <a href="#" class="text-primary hover:text-accent transition-colors">
+                查看详情 <i class="fa fa-arrow-right ml-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+          <div class="h-64 overflow-hidden">
+            <img src="assets/images/food/shaoe-restaurant.jpg" alt="炳胜品味" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">炳胜品味</h3>
+            <p class="text-gray-600 mb-4">广州知名粤菜连锁品牌，以创新粤菜和传统烧腊闻名，烧鹅是其招牌菜之一。</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex text-yellow-400">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <span class="text-gray-600 text-sm ml-2">5.0/5</span>
+              </div>
+              <a href="#" class="text-primary hover:text-accent transition-colors">
+                查看详情 <i class="fa fa-arrow-right ml-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- 页脚 -->
+  <footer-component></footer-component>
+  
+  </div>
+  <script src="js/components.js"></script>
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2024 羊城乐游汇. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom Scripts -->
+    <script src="js/scripts.js"></script>
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

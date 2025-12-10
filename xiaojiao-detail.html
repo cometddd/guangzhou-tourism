@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>虾饺 - 广式美食</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.min.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/main.js"></script>
+  
+  <!-- 引入Inter字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- 引入自定义样式 -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（代表广州的自然景观）
+            accent: '#8B0000', // 深红色（代表传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+</head>
+  <body>
+  <div id="app">
+  <!-- 导航栏 -->
+  <navbar></navbar>
+
+  <!-- 美食详情头部 -->
+  <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/images/food/xiaojiao-header.jpg" alt="虾饺" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 z-10 text-center">
+      <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">虾饺</h1>
+      <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+        粤式早茶中的经典点心，以其晶莹剔透的外皮、鲜美的虾肉馅和精致的造型而闻名
+      </p>
+      <div class="flex justify-center">
+        <a href="#overview" class="btn-primary transform hover:scale-105">
+          了解详情 <i class="fa fa-info-circle ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食概述 -->
+  <section id="overview" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+        <div class="lg:col-span-2">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">美食概述</h2>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            虾饺是粤式早茶中的经典点心，以其晶莹剔透的外皮、鲜美的虾肉馅和精致的造型而闻名。它不仅是广州早茶文化的代表，也是中国点心文化的重要组成部分。
+          </p>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            虾饺的历史可以追溯到20世纪初的广州，最初是由广州的点心师傅发明的。经过百年的发展，虾饺已经成为粤式早茶中不可或缺的一道点心，深受中外游客的喜爱。
+          </p>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+              <i class="fa fa-cutlery mr-2"></i> 主要分类
+            </h3>
+            <ul class="space-y-2">
+              <li class="flex justify-between">
+                <span>水晶虾饺</span>
+                <span class="font-medium text-primary">经典之选</span>
+              </li>
+              <li class="flex justify-between">
+                <span>鲜虾烧卖</span>
+                <span class="font-medium text-primary">相似风味</span>
+              </li>
+              <li class="flex justify-between">
+                <span>虾饺皇</span>
+                <span class="font-medium text-primary">豪华版本</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+              <i class="fa fa-star mr-2"></i> 特色特点
+            </h3>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>外皮晶莹剔透</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>馅料鲜美多汁</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>造型精致美观</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>口感层次分明</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食图片画廊 -->
+  <section class="py-16 bg-neutral-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">美食画廊</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">欣赏虾饺的精美图片，感受这道传统点心的独特魅力。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="overflow-hidden rounded-lg shadow-md group">
+          <img src="assets/images/food/xiaojiao-1.jpg" alt="水晶虾饺" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-secondary">水晶虾饺</h3>
+            <p class="text-gray-600 text-sm">经典的水晶虾饺，外皮晶莹剔透，馅料鲜美多汁。</p>
+          </div>
+        </div>
+        
+        <div class="overflow-hidden rounded-lg shadow-md group">
+          <img src="assets/images/food/xiaojiao-2.jpg" alt="虾饺制作" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-secondary">虾饺制作</h3>
+            <p class="text-gray-600 text-sm">点心师傅正在制作精致的虾饺，展现传统工艺。</p>
+          </div>
+        </div>
+        
+        <div class="overflow-hidden rounded-lg shadow-md group">
+          <img src="assets/images/food/xiaojiao-3.jpg" alt="虾饺拼盘" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="p-4 bg-white">
+            <h3 class="font-bold text-secondary">虾饺拼盘</h3>
+            <p class="text-gray-600 text-sm">精美摆盘的虾饺，是早茶中的一道亮丽风景。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 制作方法 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">制作方法</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">了解虾饺的制作过程，感受传统美食的魅力。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="space-y-8">
+          <div class="bg-neutral-50 rounded-lg p-8 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+              <i class="fa fa-check-circle text-primary mr-3"></i> 原料准备
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">1</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">外皮材料</h4>
+                  <p class="text-gray-600">选用优质澄粉和玉米淀粉，是制作水晶外皮的关键。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">2</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">馅料</h4>
+                  <p class="text-gray-600">新鲜大虾、猪肉末、笋丁等食材，保证馅料鲜美。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">3</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">调味料</h4>
+                  <p class="text-gray-600">盐、糖、料酒、生抽等，提升馅料的风味。</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="space-y-8">
+          <div class="bg-neutral-50 rounded-lg p-8 shadow-md">
+            <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+              <i class="fa fa-check-circle text-primary mr-3"></i> 制作步骤
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">1</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">准备馅料</h4>
+                  <p class="text-gray-600">选用新鲜的大虾，去壳去虾线，切成小丁；猪肉剁成肉末；笋切成小丁。将这些材料混合，加入盐、糖、料酒、生抽等调味料搅拌均匀。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">2</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">制作外皮</h4>
+                  <p class="text-gray-600">将澄粉和玉米淀粉混合，加入沸水搅拌成面团，揉至光滑。将面团分成小剂子，擀成薄皮，注意要薄而均匀，避免破裂。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">3</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">包制虾饺</h4>
+                  <p class="text-gray-600">将馅料放在虾饺皮中央，然后将皮的边缘捏在一起，形成弯梳形，通常要捏12-15个褶子，确保形状美观。</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-8 h-8 bg-primary-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">4</span>
+                <div>
+                  <h4 class="font-bold text-secondary mb-1">蒸制</h4>
+                  <p class="text-gray-600">将包好的虾饺放入蒸笼，用大火蒸5-6分钟即可。蒸的时间不宜过长，否则虾肉会变老，外皮也会失去弹性。</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐餐厅 -->
+  <section class="py-16 bg-neutral-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">推荐餐厅</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">品尝最正宗的虾饺，感受广州早茶文化的魅力。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="h-56 overflow-hidden">
+            <img src="images/dim-sum-restaurant1.jpg" alt="陶陶居" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">陶陶居</h3>
+            <div class="flex items-center text-primary mb-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span class="text-gray-600 ml-2">4.5</span>
+            </div>
+            <p class="text-gray-600 mb-4">百年老店，虾饺皮薄馅大，虾肉鲜美，是广州早茶的代表之一。</p>
+            <div class="flex items-center text-gray-500 text-sm">
+              <i class="fas fa-map-marker-alt mr-2"></i>
+              <span>广州市越秀区第十甫路20号</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="h-56 overflow-hidden">
+            <img src="images/dim-sum-restaurant2.jpg" alt="广州酒家" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">广州酒家</h3>
+            <div class="flex items-center text-primary mb-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span class="text-gray-600 ml-2">5.0</span>
+            </div>
+            <p class="text-gray-600 mb-4">广州酒家的虾饺制作精细，口感爽滑，是众多游客必尝的美食。</p>
+            <div class="flex items-center text-gray-500 text-sm">
+              <i class="fas fa-map-marker-alt mr-2"></i>
+              <span>广州市荔湾区文昌南路2号</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="h-56 overflow-hidden">
+            <img src="images/dim-sum-restaurant3.jpg" alt="点都德" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">点都德</h3>
+            <div class="flex items-center text-primary mb-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span class="text-gray-600 ml-2">4.8</span>
+            </div>
+            <p class="text-gray-600 mb-4">点都德的虾饺创新中不失传统，皮薄透亮，虾肉Q弹，深受年轻人喜爱。</p>
+            <div class="flex items-center text-gray-500 text-sm">
+              <i class="fas fa-map-marker-alt mr-2"></i>
+              <span>广州市天河区天河路385号太古汇商场3楼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 搭配推荐 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">搭配推荐</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">探索与虾饺完美搭配的美食，享受更丰富的味觉体验。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-neutral-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="h-56 overflow-hidden">
+            <img src="images/puer-tea.jpg" alt="普洱茶" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">普洱茶</h3>
+            <p class="text-gray-600">普洱茶醇厚的口感能够中和虾饺的油腻，同时帮助消化。</p>
+          </div>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="h-56 overflow-hidden">
+            <img src="images/liusha-bao.jpg" alt="流沙包" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">流沙包</h3>
+            <p class="text-gray-600">流沙包的咸甜口感与虾饺的鲜美相得益彰，是经典的搭配。</p>
+          </div>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <div class="h-56 overflow-hidden">
+            <img src="images/tingzai-zhou.jpg" alt="艇仔粥" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">艇仔粥</h3>
+            <p class="text-gray-600">艇仔粥的丰富口感与虾饺的鲜美形成对比，营养均衡。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    </main>
+
+    <!-- Footer -->
+    <footer-component></footer-component>
+  </div>
+  <script src="js/components.js"></script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>陈家祠 - 广州特色景点</title>
+      <!-- 引入外部资源 -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.min.js"></script>
+      <script src="js/store.js"></script>
+      <script src="js/router.js"></script>
+      <script src="js/main.js"></script>
+      
+      <!-- 引入Inter字体 -->
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      
+      <!-- 引入自定义样式 -->
+      <link rel="stylesheet" href="css/style.css">
+
+      <!-- Tailwind配置 -->
+      <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#D4AF37', // 金色（广州特色）
+                secondary: '#006400', // 深绿色（代表广州的自然景观）
+                accent: '#8B0000', // 深红色（代表传统文化）
+                neutral: '#F5F5DC', // 米色（温暖色调）
+              },
+              fontFamily: {
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                serif: ['Georgia', 'serif'],
+              },
+            },
+          }
+        }
+      </script>
+
+    </head>
+    <body>
+      <div id="app">
+      <!-- 导航栏 -->
+      <navbar></navbar>
+
+      <!-- 景点详情头部 -->
+      <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img src="assets\images\Attraction\chenjiaci.png" alt="陈家祠全景" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 z-10 text-center">
+          <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">陈家祠</h1>
+          <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+            广东规模最大、装饰最华丽、保存最完好的传统岭南祠堂式建筑
+          </p>
+          <div class="flex justify-center">
+            <a href="#overview" class="btn-primary transform hover:scale-105">
+              了解详情 <i class="fa fa-info-circle ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 景点概述 -->
+      <section id="overview" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+            <div class="lg:col-span-2">
+              <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">景点概述</h2>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                陈家祠又称陈氏书院，建于清光绪十四年（1888年），落成于光绪二十年（1894年），是广东各地陈氏宗族共同捐资兴建的合族祠堂。
+              </p>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                建筑占地面积15000平方米，主体建筑面积6400平方米，由大小十九座单体建筑组成，以中路为主线，两边厅堂、厢房对称排列，通过青云巷、廊、庑、庭院相连，形成严谨完整的建筑群。
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                陈家祠以其精湛的三雕（石雕、砖雕、木雕）、二塑（陶塑、灰塑）、铁铸工艺闻名于世，被誉为"岭南建筑艺术的明珠"，1988年被列为全国重点文物保护单位，2002年被评为国家AAAA级旅游景区。
+              </p>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-clock-o mr-2"></i> 开放时间
+                </h3>
+                <ul class="space-y-2">
+                  <li class="flex justify-between">
+                    <span>周二至周日</span>
+                    <span class="font-medium">9:00 - 17:30（17:00停止入场）</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>周一</span>
+                    <span class="font-medium">闭馆（法定节假日除外）</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-ticket mr-2"></i> 门票价格
+                </h3>
+                <ul class="space-y-2">
+                  <li class="flex justify-between">
+                    <span>成人票</span>
+                    <span class="font-medium">10元/人</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>学生票（凭学生证）</span>
+                    <span class="font-medium">5元/人</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>65岁以上老人（凭身份证）</span>
+                    <span class="font-medium">免费</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 景点图片画廊 -->
+      <section class="py-16 bg-neutral-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">景点画廊</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">欣赏陈家祠的建筑艺术，感受岭南传统工艺的魅力。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\chenjiaci1.jpg" alt="陈家祠正门" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">陈家祠正门</h3>
+                <p class="text-gray-600 text-sm">气势恢宏的正门，门额上悬挂着"陈氏书院"匾额，体现了岭南建筑的庄重典雅。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\chenjiaci2.jpg" alt="砖雕艺术" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">砖雕艺术</h3>
+                <p class="text-gray-600 text-sm">精美的砖雕作品，题材丰富，包括人物故事、花鸟鱼虫等，工艺精湛。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\chenjiaci3.jpg" alt="木雕工艺" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">木雕工艺</h3>
+                <p class="text-gray-600 text-sm">木雕技艺精湛，图案栩栩如生，展现了岭南传统工艺的高超水平。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\chenjiaci4.jpg" alt="陶塑作品" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">陶塑作品</h3>
+                <p class="text-gray-600 text-sm">色彩鲜艳的陶塑作品，造型独特，是岭南建筑装饰艺术的重要组成部分。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\chenjiaci5.jpg" alt="灰塑艺术" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">灰塑艺术</h3>
+                <p class="text-gray-600 text-sm">灰塑艺术是岭南传统建筑的特色装饰工艺，具有浓郁的地方特色。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\chenjiaci6.jpg" alt="庭院景观" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">庭院景观</h3>
+                <p class="text-gray-600 text-sm">庭院布局精巧，植物茂盛，营造出宁静优雅的氛围。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 特色体验 -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">特色体验</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">探索陈家祠独特的文化魅力和建筑艺术</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-neutral-50 rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
+              <div class="text-primary text-4xl mb-6">
+                <i class="fa fa-building"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary mb-4">建筑艺术欣赏</h3>
+              <p class="text-gray-700">
+                详细观赏三雕二塑一铸等岭南传统工艺，了解其历史渊源和艺术价值。
+              </p>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
+              <div class="text-primary text-4xl mb-6">
+                <i class="fa fa-book"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary mb-4">文化展览</h3>
+              <p class="text-gray-700">
+                参观常设展览和临时展览，深入了解岭南文化的发展历程和特色。
+              </p>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
+              <div class="text-primary text-4xl mb-6">
+                <i class="fa fa-hand-paper-o"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary mb-4">手工体验</h3>
+              <p class="text-gray-700">
+                参与传统工艺体验活动，亲手制作岭南特色手工艺品，感受传统文化的魅力。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 交通指南 -->
+      <section class="py-16 bg-neutral-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">交通指南</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">如何到达陈家祠</p>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-6">
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-subway mr-2"></i> 地铁
+                </h3>
+                <p class="text-gray-700 mb-2">乘坐地铁1号线或8号线到陈家祠站下车，D出口步行约300米即可到达。</p>
+              </div>
+              
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-bus mr-2"></i> 公交
+                </h3>
+                <p class="text-gray-700 mb-2">乘坐以下公交线路到陈家祠站下车：</p>
+                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                  <li>17路、85路、88路、104路、107路、109路、114路、128路</li>
+                  <li>181路、204路、233路、250路、286路、高峰快线12路、高峰快线25路</li>
+                </ul>
+              </div>
+              
+              <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-taxi mr-2"></i> 出租车
+                </h3>
+                <p class="text-gray-700">广州市区内乘坐出租车到陈家祠，车程约15-30分钟，费用约20-50元（视出发地点而定）。</p>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-map-marker mr-2"></i> 地理位置
+              </h3>
+              <div class="relative h-80 rounded-lg overflow-hidden">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.5639282997776!2d113.25747241500816!3d23.13586898485295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3402c34c03b29011%3A0x38a116e2bc67307!2z5pe55bqm5p2B55So!5e0!3m2!1szh-CN!2scn!4v1649936851561!5m2!1szh-CN!2scn" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <p class="mt-4 text-gray-700">地址：广东省广州市荔湾区中山七路恩龙里34号</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 用户评价 -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">用户评价</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">听听游客们怎么说</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-500 flex">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600">5.0分</span>
+              </div>
+              <p class="text-gray-700 mb-4">
+                "陈家祠的建筑艺术真的太震撼了！每一个细节都充满了匠心，是了解岭南文化的绝佳去处。"
+              </p>
+              <div class="flex items-center">
+                <img src="assets\images\User\user1.jpg" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                <div>
+                  <h4 class="font-medium text-secondary">张小明</h4>
+                  <p class="text-sm text-gray-500">2023年5月15日</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-500 flex">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-half-o"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.5分</span>
+              </div>
+              <p class="text-gray-700 mb-4">
+                "非常喜欢陈家祠的文化氛围，展览内容丰富，讲解详细，孩子们也学到了很多知识。"
+              </p>
+              <div class="flex items-center">
+                <img src="assets\images\User\user2.jpg" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                <div>
+                  <h4 class="font-medium text-secondary">李小红</h4>
+                  <p class="text-sm text-gray-500">2023年4月28日</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <div class="flex items-center mb-4">
+                <div class="text-yellow-500 flex">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600">5.0分</span>
+              </div>
+              <p class="text-gray-700 mb-4">
+                "门票很便宜，但是看到的东西绝对物超所值！建筑精美，工艺精湛，强烈推荐！"
+              </p>
+              <div class="flex items-center">
+                <img src="assets\images\User\user3.jpg" alt="用户头像" class="w-10 h-10 rounded-full object-cover mr-3">
+                <div>
+                  <h4 class="font-medium text-secondary">王大明</h4>
+                  <p class="text-sm text-gray-500">2023年3月12日</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 相关推荐 -->
+      <section class="py-16 bg-neutral-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">相关推荐</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">探索更多广州特色景点</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+              <div class="h-56 overflow-hidden">
+                <img src="assets\images\Attraction\guangzhouta.webp" alt="广州塔" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-2">广州塔</h3>
+                <p class="text-gray-600 mb-4">中国第一高、世界第三高的旅游观光塔</p>
+                <a href="guangzhouta-detail.html" class="text-primary font-medium hover:underline">
+                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+              <div class="h-56 overflow-hidden">
+                <img src="assets\images\Attraction\shamiandao.webp" alt="沙面岛" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-2">沙面岛</h3>
+                <p class="text-gray-600 mb-4">充满欧陆风情的历史文化街区</p>
+                <a href="shamiandao-detail.html" class="text-primary font-medium hover:underline">
+                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+              <div class="h-56 overflow-hidden">
+                <img src="assets\images\Attraction\yuntai.webp" alt="云台花园" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-2">云台花园</h3>
+                <p class="text-gray-600 mb-4">东方的巴黎小花园</p>
+                <a href="yuntai-detail.html" class="text-primary font-medium hover:underline">
+                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 页脚 -->
+      <footer-component></footer-component>
+    </div>
+  </body>
+</html>

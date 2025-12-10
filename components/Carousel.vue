@@ -4,7 +4,7 @@
     <div class="absolute inset-0 z-0" v-cloak>
       <div v-for="(item, index) in images" :key="index" 
            class="carousel-item absolute inset-0" 
-           :style="{opacity: currentIndex === index ? 1 : 0}">
+           v-if="currentIndex === index">
         <img :src="item.src" :alt="item.alt" class="w-full h-full object-cover">
       </div>
       <!-- 遮罩层 -->

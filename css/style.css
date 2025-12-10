@@ -63,8 +63,17 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
+  /* 轮播图样式 */
   .carousel-item {
     transition: opacity 1s ease-in-out;
+  }
+
+  /* 淡入淡出过渡效果 */
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s ease-in-out;
+  }
+  .fade-enter-from, .fade-leave-to {
+    opacity: 0;
   }
   .bg-blur {
     backdrop-filter: blur(8px);
@@ -311,6 +320,7 @@ h1, h2, h3, h4, h5, h6 {
 .dark .btn-primary {
   background-color: #D4AF37;
   color: #1D2129;
+  @apply rounded-md !important;
 }
 
 .dark .btn-primary:hover {
@@ -320,6 +330,7 @@ h1, h2, h3, h4, h5, h6 {
 .dark .btn-secondary {
   background-color: #006400;
   color: #F5F7FA;
+  @apply rounded-md !important;
 }
 
 .dark .btn-secondary:hover {
@@ -361,6 +372,35 @@ h1, h2, h3, h4, h5, h6 {
 .dark .text-gray-700, 
 .dark .text-dark {
   color: #F5F7FA;
+}
+
+/* 确保所有按钮在暗黑模式下都有圆角 */
+.dark button {
+  @apply rounded-md transition-colors duration-300 !important;
+  border: none !important;
+  /* 移除background: transparent !important; 以允许特定按钮类设置背景色 */
+}
+
+/* 确保移动端菜单按钮在暗黑模式下有圆角 */
+.dark #menuBtn {
+  @apply p-2 rounded-md !important;
+}
+
+/* 确保评分星星按钮在暗黑模式下的样式 */
+.dark .text-2xl {
+  @apply rounded-md p-1 !important;
+}
+
+/* 确保所有图标按钮在暗黑模式下有圆角 */
+.dark .fa {
+  @apply transition-colors duration-300 !important;
+}
+
+/* 确保所有评论区按钮在暗黑模式下有圆角 */
+.dark .comment-like-btn,
+.dark .comment-reply-btn,
+.dark .text-2xl.cursor-pointer {
+  @apply rounded-md p-1 transition-colors duration-300 !important;
 }
 
 .dark .text-gray-800 {
@@ -438,6 +478,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark #mobileDarkModeToggle {
+  color: #F5F7FA;
+}
+
+/* 暗黑模式下的导航栏图标颜色 */
+.dark #navbar .fa-map-marker-o {
   color: #F5F7FA;
 }
 

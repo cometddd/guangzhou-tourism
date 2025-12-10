@@ -1,0 +1,950 @@
+<!-- 文化详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\culture\yueju.webp" alt="粤剧" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">粤剧</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      被誉为"南国红豆"的岭南传统戏曲
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <i class="fa fa-info-circle ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 文化概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">文化概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          粤剧，又称"广东大戏"，是广东地区最具代表性的传统戏曲剧种，流行于广东、广西、香港、澳门等粤语方言区，以及东南亚、美洲等海外华人社区。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          粤剧的形成与发展经历了漫长的历史过程，其起源可追溯至明末清初，融合了昆曲、弋阳腔、皮黄等戏曲剧种的精华，并吸收了岭南民间音乐、舞蹈、说唱等艺术形式，逐渐形成了独特的艺术风格。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          粤剧音乐以梆子、二黄为主要声腔，伴奏乐器包括高胡、二弦、扬琴、月琴等。其表演艺术注重唱、做、念、打，身段优美，表情丰富，服饰华丽，脸谱独特。2009年，粤剧被列入联合国教科文组织人类非物质文化遗产代表作名录，成为世界文化宝库中的瑰宝。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-history mr-2"></i> 历史起源
+          </h3>
+          <p class="text-gray-600">
+            粤剧起源于明末清初，形成于清代中叶，成熟于清末民初，距今已有300多年的历史。最初是由外地传入的戏曲与岭南本地艺术相结合而形成的。
+          </p>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-star mr-2"></i> 艺术特点
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>唱腔独特，以梆子、二黄为主</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>表演细腻，注重身段和表情</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>服饰华丽，色彩鲜艳</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>脸谱丰富，寓意深刻</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 文化图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤剧画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">欣赏粤剧的精彩瞬间，感受这门传统艺术的魅力。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueju1.jpg" alt="粤剧表演" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤剧表演</h3>
+          <p class="text-gray-600 text-sm">粤剧演员在舞台上的精彩表演，身段优美，表情丰富。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueju2.jpg" alt="粤剧服饰" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤剧服饰</h3>
+          <p class="text-gray-600 text-sm">粤剧服饰华丽精美，刺绣精细，色彩鲜艳，具有很高的艺术价值。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueju3.jpg" alt="粤剧脸谱" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤剧脸谱</h3>
+          <p class="text-gray-600 text-sm">粤剧脸谱色彩丰富，不同的颜色代表不同的人物性格和身份。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueju4.jpg" alt="粤剧乐器" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤剧乐器</h3>
+          <p class="text-gray-600 text-sm">粤剧伴奏乐器丰富多样，包括高胡、二弦、扬琴、月琴等。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueju5.jpg" alt="粤剧化妆" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤剧化妆</h3>
+          <p class="text-gray-600 text-sm">粤剧化妆工序复杂，讲究精细，需要花费大量时间完成。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueju6.jpg" alt="粤剧经典剧目" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">经典剧目</h3>
+          <p class="text-gray-600 text-sm">粤剧有许多经典剧目，如《帝女花》《紫钗记》《牡丹亭》等。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 著名剧目 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">著名剧目</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">粤剧历经数百年发展，留下了许多经典剧目。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\culture\yueju-play1.jpg" alt="帝女花" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">《帝女花》</h3>
+          <p class="text-gray-600 mb-4">《帝女花》是粤剧的经典剧目之一，由唐涤生编剧，讲述了明末崇祯皇帝之女长平公主与驸马周世显的爱情故事，剧情悲怆动人，是粤剧的代表作。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\culture\yueju-play2.jpg" alt="紫钗记" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">《紫钗记》</h3>
+          <p class="text-gray-600 mb-4">《紫钗记》改编自唐代传奇《霍小玉传》，讲述了才子李益与歌妓霍小玉的爱情故事，剧情曲折动人，音乐优美，是粤剧舞台上的常演剧目。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\culture\yueju-play3.jpg" alt="牡丹亭" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">《牡丹亭》</h3>
+          <p class="text-gray-600 mb-4">《牡丹亭》改编自明代汤显祖的同名传奇，讲述了杜丽娘与柳梦梅的爱情故事，剧情奇幻浪漫，是粤剧的经典剧目之一。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 著名演员 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">著名演员</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">粤剧的发展离不开一代代优秀演员的传承与创新。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-80 overflow-hidden">
+          <img src="assets\images\culture\yueju-actor1.jpg" alt="红线女" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">红线女</h3>
+          <p class="text-gray-600">红线女是粤剧艺术的一代宗师，创立了"红派"艺术，对粤剧的发展产生了深远影响，代表作有《搜书院》《关汉卿》等。</p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-80 overflow-hidden">
+          <img src="assets\images\culture\yueju-actor2.jpg" alt="马师曾" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">马师曾</h3>
+          <p class="text-gray-600">马师曾是粤剧著名演员，创立了"马派"艺术，以丑生表演著称，演技精湛，代表作有《苦凤莺怜》《审死官》等。</p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-80 overflow-hidden">
+          <img src="assets\images\culture\yueju-actor3.jpg" alt="薛觉先" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">薛觉先</h3>
+          <p class="text-gray-600">薛觉先是粤剧"薛派"艺术的创始人，表演风格文武兼备，唱做俱佳，代表作有《胡不归》《王昭君》等。</p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-80 overflow-hidden">
+          <img src="assets\images\culture\yueju-actor4.jpg" alt="白雪仙" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">白雪仙</h3>
+          <p class="text-gray-600">白雪仙是粤剧著名花旦，与任剑辉合作多年，形成了独特的表演风格，代表作有《帝女花》《紫钗记》等。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 观赏指南 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">观赏指南</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">在广州，这些地方可以欣赏到精彩的粤剧表演。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/culture/yueju-theater1.jpg" alt="广东粤剧院" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">广东粤剧院</h3>
+          <p class="text-gray-600 mb-4">广东粤剧院是广东省粤剧艺术的重要传承和发展基地，拥有多个演出团体，经常上演经典粤剧剧目。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="fa fa-map-marker text-primary mr-2"></i>
+            <span>越秀区东风东路703号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fa fa-phone text-primary mr-2"></i>
+            <span>020-87776220</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/culture/yueju-theater2.jpg" alt="广州粤剧院" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">广州粤剧院</h3>
+          <p class="text-gray-600 mb-4">广州粤剧院是广州地区重要的粤剧表演团体，汇集了众多优秀的粤剧演员，演出剧目丰富多样。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="fa fa-map-marker text-primary mr-2"></i>
+            <span>荔湾区恩宁路149号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fa fa-phone text-primary mr-2"></i>
+            <span>020-81814380</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/culture/yueju-theater3.jpg" alt="江南大戏院" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">江南大戏院</h3>
+          <p class="text-gray-600 mb-4">江南大戏院是广州历史悠久的剧院之一，经常举办粤剧演出，是粤剧爱好者欣赏粤剧的好去处。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="fa fa-map-marker text-primary mr-2"></i>
+            <span>海珠区昌岗中路130号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fa fa-phone text-primary mr-2"></i>
+            <span>020-84322269</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 美食详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\food\yuecai.webp" alt="粤菜全景" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">粤菜</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      中国四大菜系之一，清鲜为本、原汁原味的岭南饮食瑰宝
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <<i class="fa fa-info-circle ml-2"></</i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 美食概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">美食概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          粤菜，又称广东菜，与川菜、鲁菜、苏菜并列为中国四大菜系，是岭南文化的重要组成部分。其起源可追溯至先秦时期，历经两千多年发展，融合了中原饮食文化、岭南本土特色及海外饮食元素，形成了“清、鲜、爽、嫩、滑”的核心风味。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          粤菜地理范围涵盖广州、潮州、东江（客家）三大流派，各有特色：广州菜作为粤菜核心，注重火候与调味的平衡；潮州菜擅长海鲜料理与卤制工艺，口味清鲜偏甜；客家菜则以肉禽、豆制品为主要食材，讲究咸香醇厚、原汁原味。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          粤菜的烹饪技法丰富多样，包括蒸、炒、焖、炖、焗、灼等数十种，其中“蒸”“灼”最能体现其“锁鲜”理念。选材上讲究“不时不食”，注重食材新鲜度与季节性，从山珍海味到寻常蔬果，皆可入馔。如今，粤菜已传播至全球各地，成为海外中餐厅的主流菜系，是中国饮食文化的重要名片。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-cutlery mr-2"></</i> 核心流派
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>广州菜：粤菜核心，清鲜嫩滑，技法全面</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>潮州菜：擅烹海鲜，注重卤味，口味清甜</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>客家菜：咸香醇厚，注重炖焖，食材朴实</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-star mr-2"></</i> 饮食理念
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>不时不食：遵循季节规律，选用当季食材</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>原汁原味：少盐少辣，突出食材本身鲜味</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>火候精准：根据食材特性调整烹饪时长</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 美食图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤菜画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">领略三大流派经典菜式，感受粤菜的多样魅力</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\yuecai1.jpg" alt="白切鸡" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">白切鸡</h3>
+          <p class="text-gray-600 text-sm">广州菜代表，选用三黄鸡清水慢浸，皮黄肉嫩，蘸姜葱蒜汁食用，最能体现粤菜“原汁原味”的精髓。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\yuecai2.jpg" alt="潮州卤鹅" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">潮州卤鹅</h3>
+          <p class="text-gray-600 text-sm">潮州菜经典，以老鹅为原料，用八角、桂皮等十余种香料卤制，肉质紧实，卤香浓郁，肥而不腻。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\yuecai3.jpg" alt="客家酿豆腐" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">客家酿豆腐</h3>
+          <p class="text-gray-600 text-sm">客家菜招牌，将猪肉末填入豆腐块中焖煮，豆腐吸满肉汁，咸香醇厚，是客家宴席必备菜式。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\yuecai4.jpg" alt="清蒸石斑鱼" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">清蒸石斑鱼</h3>
+          <p class="text-gray-600 text-sm">粤菜海鲜代表，石斑鱼肉质细嫩，清蒸后仅用姜丝、葱丝提鲜，最大程度保留鱼肉的清甜。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\yuecai5.jpg" alt="菠萝咕噜肉" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">菠萝咕噜肉</h3>
+          <p class="text-gray-600 text-sm">广州菜创新菜式，猪肉块炸至金黄，与菠萝块同炒，酸甜可口，兼具果香与肉香，老少皆宜。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\yuecai6.jpg" alt="梅菜扣肉" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">梅菜扣肉</h3>
+          <p class="text-gray-600 text-sm">客家菜经典，五花肉与梅菜同蒸，肉香与梅菜的咸香融合，肥而不腻，下饭绝佳。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 经典菜式分类 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">经典菜式分类</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">从家常小炒到宴席大菜，感受粤菜的丰富层次</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <<i class="fa fa-drumstick-bite text-primary text-2xl"></</i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">禽畜类</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>白切鸡：粤菜“鸡肴之首”，皮爽肉滑</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>烤乳猪：宴席大菜，皮脆肉嫩，色泽金黄</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>叉烧：猪肉腌制后烤制，甜香浓郁，肥瘦相间</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>柱侯鸡：以柱侯酱焖制，酱香醇厚</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <<i class="fa fa-fish text-primary text-2xl"></</i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">海鲜类</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>清蒸石斑鱼：原汁原味，鱼肉细嫩清甜</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>蒜蓉粉丝蒸扇贝：蒜香与贝肉鲜味融合</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>姜葱炒蟹：蟹肉饱满，姜葱提鲜，咸香入味</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>潮州鱼丸：Q弹爽滑，汤清味鲜</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <<i class="fa fa-leaf text-primary text-2xl"></</i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">素菜与汤羹</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>白灼菜心：清淡爽口，蘸蚝油食用</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>上汤娃娃菜：高汤浸润，鲜甜多汁</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>老火靓汤：如玉米胡萝卜排骨汤，慢炖出味</span>
+          </li>
+          <li class="flex items-start">
+            <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+            <span>冬瓜薏米汤：清热祛湿，适合夏季饮用</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 推荐店铺 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">广州必吃推荐店铺</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">品尝正宗粤菜，这些老字号与名店不容错过</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\yuecai-shop1.jpg" alt="广州酒家" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">广州酒家（文昌总店）</h3>
+          <p class="text-gray-600 mb-4">创立于1935年的中华老字号，粤菜标杆品牌，招牌菜白切鸡、文昌鸡、烤乳猪堪称经典，兼具早茶与正餐服务，是体验广州饮食文化的首选。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>荔湾区文昌南路2号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>7:30 - 21:30</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\yuecai-shop2.jpg" alt="利苑酒家" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">利苑酒家（天河店）</h3>
+          <p class="text-gray-600 mb-4">高端粤菜代表，以“用料上乘、火候精准”著称，招牌菜清蒸东星斑、鲍汁扣辽参、杨枝甘露享誉业界，是商务宴请与高端聚餐的优选。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>天河区天河路385号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>11:30 - 14:30，17:30 - 21:30</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\yuecai-shop3.jpg" alt="潮濠酒家" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">潮濠酒家（环市东店）</h3>
+          <p class="text-gray-600 mb-4">潮州菜特色名店，海鲜每日新鲜到店，招牌菜潮州卤鹅、冻花蟹、鱼丸汤味道正宗，还原潮汕饮食本味，深受潮汕老乡与食客喜爱。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>越秀区环市东路412号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>11:00 - 14:30，17:00 - 21:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 饮食文化 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤菜饮食文化</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">粤菜背后的生活哲学与社交礼仪</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-neutral-50 rounded-lg p-8 shadow-md">
+        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+          <<i class="fa fa-coffee text-primary mr-3"></</i> 早茶文化
+        </h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          老广“一盅两件”的早茶习俗是粤菜文化的核心，“一盅”指茶（多为普洱、铁观音），“两件”指点心（如虾饺、叉烧包、蛋挞）。早茶不仅是早餐，更是社交方式，家人团聚、朋友会面、商务洽谈皆可在茶楼进行，体现了广州人慢节奏的生活态度。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          传统茶楼讲究“点心即点即蒸”，师傅现场制作，保证新鲜口感。如今，早茶已延伸出“下午茶”“夜茶”，成为全天候的饮食社交场景。
+        </p>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-8 shadow-md">
+        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+          <<i class="fa fa-utensils text-primary mr-3"></</i> 宴席礼仪
+        </h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          粤菜宴席注重菜式搭配与礼仪规范，通常以“头盘（冷菜）- 汤羹 - 主菜（禽畜、海鲜）- 素菜 - 主食 - 甜品”为顺序。宴席上，鸡、鱼是必备菜式，寓意“吉祥如意”“年年有余”。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          用餐时讲究“让菜不夹菜”，长辈或客人先动筷；斟茶时遵循“先客后主、先老后少”的礼仪，体现了岭南文化的谦逊与尊重。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 文化详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\culture\yueyu.webp" alt="粤语文化" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">粤语</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      保留古汉语精髓，兼具活力与韵味的岭南语言瑰宝
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <<i class="fa fa-info-circle ml-2"></</i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 文化概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">文化概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          粤语，又称广东话、白话，是汉藏语系汉语族粤语支的一种语言，主要分布在广东、广西、香港、澳门等地，以及东南亚、欧美等海外华人社区，全球使用人口约1.2亿。粤语是中国七大方言之一，也是现代汉语中保留古汉语特征最多的方言之一。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          粤语的形成可追溯至先秦时期，岭南地区的古越语与中原汉语融合，历经秦汉、唐宋等朝代的移民潮与文化交流，逐渐形成成熟的语言体系。粤语保留了大量古汉语词汇、语法和发音，如“食”（吃）、“着”（穿）、“行”（走）等，被语言学家称为“古汉语的活化石”。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          粤语具有独特的语音系统，拥有9个声调（平声6个、仄声3个），发音抑扬顿挫、富有韵律感。其词汇丰富，既有古汉语传承词，也有本土创新词、外来借词（如“士多”来自英语“store”，“巴士”来自英语“bus”），兼具传统与现代活力。如今，粤语不仅是沟通工具，更承载着岭南文化的核心内涵，通过粤剧、粤语歌曲、影视等形式广泛传播。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-language mr-2"></</i> 核心特征
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>声调丰富：9个声调，发音韵律感强</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>保留古音：较多古汉语发音特征</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>词汇古雅：大量沿用古汉语词汇</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>外来融合：吸收大量外语借词</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-map-marker-alt mr-2"></</i> 分布区域
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>广东：广州、佛山、东莞、中山等珠三角地区</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>广西：南宁、梧州、玉林等桂东南地区</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>港澳：香港、澳门（官方语言之一）</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>海外：东南亚、欧美华人社区</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 文化图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤语文化画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">感受粤语在生活、艺术、传媒中的多样呈现</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueyu1.jpg" alt="粤语早茶交流" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤语早茶交流</h3>
+          <p class="text-gray-600 text-sm">广州茶楼里，老广用粤语闲谈家常、洽谈事务，粤语是早茶文化不可或缺的载体。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueyu2.jpg" alt="粤语歌曲演唱" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤语歌曲演唱</h3>
+          <p class="text-gray-600 text-sm">粤语歌曲是华语乐坛重要分支，张国荣、梅艳芳、陈奕迅等歌手的作品风靡全球，传播粤语文化。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueyu3.jpg" alt="粤语影视拍摄" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤语影视拍摄</h3>
+          <p class="text-gray-600 text-sm">香港粤语电影、电视剧影响深远，以独特的语言风格和文化内涵，成为华语影视的重要组成部分。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueyu4.jpg" alt="粤语童谣传唱" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤语童谣传唱</h3>
+          <p class="text-gray-600 text-sm">《月光光》《落雨大》等粤语童谣，节奏明快、朗朗上口，是岭南儿童的童年记忆，传承着粤语文化。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueyu5.jpg" alt="粤语说书" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤语说书</h3>
+          <p class="text-gray-600 text-sm">传统粤语说书艺术，艺人用粤语讲述历史故事、民间传说，语言生动幽默，极具感染力。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\culture\yueyu6.jpg" alt="粤语字幕节目" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">粤语字幕节目</h3>
+          <p class="text-gray-600 text-sm">香港、广东的粤语电视节目、广播电台，以字幕辅助传播，让更多人了解粤语的魅力。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 常用词汇与表达 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">常用词汇与表达</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">快速掌握基础粤语，融入岭南生活</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <h3 class="text-xl font-bold text-secondary mb-4 text-center">日常问候</h3>
+        <ul class="space-y-3">
+          <li class="flex justify-between items-center">
+            <span class="font-medium">你好</span>
+            <span class="text-primary">nei5 hou2（读音：内侯）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">早晨</span>
+            <span class="text-primary">zou2 san4（读音：走森）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">点称呼你？</span>
+            <span class="text-primary">dim2 cing1 fu1 nei5？（点称乎内？）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">拜拜</span>
+            <span class="text-primary">baai1 baai1（读音：拜拜）</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <h3 class="text-xl font-bold text-secondary mb-4 text-center">生活用语</h3>
+        <ul class="space-y-3">
+          <li class="flex justify-between items-center">
+            <span class="font-medium">食饭</span>
+            <span class="text-primary">sik6 faan6（读音：食饭）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">着衫</span>
+            <span class="text-primary">zoek6 saam1（读音：着衫）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">去边度？</span>
+            <span class="text-primary">heoi3 bin1 dou6？（去边度？）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">几多钱？</span>
+            <span class="text-primary">gei1 do1 cin4？（几多钱？）</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <h3 class="text-xl font-bold text-secondary mb-4 text-center">情感表达</h3>
+        <ul class="space-y-3">
+          <li class="flex justify-between items-center">
+            <span class="font-medium">好开心</span>
+            <span class="text-primary">hou2 hoi1 sam1（好开心）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">唔满意</span>
+            <span class="text-primary">m4 mun5 ji3（唔满意）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">好犀利</span>
+            <span class="text-primary">hou2 sai1 lei6（好犀利）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">好耐无见</span>
+            <span class="text-primary">hou2 noi6 mou4 gin3（好耐无见）</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <h3 class="text-xl font-bold text-secondary mb-4 text-center">特色俚语</h3>
+        <ul class="space-y-3">
+          <li class="flex justify-between items-center">
+            <span class="font-medium">得闲饮茶</span>
+            <span class="text-primary">dak1 haan4 jam2 caa4（得闲饮茶）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">唔使急</span>
+            <span class="text-primary">m4 sai2 gap1（唔使急）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">搞掂</span>
+            <span class="text-primary">gaau2 dim6（搞掂）</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="font-medium">冇问题</span>
+            <span class="text-primary">mou5 man6 tai4（冇问题）</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 粤语文化传承 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤语文化传承</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">在时代发展中，守护与弘扬粤语文化</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\culture\yueyu-heri1.jpg" alt="粤语教育" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">粤语教育推广</h3>
+          <p class="text-gray-600 mb-4">广东部分学校开设粤语兴趣班、童谣传唱课程，香港将粤语纳入基础教育体系，通过课堂教育培养青少年对粤语的认知与热爱。</p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\culture\yueyu-heri2.jpg" alt="媒体传播" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">媒体与网络传播</h3>
+          <p class="text-gray-600 mb-4">粤语影视、歌曲、播客等内容通过网络平台广泛传播，短视频平台上的粤语教学、文化解读视频，让更多非粤语区人群了解粤语文化。</p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\culture\yueyu-heri3.jpg" alt="文化活动" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">文化活动举办</h3>
+          <p class="text-gray-600 mb-4">广州、香港等地定期举办粤语歌曲大赛、童谣节、方言文化节等活动，为粤语爱好者提供交流平台，推动粤语文化活态传承。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 粤语与岭南文化 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤语与岭南文化</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">粤语是岭南文化的“活载体”，二者相互交融</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <img src="assets\images\culture\yueyu-lingnan.jpg" alt="粤语与岭南文化" class="w-full h-auto rounded-lg shadow-lg">
+      </div>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-bold text-secondary mb-3 flex items-center">
+            <<i class="fa fa-link text-primary mr-2"></</i> 饮食文化的表达
+          </h3>
+          <p class="text-gray-700">粤语中大量饮食相关词汇与表达，如“饮茶”“食宵夜”“整餸”（做菜），不仅是语言符号，更体现了老广“民以食为天”的生活哲学，与粤菜文化、早茶文化深度绑定。</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-secondary mb-3 flex items-center">
+            <<i class="fa fa-link text-primary mr-2"></</i> 民俗文化的传承
+          </h3>
+          <p class="text-gray-700">岭南民俗活动如迎春花市、龙舟竞渡、中秋赏月等，相关的祝福语、仪式用语均以粤语传承，粤语的韵律感与民俗活动的氛围相得益彰，强化了文化认同感。</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-secondary mb-3 flex items-center">
+            <<i class="fa fa-link text-primary mr-2"></</i> 艺术形式的载体
+          </h3>
+          <p class="text-gray-700">粤剧、粤语歌曲、粤语相声等艺术形式，以粤语为表达核心，语言的独特韵律赋予艺术作品独特的魅力，同时艺术作品也成为传播粤语文化的重要媒介。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

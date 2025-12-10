@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>粤菜 - 岭南文化</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+  <!-- 引入Vuex Store和Router -->
+  <script src="js/store.js"></script>
+  <script src="js/router.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（代表广州的自然景观）
+            accent: '#8B0000', // 深红色（代表传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- 导航栏 -->
+    <navbar></navbar>
+
+    <!-- 美食详情头部 -->
+    <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="assets\images\food\yuecai.webp" alt="粤菜全景" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 z-10 text-center">
+        <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">粤菜</h1>
+        <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+          中国四大菜系之一，清鲜为本、原汁原味的岭南饮食瑰宝
+        </p>
+        <div class="flex justify-center">
+          <a href="#overview" class="btn-primary transform hover:scale-105">
+            了解详情 <i class="fa fa-info-circle ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食概述 -->
+    <section id="overview" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+          <div class="lg:col-span-2">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">美食概述</h2>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              粤菜，又称广东菜，与川菜、鲁菜、苏菜并列为中国四大菜系，是岭南文化的重要组成部分。其起源可追溯至先秦时期，历经两千多年发展，融合了中原饮食文化、岭南本土特色及海外饮食元素，形成了“清、鲜、爽、嫩、滑”的核心风味。
+            </p>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              粤菜地理范围涵盖广州、潮州、东江（客家）三大流派，各有特色：广州菜作为粤菜核心，注重火候与调味的平衡；潮州菜擅长海鲜料理与卤制工艺，口味清鲜偏甜；客家菜则以肉禽、豆制品为主要食材，讲究咸香醇厚、原汁原味。
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              粤菜的烹饪技法丰富多样，包括蒸、炒、焖、炖、焗、灼等数十种，其中“蒸”“灼”最能体现其“锁鲜”理念。选材上讲究“不时不食”，注重食材新鲜度与季节性，从山珍海味到寻常蔬果，皆可入馔。如今，粤菜已传播至全球各地，成为海外中餐厅的主流菜系，是中国饮食文化的重要名片。
+            </p>
+          </div>
+          <div class="space-y-6">
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-cutlery mr-2"></i> 核心流派
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>广州菜：粤菜核心，清鲜嫩滑，技法全面</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>潮州菜：擅烹海鲜，注重卤味，口味清甜</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>客家菜：咸香醇厚，注重炖焖，食材朴实</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-star mr-2"></i> 饮食理念
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>不时不食：遵循季节规律，选用当季食材</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>原汁原味：少盐少辣，突出食材本身鲜味</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>火候精准：根据食材特性调整烹饪时长</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食图片画廊 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤菜画廊</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">欣赏粤菜的精美菜肴，感受这门传统饮食文化的魅力。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\food\yuecai1.jpg" alt="白切鸡" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">白切鸡</h3>
+              <p class="text-gray-600 text-sm">粤菜经典代表菜，以皮爽肉滑、原汁原味著称。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\food\yuecai2.jpg" alt="烧鹅" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">烧鹅</h3>
+              <p class="text-gray-600 text-sm">皮脆肉嫩，色泽金红，香气四溢，是粤菜中的招牌菜。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\food\yuecai3.jpg" alt="虾饺" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">虾饺</h3>
+              <p class="text-gray-600 text-sm">广东点心的代表，晶莹剔透，内馅饱满，口感鲜美。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\food\yuecai4.jpg" alt="清蒸石斑鱼" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">清蒸石斑鱼</h3>
+              <p class="text-gray-600 text-sm">以鲜美的鱼肉和简单的调味体现粤菜的原汁原味。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\food\yuecai5.jpg" alt="蜜汁叉烧" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">蜜汁叉烧</h3>
+              <p class="text-gray-600 text-sm">色泽红亮，甜咸适中，肥而不腻，是广式烧腊的经典。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\food\yuecai6.jpg" alt="老火靓汤" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">老火靓汤</h3>
+              <p class="text-gray-600 text-sm">广东人饮食文化的精髓，慢火熬制，营养丰富。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 经典菜品 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">经典菜品</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">粤菜历经数百年发展，留下了许多经典菜品。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets\images\food\yuecai-dish1.jpg" alt="白切鸡" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">白切鸡</h3>
+              <p class="text-gray-600 mb-4">白切鸡是粤菜的经典代表菜，以皮爽肉滑、原汁原味著称。选用广东本地的三黄鸡，经过特殊的浸煮工艺制作而成，配以姜葱蘸料食用，风味独特。</p>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets\images\food\yuecai-dish2.jpg" alt="烧鹅" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">烧鹅</h3>
+              <p class="text-gray-600 mb-4">烧鹅是粤菜中的招牌菜，选用优质的黑棕鹅，经过腌制、吹干、烤制等多道工序制作而成，皮脆肉嫩，色泽金红，香气四溢，配以酸梅酱食用，回味无穷。</p>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets\images\food\yuecai-dish3.jpg" alt="老火靓汤" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">老火靓汤</h3>
+              <p class="text-gray-600 mb-4">老火靓汤是广东人饮食文化的精髓，选用各种新鲜食材和中药材，慢火熬制数小时而成，汤清味浓，营养丰富，具有养生保健的功效。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食流派 -->
+    <section class="py-16 bg-secondary/5">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">美食流派</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">粤菜由广州菜、潮州菜和客家菜三大流派组成。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+              <i class="fa fa-map-marker text-6xl text-primary"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">广州菜</h3>
+              <p class="text-gray-600 mb-4">广州菜是粤菜的核心，以清鲜嫩滑、技法全面著称。注重火候与调味的平衡，擅长蒸、炒、焖、炖等烹饪技法，代表菜品有白切鸡、烧鹅、老火靓汤等。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+              <i class="fa fa-anchor text-6xl text-primary"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">潮州菜</h3>
+              <p class="text-gray-600 mb-4">潮州菜擅长海鲜料理与卤制工艺，口味清鲜偏甜。注重食材的新鲜度和原汁原味，代表菜品有潮州卤味、汕头牛肉火锅、蚝烙等。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+              <i class="fa fa-home text-6xl text-primary"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">客家菜</h3>
+              <p class="text-gray-600 mb-4">客家菜以肉禽、豆制品为主要食材，讲究咸香醇厚、原汁原味。注重食材的朴实和营养，代表菜品有梅菜扣肉、盐焗鸡、酿豆腐等。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食推荐 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">美食推荐</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">在广州，这些地方可以品尝到正宗的粤菜。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/food/yuecai-restaurant1.jpg" alt="广州酒家" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">广州酒家</h3>
+              <p class="text-gray-600 mb-4">广州酒家是广州著名的粤菜餐厅，有着百年历史，以正宗的粤菜和广式点心闻名。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>荔湾区文昌南路2号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-81380388</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/food/yuecai-restaurant2.jpg" alt="陶陶居" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">陶陶居</h3>
+              <p class="text-gray-600 mb-4">陶陶居是广州历史悠久的粤菜餐厅，以精美的广式点心和传统粤菜著称。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>越秀区第十甫路20号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-81389632</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/food/yuecai-restaurant3.jpg" alt="炳胜品味" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">炳胜品味</h3>
+              <p class="text-gray-600 mb-4">炳胜品味是广州著名的粤菜连锁餐厅，以创新的粤菜和传统的广式烧腊闻名。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>天河区天河东路168号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-87518683</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer-component></footer-component>
+  </div>
+
+  <!-- 引入JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

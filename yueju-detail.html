@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>粤剧 - 岭南文化</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+  <!-- 引入Vuex Store和Router -->
+  <script src="js/store.js"></script>
+  <script src="js/router.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（代表广州的自然景观）
+            accent: '#8B0000', // 深红色（代表传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- 导航栏 -->
+    <navbar></navbar>
+
+    <!-- 文化详情头部 -->
+    <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="assets\images\culture\yueju.webp" alt="粤剧" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 z-10 text-center">
+        <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">粤剧</h1>
+        <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+          被誉为"南国红豆"的岭南传统戏曲
+        </p>
+        <div class="flex justify-center">
+          <a href="#overview" class="btn-primary transform hover:scale-105">
+            了解详情 <i class="fa fa-info-circle ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文化概述 -->
+    <section id="overview" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+          <div class="lg:col-span-2">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">文化概述</h2>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              粤剧，又称"广东大戏"，是广东地区最具代表性的传统戏曲剧种，流行于广东、广西、香港、澳门等粤语方言区，以及东南亚、美洲等海外华人社区。
+            </p>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              粤剧的形成与发展经历了漫长的历史过程，其起源可追溯至明末清初，融合了昆曲、弋阳腔、皮黄等戏曲剧种的精华，并吸收了岭南民间音乐、舞蹈、说唱等艺术形式，逐渐形成了独特的艺术风格。
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              粤剧音乐以梆子、二黄为主要声腔，伴奏乐器包括高胡、二弦、扬琴、月琴等。其表演艺术注重唱、做、念、打，身段优美，表情丰富，服饰华丽，脸谱独特。2009年，粤剧被列入联合国教科文组织人类非物质文化遗产代表作名录，成为世界文化宝库中的瑰宝。
+            </p>
+          </div>
+          <div class="space-y-6">
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-history mr-2"></i> 历史起源
+              </h3>
+              <p class="text-gray-600">
+                粤剧起源于明末清初，形成于清代中叶，成熟于清末民初，距今已有300多年的历史。最初是由外地传入的戏曲与岭南本地艺术相结合而形成的。
+              </p>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-star mr-2"></i> 艺术特点
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>唱腔独特，以梆子、二黄为主</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>表演细腻，注重身段和表情</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>服饰华丽，色彩鲜艳</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>脸谱丰富，寓意深刻</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文化图片画廊 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤剧画廊</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">欣赏粤剧的精彩瞬间，感受这门传统艺术的魅力。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueju1.jpg" alt="粤剧表演" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤剧表演</h3>
+              <p class="text-gray-600 text-sm">粤剧演员在舞台上的精彩表演，身段优美，表情丰富。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueju2.jpg" alt="粤剧服饰" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤剧服饰</h3>
+              <p class="text-gray-600 text-sm">粤剧服饰华丽精美，刺绣精细，色彩鲜艳，具有很高的艺术价值。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueju3.jpg" alt="粤剧脸谱" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤剧脸谱</h3>
+              <p class="text-gray-600 text-sm">粤剧脸谱色彩丰富，不同的颜色代表不同的人物性格和身份。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueju4.jpg" alt="粤剧乐器" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤剧乐器</h3>
+              <p class="text-gray-600 text-sm">粤剧伴奏乐器丰富多样，包括高胡、二弦、扬琴、月琴等。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueju5.jpg" alt="粤剧化妆" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤剧化妆</h3>
+              <p class="text-gray-600 text-sm">粤剧化妆工序复杂，讲究精细，需要花费大量时间完成。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueju6.jpg" alt="粤剧经典剧目" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">经典剧目</h3>
+              <p class="text-gray-600 text-sm">粤剧有许多经典剧目，如《帝女花》《紫钗记》《牡丹亭》等。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 著名剧目 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">著名剧目</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">粤剧历经数百年发展，留下了许多经典剧目。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets\images\culture\yueju-play1.jpg" alt="帝女花" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">《帝女花》</h3>
+              <p class="text-gray-600 mb-4">《帝女花》是粤剧的经典剧目之一，由唐涤生编剧，讲述了明末崇祯皇帝之女长平公主与驸马周世显的爱情故事，剧情悲怆动人，是粤剧的代表作。</p>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets\images\culture\yueju-play2.jpg" alt="紫钗记" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">《紫钗记》</h3>
+              <p class="text-gray-600 mb-4">《紫钗记》改编自唐代传奇《霍小玉传》，讲述了才子李益与歌妓霍小玉的爱情故事，剧情曲折动人，音乐优美，是粤剧舞台上的常演剧目。</p>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets\images\culture\yueju-play3.jpg" alt="牡丹亭" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">《牡丹亭》</h3>
+              <p class="text-gray-600 mb-4">《牡丹亭》改编自明代汤显祖的同名传奇，讲述了杜丽娘与柳梦梅的爱情故事，剧情奇幻浪漫，是粤剧的经典剧目之一。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 著名演员 -->
+    <section class="py-16 bg-secondary/5">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">著名演员</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">粤剧的发展离不开一代代优秀演员的传承与创新。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-80 overflow-hidden">
+              <img src="assets\images\culture\yueju-actor1.jpg" alt="红线女" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">红线女</h3>
+              <p class="text-gray-600">红线女是粤剧艺术的一代宗师，创立了"红派"艺术，对粤剧的发展产生了深远影响，代表作有《搜书院》《关汉卿》等。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-80 overflow-hidden">
+              <img src="assets\images\culture\yueju-actor2.jpg" alt="马师曾" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">马师曾</h3>
+              <p class="text-gray-600">马师曾是粤剧著名演员，创立了"马派"艺术，以丑生表演著称，演技精湛，代表作有《苦凤莺怜》《审死官》等。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-80 overflow-hidden">
+              <img src="assets\images\culture\yueju-actor3.jpg" alt="薛觉先" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">薛觉先</h3>
+              <p class="text-gray-600">薛觉先是粤剧"薛派"艺术的创始人，表演风格文武兼备，唱做俱佳，代表作有《胡不归》《王昭君》等。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-80 overflow-hidden">
+              <img src="assets\images\culture\yueju-actor4.jpg" alt="白雪仙" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">白雪仙</h3>
+              <p class="text-gray-600">白雪仙是粤剧著名花旦，与任剑辉合作多年，形成了独特的表演风格，代表作有《帝女花》《紫钗记》等。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 观赏指南 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">观赏指南</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">在广州，这些地方可以欣赏到精彩的粤剧表演。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/culture/yueju-theater1.jpg" alt="广东粤剧院" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">广东粤剧院</h3>
+              <p class="text-gray-600 mb-4">广东粤剧院是广东省粤剧艺术的重要传承和发展基地，拥有多个演出团体，经常上演经典粤剧剧目。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>越秀区东风东路703号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-87776220</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/culture/yueju-theater2.jpg" alt="广州粤剧院" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">广州粤剧院</h3>
+              <p class="text-gray-600 mb-4">广州粤剧院是广州地区重要的粤剧表演团体，汇集了众多优秀的粤剧演员，演出剧目丰富多样。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>荔湾区恩宁路149号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-81814380</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/culture/yueju-theater3.jpg" alt="江南大戏院" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">江南大戏院</h3>
+              <p class="text-gray-600 mb-4">江南大戏院是广州历史悠久的剧院之一，经常举办粤剧演出，是粤剧爱好者欣赏粤剧的好去处。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>海珠区昌岗中路130号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-84322269</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer-component></footer-component>
+  </div>
+
+  <!-- 引入JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

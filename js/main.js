@@ -41,8 +41,28 @@ const data = {
     isLoading: false
   },
   
+  // 注册表单数据
+  register: {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    terms: false,
+    errors: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      terms: ''
+    },
+    message: '',
+    isSuccess: false,
+    isLoading: false
+  },
+  
   // 密码可见性
-  passwordVisible: false
+  passwordVisible: false,
+  confirmPasswordVisible: false
 };
 
 // 注册Carousel组件
@@ -53,7 +73,7 @@ Vue.component('carousel', {
       <div class="absolute inset-0 z-0">
         <div v-for="(item, index) in images" :key="index" 
              class="carousel-item absolute inset-0 transition-opacity duration-1000 ease-in-out" 
-             :class="{ 'opacity-100 z-10': currentIndex === index, 'opacity-0 z-0': currentIndex !== index }">
+             v-if="currentIndex === index">
           <img :src="item.src" :alt="item.alt" class="w-full h-full object-cover">
         </div>
         <!-- 调整遮罩层透明度以确保文字清晰可见 -->
@@ -202,17 +222,17 @@ Vue.component('carousel', {
   `
 });
 
-// 注册Navbar组件
+// Navbar组件
 Vue.component('navbar', {
   template: `
     <header :class="[
-        'fixed w-full z-50 transition-all duration-300',
-        scrolled ? 'bg-white shadow-lg py-2' : 'bg-white/90 shadow-md py-3'
-      ]" id="navbar">
+          'fixed w-full z-50 transition-all duration-300',
+          scrolled ? 'bg-white shadow-lg py-2' : 'bg-white/90 shadow-md py-3'
+        ]" id="navbar">
       <div class="container mx-auto px-4 flex justify-between items-center">
         <a href="index.html" class="flex items-center space-x-2 transition-all duration-300 hover:scale-105" @click.prevent="navigateTo('/')">
-          <i :class="['fa fa-map-marker text-2xl', scrolled ? 'text-primary' : 'text-primary animate-pulse']"></i>
-          <span :class="['text-title transition-all duration-300', scrolled ? 'text-lg sm:text-xl' : 'text-lg sm:text-xl animate-fade-in-down']">羊城乐游汇</span>
+          <i :class="['fa fa-map-marker-o text-2xl', scrolled ? 'text-gray-800' : 'text-gray-800']"></i>
+          <span :class="['text-title transition-all duration-300', scrolled ? 'text-lg sm:text-xl' : 'text-lg sm:text-xl']">羊城乐游汇</span>
         </a>
         
         <!-- 桌面导航 -->
@@ -226,13 +246,26 @@ Vue.component('navbar', {
         
         <!-- 暗黑模式切换按钮 -->
         <button id="darkModeToggle" class="hidden md:block mr-4 text-gray-700 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-50" @click="toggleDarkMode" title="切换暗黑模式">
-          <i :class="darkMode ? 'fa fa-sun-o' : 'fa fa-moon-o'"></i>
+          <i :class="darkMode ? 'fa fa-moon-o' : 'fa fa-sun-o'"></i>
         </button>
         
-        <!-- 登录按钮 -->
-        <button id="desktopLoginBtn" class="hidden md:block btn-primary transform hover:scale-105" @click="navigateTo('/login')" title="登录">
-          <i class="fa fa-user-circle mr-1"></i> 登录
-        </button>
+        <!-- 登录/用户信息 -->
+        <div class="hidden md:flex items-center space-x-4">
+          <div v-if="isLoggedIn" class="flex items-center space-x-2">
+            <span class="font-medium">{{ userName }}</span>
+            <button class="btn-primary" @click="logout">
+              <i class="fa fa-sign-out mr-1"></i> 退出登录
+            </button>
+          </div>
+          <div v-else class="flex items-center space-x-2">
+            <button id="loginBtn" class="btn-primary transform hover:scale-105" @click="navigateToLogin" title="登录">
+              <i class="fa fa-user-circle mr-1"></i> 登录
+            </button>
+            <button class="btn-secondary transform hover:scale-105" @click="navigateToRegister" title="注册">
+              <i class="fa fa-user-plus mr-1"></i> 注册
+            </button>
+          </div>
+        </div>
         
         <!-- 移动端菜单按钮 -->
         <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary transition-transform duration-300 p-2 rounded-full hover:bg-gray-50" @click="toggleMobileMenu" title="打开菜单">
@@ -253,12 +286,24 @@ Vue.component('navbar', {
             <a href="food.html" class="py-4 px-5 border-b border-gray-100 font-medium hover:text-primary hover:bg-gray-50 rounded-md transition-all duration-300 text-lg" @click.prevent="toggleMobileMenu(); navigateTo('/food')" title="美食">美食</a>
             <a href="cultural.html" class="py-4 px-5 border-b border-gray-100 font-medium hover:text-primary hover:bg-gray-50 rounded-md transition-all duration-300 text-lg" @click.prevent="toggleMobileMenu(); navigateTo('/cultural')" title="文化">文化</a>
             <a href="discuss.html" class="py-4 px-5 border-b border-gray-100 font-medium hover:text-primary hover:bg-gray-50 rounded-md transition-all duration-300 text-lg" @click.prevent="toggleMobileMenu(); navigateTo('/discuss')" title="留言">留言</a>
-            <button id="mobileLoginBtn" class="block w-full btn-primary text-center mt-4 py-3 text-lg" @click="navigateTo('/login')" title="登录">
-              <i class="fa fa-user-circle mr-2"></i> 登录
-            </button>
+            <!-- 移动端登录/用户信息 -->
+            <div v-if="isLoggedIn" class="flex flex-col space-y-2 mt-4">
+              <div class="py-2 text-center font-medium">{{ userName }}</div>
+              <button class="block w-full btn-primary text-center py-3 text-lg" @click="logout" title="退出登录">
+                <i class="fa fa-sign-out mr-2"></i> 退出登录
+              </button>
+            </div>
+            <div v-else class="flex flex-col space-y-2 mt-4">
+              <button id="mobileLoginBtn" class="block w-full btn-primary text-center py-3 text-lg" @click="navigateToLogin" title="登录">
+                <i class="fa fa-user-circle mr-2"></i> 登录
+              </button>
+              <button class="block w-full btn-secondary text-center py-3 text-lg" @click="navigateToRegister" title="注册">
+                <i class="fa fa-user-plus mr-2"></i> 注册
+              </button>
+            </div>
             <!-- 移动端暗黑模式切换 -->
             <button id="mobileDarkModeToggle" class="flex items-center justify-center py-4 px-5 font-medium hover:text-primary hover:bg-gray-50 rounded-md transition-all duration-300 text-lg" @click="toggleDarkMode" title="切换主题">
-              <i :class="darkMode ? 'fa fa-sun-o' : 'fa fa-moon-o'" class="mr-3"></i>
+              <i :class="darkMode ? 'fa fa-moon-o' : 'fa fa-sun-o'" class="mr-3"></i>
               {{ darkMode ? '浅色模式' : '深色模式' }}
             </button>
           </div>
@@ -269,7 +314,9 @@ Vue.component('navbar', {
     return {
       mobileMenuVisible: false,
       darkMode: localStorage.getItem('darkMode') === 'true' || false,
-      scrolled: false
+      scrolled: false,
+      isLoggedIn: false,
+      userName: ''
     };
   },
   mounted() {
@@ -277,6 +324,8 @@ Vue.component('navbar', {
     window.addEventListener('scroll', this.handleScroll);
     // 应用保存的暗黑模式状态
     this.updateDarkModeUI();
+    // 检查登录状态
+    this.checkLoginStatus();
   },
   beforeDestroy() {
     // 移除滚动事件监听
@@ -291,7 +340,50 @@ Vue.component('navbar', {
       this.mobileMenuVisible = !this.mobileMenuVisible;
     },
     navigateTo(path) {
-      navigateTo(this.$router, path);
+      // 检查是否有路由实例
+      if (window.navigateTo) {
+        window.navigateTo(this.$router, path);
+      } else {
+        // 如果没有路由实例，直接跳转
+        const pathMap = {
+          '/': 'index.html',
+          '/attractions': 'attractions-guide.html',
+          '/food': 'food.html',
+          '/cultural': 'cultural.html',
+          '/discuss': 'discuss.html'
+        };
+        window.location.href = pathMap[path] || 'index.html';
+      }
+    },
+    navigateToLogin() {
+      // 检查是否已登录
+      if (this.isLoggedIn) {
+        alert('您已登录');
+        return;
+      }
+      window.location.href = 'login.html';
+    },
+    navigateToRegister() {
+      // 检查是否已登录
+      if (this.isLoggedIn) {
+        alert('您已登录');
+        return;
+      }
+      window.location.href = 'register.html';
+    },
+    logout() {
+      // 调用store的登出方法
+      if (window.store) {
+        window.store.dispatch('logout');
+      }
+      // 清除localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('isLoggedIn');
+      // 更新状态
+      this.isLoggedIn = false;
+      this.userName = '';
+      // 刷新页面
+      window.location.reload();
     },
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
@@ -304,30 +396,58 @@ Vue.component('navbar', {
       } else {
         document.documentElement.classList.remove('dark');
       }
+    },
+    checkLoginStatus() {
+      // 从localStorage检查登录状态
+      const savedUser = localStorage.getItem('user');
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      
+      if (isLoggedIn) {
+        this.isLoggedIn = true;
+        try {
+          if (savedUser) {
+            const userData = JSON.parse(savedUser);
+            this.userName = userData.name || userData.email.split('@')[0];
+          } else {
+            // 如果没有保存用户名，使用默认名称
+            this.userName = '用户';
+          }
+        } catch (error) {
+          console.error('Failed to parse user data:', error);
+          this.userName = '用户';
+        }
+      } else {
+        this.isLoggedIn = false;
+        this.userName = '';
+      }
     }
   }
 });
 
-// 创建Vue实例
-const app = new Vue({
-  // 将实例暴露到全局window对象
-  beforeMount() {
-    window.app = this;
-  },
-  el: '#app',
-  data: data,
-  store: store, // 引入Vuex Store
-  computed: {
-    carouselImages() {
-      return this.$store.getters.carouselImages;
-    }
-  },
-  mounted() {
-    console.log('Vue instance mounted, initializing carousel...');
-    
-    // 从localStorage恢复登录状态和用户信息
-    this.restoreLoginState();
-    
+// 在DOM加载完成后创建Vue实例
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, creating Vue instance...');
+  
+  // 创建Vue实例
+  const app = new Vue({
+    // 将实例暴露到全局window对象
+    beforeMount() {
+      window.app = this;
+    },
+    el: '#app',
+    data: data,
+    store: store, // 引入Vuex Store
+    computed: {
+      carouselImages() {
+        return this.$store.getters.carouselImages;
+      }
+    },
+    mounted() {
+      console.log('Vue instance mounted, initializing carousel...');
+      
+      // 从localStorage恢复登录状态和用户信息
+      this.restoreLoginState();
+      
     // 初始化自动轮播
     this.startAutoSlide();
     console.log('Carousel initialized, carouselImages:', this.carouselImages);
@@ -767,9 +887,144 @@ const app = new Vue({
       this.passwordVisible = !this.passwordVisible;
     },
     
+    // 切换确认密码可见性
+    toggleConfirmPasswordVisibility() {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    },
+    
+    /**
+     * 验证注册表单字段
+     * @param {string} field - 字段名
+     */
+    validateRegisterField(field) {
+      let error = '';
+      const value = this.register[field];
+      
+      switch(field) {
+        case 'name':
+          if (!value) {
+            error = '请输入姓名';
+          }
+          break;
+        case 'email':
+          if (!value) {
+            error = '请输入邮箱';
+          } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            error = '请输入有效的邮箱地址';
+          }
+          break;
+        case 'password':
+          if (!value) {
+            error = '请输入密码';
+          } else if (value.length < 6) {
+            error = '密码长度至少需要6个字符';
+          }
+          break;
+        case 'confirmPassword':
+          if (!value) {
+            error = '请确认密码';
+          } else if (value !== this.register.password) {
+            error = '两次输入的密码不一致';
+          }
+          break;
+        case 'terms':
+          if (!value) {
+            error = '请同意服务条款和隐私政策';
+          }
+          break;
+      }
+      
+      this.register.errors[field] = error;
+    },
+    
+    /**
+     * 用户注册
+     */
+    registerUser() {
+      // 验证所有字段
+      this.validateRegisterField('name');
+      this.validateRegisterField('email');
+      this.validateRegisterField('password');
+      this.validateRegisterField('confirmPassword');
+      this.validateRegisterField('terms');
+      
+      // 检查是否有错误
+      if (Object.values(this.register.errors).some(error => error)) {
+        return;
+      }
+      
+      // 显示加载状态和注册消息
+      this.register.isLoading = true;
+      this.register.message = '正在注册...';
+      this.register.isSuccess = false;
+      
+      // 调用注册API
+      fetch('http://localhost:3000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.register.name,
+          email: this.register.email,
+          password: this.register.password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.register.isLoading = false;
+        
+        if (data.success) {
+          this.register.message = '注册成功！正在跳转到登录页面...';
+          this.register.isSuccess = true;
+          
+          // 延迟跳转
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 2000);
+        } else {
+          this.register.message = data.message;
+          this.register.isSuccess = false;
+        }
+      })
+      .catch(error => {
+        console.error('注册失败:', error);
+        this.register.isLoading = false;
+        this.register.message = '注册失败，请检查网络连接或稍后重试';
+        this.register.isSuccess = false;
+      });
+    },
+    
+    // 检查用户是否已登录
+    isUserLoggedIn() {
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        try {
+          const user = JSON.parse(userData);
+          return user.isLoggedIn;
+        } catch (error) {
+          console.error('Failed to parse user data:', error);
+        }
+      }
+      return false;
+    },
+    
     // 跳转到注册页面
     goToRegister() {
+      if (this.isUserLoggedIn()) {
+        alert('您已登录！');
+        return;
+      }
       window.location.href = 'register.html';
+    },
+    
+    // 跳转到登录页面
+    goToLogin() {
+      if (this.isUserLoggedIn()) {
+        alert('您已登录！');
+        return;
+      }
+      window.location.href = 'login.html';
     },
     
     /**
@@ -808,8 +1063,24 @@ const app = new Vue({
      * @param {number} id - 美食ID
      */
     openFoodDetail(id) {
-      alert(`查看美食详情：ID ${id}`);
-      // 实际项目中应实现详情页或模态框
+      // 根据美食ID获取美食信息
+      const food = this.foods.find(item => item.id === id);
+      
+      // 根据美食名称或标签导航到对应的详情页
+      if (food) {
+        if (food.tags && food.tags.includes('肠粉')) {
+          window.location.href = 'changfen-detail.html';
+        } else if (food.tags && food.tags.includes('烧鹅')) {
+          window.location.href = 'shaoe-detail.html';
+        } else if (food.tags && food.tags.includes('虾饺')) {
+          window.location.href = 'xiaojiao-detail.html';
+        } else {
+          alert(`查看美食详情：${food.name}`);
+          // 实际项目中应实现详情页或模态框
+        }
+      } else {
+        alert(`查看美食详情：ID ${id}`);
+      }
     },
     
     /**
@@ -897,3 +1168,4 @@ const app = new Vue({
 
 // 初始化路由
 initRouter(app);
+});

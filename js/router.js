@@ -28,8 +28,40 @@ function createRouter() {
         name: 'login'
       },
       {
-        path: '/attraction-detail',
-        name: 'attraction-detail'
+        path: '/guangzhouta-detail',
+        name: 'guangzhouta-detail'
+      },
+      {
+        path: '/chenjiaci-detail',
+        name: 'chenjiaci-detail'
+      },
+      {
+        path: '/shamiandao-detail',
+        name: 'shamiandao-detail'
+      },
+      {
+        path: '/changfen-detail',
+        name: 'changfen-detail'
+      },
+      {
+        path: '/shaoe-detail',
+        name: 'shaoe-detail'
+      },
+      {
+        path: '/xiaojiao-detail',
+        name: 'xiaojiao-detail'
+      },
+      {
+        path: '/yueju-detail',
+        name: 'yueju-detail'
+      },
+      {
+        path: '/yuecai-detail',
+        name: 'yuecai-detail'
+      },
+      {
+        path: '/yueyu-detail',
+        name: 'yueyu-detail'
       }
     ]
   });
@@ -78,8 +110,24 @@ function initRouter(vueInstance) {
     initialRoute = '/discuss';
   } else if (currentPath.endsWith('login.html')) {
     initialRoute = '/login';
-  } else if (currentPath.endsWith('attraction-detail.html')) {
-    initialRoute = '/attraction-detail';
+  } else if (currentPath.endsWith('guangzhouta-detail.html')) {
+    initialRoute = '/guangzhouta-detail';
+  } else if (currentPath.endsWith('chenjiaci-detail.html')) {
+    initialRoute = '/chenjiaci-detail';
+  } else if (currentPath.endsWith('shamiandao-detail.html')) {
+    initialRoute = '/shamiandao-detail';
+  } else if (currentPath.endsWith('changfen-detail.html')) {
+    initialRoute = '/changfen-detail';
+  } else if (currentPath.endsWith('shaoe-detail.html')) {
+    initialRoute = '/shaoe-detail';
+  } else if (currentPath.endsWith('xiaojiao-detail.html')) {
+    initialRoute = '/xiaojiao-detail';
+  } else if (currentPath.endsWith('yueju-detail.html')) {
+    initialRoute = '/yueju-detail';
+  } else if (currentPath.endsWith('yuecai-detail.html')) {
+    initialRoute = '/yuecai-detail';
+  } else if (currentPath.endsWith('yueyu-detail.html')) {
+    initialRoute = '/yueyu-detail';
   }
   
   router.push(initialRoute);

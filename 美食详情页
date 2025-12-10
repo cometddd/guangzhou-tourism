@@ -1,0 +1,942 @@
+<!-- 美食详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\food\changfen.webp" alt="肠粉" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">肠粉</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      广东著名传统小吃，口感嫩滑，风味独特
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <i class="fa fa-info-circle ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 美食概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">美食概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          肠粉是广东地区最具代表性的传统小吃之一，起源于唐代，至今已有一千多年的历史。相传肠粉是由岭南先民根据北方的凉皮改良而成，经过千年的发展，形成了独特的风味。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          肠粉以米浆为主要原料，经蒸制而成，其制作工艺独特，讲究米浆的调配、蒸制的火候和时间。优质的肠粉薄如蝉翼，白如雪花，口感嫩滑，富有弹性。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          肠粉根据馅料的不同，可分为多种类型，如牛肉肠、猪肉肠、鲜虾肠、鸡蛋肠等。食用时通常搭配豉油、花生油、芝麻酱等调料，味道鲜美，回味无穷。在广州，肠粉是早茶必不可少的美食之一，深受市民和游客的喜爱。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-cutlery mr-2"></i> 主要食材
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>优质大米</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>清水</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>馅料（牛肉、猪肉、鲜虾等）</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>调料（豉油、花生油、芝麻酱等）</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-star mr-2"></i> 风味特点
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>口感嫩滑，富有弹性</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>味道鲜美，咸淡适中</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+              <span>米香浓郁，回味无穷</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 美食图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">美食画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">欣赏不同种类的肠粉，感受这道传统小吃的魅力。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\changfen1.jpg" alt="牛肉肠" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">牛肉肠</h3>
+          <p class="text-gray-600 text-sm">以新鲜牛肉为馅料，肉质鲜嫩，与嫩滑的肠粉相得益彰，味道鲜美。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\changfen2.jpg" alt="鲜虾肠" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">鲜虾肠</h3>
+          <p class="text-gray-600 text-sm">选用新鲜虾仁为馅料，虾肉Q弹，鲜味十足，是肠粉中的佳品。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\changfen3.jpg" alt="鸡蛋肠" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">鸡蛋肠</h3>
+          <p class="text-gray-600 text-sm">以鸡蛋为主要馅料，口感细腻，蛋香浓郁，是最经典的肠粉之一。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\changfen4.jpg" alt="猪肉肠" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">猪肉肠</h3>
+          <p class="text-gray-600 text-sm">以猪肉为馅料，肉质鲜嫩多汁，搭配肠粉的嫩滑，味道十分可口。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\changfen5.jpg" alt="鸳鸯肠" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">鸳鸯肠</h3>
+          <p class="text-gray-600 text-sm">混合两种馅料的肠粉，常见的有牛肉猪肉鸳鸯肠、虾仁鸡蛋鸳鸯肠等。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\changfen6.jpg" alt="肠粉制作" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">肠粉制作</h3>
+          <p class="text-gray-600 text-sm">传统的肠粉制作工艺，师傅们熟练地操作着蒸盘，制作出美味的肠粉。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 制作方法 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">制作方法</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">在家也能制作美味的肠粉，跟着步骤试试看吧。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="order-2 md:order-1">
+        <ol class="space-y-6">
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">准备米浆</h3>
+              <p class="text-gray-600">将优质大米浸泡4-6小时，捞出后加入适量清水，用料理机打成细腻的米浆，然后加入少许盐和油搅拌均匀。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">准备馅料</h3>
+              <p class="text-gray-600">根据个人喜好准备馅料，如牛肉馅（加入少许生抽、蚝油、淀粉、食用油腌制）、鲜虾（去壳去虾线）、鸡蛋等。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">蒸制肠粉</h3>
+              <p class="text-gray-600">在蒸盘上刷一层薄油，倒入适量米浆，摇匀使其均匀分布，加入准备好的馅料，放入蒸锅蒸1-2分钟，至肠粉凝固鼓起即可。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">4</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">调配酱汁</h3>
+              <p class="text-gray-600">将豉油、蚝油、少许糖、清水放入锅中煮开，制成酱汁；另外准备少许花生油和芝麻酱。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">5</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">装盘食用</h3>
+              <p class="text-gray-600">将蒸好的肠粉用刮刀刮下，卷成卷状放入盘中，淋上酱汁、花生油和芝麻酱即可食用。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="order-1 md:order-2">
+        <img src="assets\images\food\changfen-making.jpg" alt="肠粉制作过程" class="w-full h-auto rounded-lg shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 推荐店铺 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">推荐店铺</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">在广州，这些店铺的肠粉堪称一绝，值得一试。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\shop1.jpg" alt="银记肠粉店" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">银记肠粉店</h3>
+          <p class="text-gray-600 mb-4">广州老字号肠粉店，创立于1958年，以"粉薄、味鲜、爽滑、口感独特"而闻名，是广州肠粉的代表品牌之一。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="fa fa-map-marker text-primary mr-2"></i>
+            <span>越秀区北京路342号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fa fa-clock-o text-primary mr-2"></i>
+            <span>6:30 - 22:00</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\shop2.jpg" alt="华辉拉肠" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">华辉拉肠</h3>
+          <p class="text-gray-600 mb-4">广州知名肠粉连锁品牌，分店遍布全市，其肠粉米香浓郁，口感爽滑，馅料新鲜，深受市民喜爱。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="fa fa-map-marker text-primary mr-2"></i>
+            <span>天河区天河路299号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fa fa-clock-o text-primary mr-2"></i>
+            <span>7:00 - 21:30</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\shop3.jpg" alt="源记肠粉店" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">源记肠粉店</h3>
+          <p class="text-gray-600 mb-4">拥有几十年历史的老字号肠粉店，位于荔湾区，其肠粉薄如纸，滑如丝，味道正宗，是许多老广州的回忆。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="fa fa-map-marker text-primary mr-2"></i>
+            <span>荔湾区多宝路296号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <i class="fa fa-clock-o text-primary mr-2"></i>
+            <span>6:00 - 14:00，17:00 - 20:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 搭配推荐 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">搭配推荐</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">肠粉搭配这些饮品和小吃，味道更佳。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/tea.jpg" alt="普洱茶" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">普洱茶</h3>
+          <p class="text-gray-600 mb-4">肠粉搭配普洱茶是经典组合，普洱茶口感醇厚，有助于消化，与肠粉的鲜美相得益彰。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/soybean.jpg" alt="豆浆" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">豆浆</h3>
+          <p class="text-gray-600 mb-4">新鲜的豆浆口感细腻，味道香甜，与肠粉搭配食用，清淡爽口，营养丰富。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/porridge.jpg" alt="及第粥" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">及第粥</h3>
+          <p class="text-gray-600 mb-4">肠粉配及第粥是广州人喜爱的早餐组合，粥品绵密，肠粉嫩滑，让人回味无穷。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 美食详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\food\shaoe.webp" alt="广式烧鹅" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">广式烧鹅</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      皮脆肉嫩、汁水丰盈的广府烧腊代表，老广餐桌上的“硬菜担当”
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <<i class="fa fa-info-circle ml-2"></</i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 美食概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">美食概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          广式烧鹅是广府烧腊的经典代表，历史可追溯至南宋时期，历经数百年传承与改良，如今已成为“食在广州”的标志性美食之一。其核心精髓在于“皮脆、肉嫩、骨香、汁多”，从选鹅、腌制到烧制，每一步都暗藏匠心。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          传统广式烧鹅选用120天左右的黑棕棚鹅或清远走地鹅，这类鹅皮下脂肪分布均匀，肉质紧实不柴。制作时需经“打气、烫皮、上皮水、风干、烧制”五大步骤，其中上皮水的配方（多由麦芽糖、白醋、米酒等调制）和烧制的火候控制，是决定烧鹅口感的关键——木炭明火高温烤制，能让鹅皮快速形成酥脆外壳，同时锁住内部肉汁。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          食用烧鹅时，讲究“现斩现吃”，搭配酸梅酱是经典吃法：酸梅酱的酸甜能中和鹅皮的油脂感，让每一口都清爽不腻。在广州，烧鹅不仅是日常餐桌上的美味，更是节庆宴席、家庭聚会的“必备硬菜”，从老字号烧腊店到高端粤菜馆，都能找到它的身影。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-cutlery mr-2"></</i> 核心食材
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>120天龄黑棕棚鹅/清远走地鹅</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>腌制料（盐、糖、五香粉、八角、香叶等）</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>上皮水（麦芽糖、白醋、米酒、清水）</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>烧制燃料（荔枝柴/龙眼柴为佳）</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-star mr-2"></</i> 风味特点
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>鹅皮：金黄酥脆，咬下“卜卜”作响</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>鹅肉：鲜嫩多汁，纤维细腻不柴</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>鹅骨：经香料腌制，自带咸香</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>蘸料：酸梅酱酸甜解腻，提升风味层次</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 美食图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">美食画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">从烧制到上桌，感受广式烧鹅的每一处细节魅力</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\shaoe1.jpg" alt="刚出炉的烧鹅" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">刚出炉的烧鹅</h3>
+          <p class="text-gray-600 text-sm">木炭明火烤制后，鹅皮呈诱人的金红色，表皮泛着油光，热气裹挟着肉香扑面而来。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\shaoe2.jpg" alt="烧鹅现斩" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">烧鹅现斩</h3>
+          <p class="text-gray-600 text-sm">师傅手持斩刀，按“先斩鹅胸、再斩鹅腿”的顺序分割，保证每块烧鹅都带皮带肉，汁水不流失。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\shaoe3.jpg" alt="烧鹅配酸梅酱" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">烧鹅配酸梅酱</h3>
+          <p class="text-gray-600 text-sm">斩好的烧鹅码盘，搭配一小碟秘制酸梅酱，酸甜口感中和油脂，是老广公认的“黄金搭档”。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\shaoe4.jpg" alt="鹅腿部位" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">鹅腿部位</h3>
+          <p class="text-gray-600 text-sm">鹅腿肉质紧实有嚼劲，皮厚肉多，咬开后肉汁充盈，是许多食客的首选部位。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\shaoe5.jpg" alt="烧鹅饭" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">烧鹅饭</h3>
+          <p class="text-gray-600 text-sm">烧鹅斩块铺在米饭上，淋上少许烧鹅汁，搭配青菜，是广州人日常午餐的热门选择。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\shaoe6.jpg" alt="荔枝柴烧制" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">荔枝柴烧制</h3>
+          <p class="text-gray-600 text-sm">用荔枝柴烧制的烧鹅，自带淡淡果香，让鹅肉多了一层清甜风味，是传统烧鹅的精髓所在。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 制作工艺 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">传统制作工艺</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">每一只正宗广式烧鹅，都离不开这五步匠心工序</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="order-2 md:order-1">
+        <ol class="space-y-6">
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">选鹅与处理</h3>
+              <p class="text-gray-600">选用120天左右、体重约5-6斤的黑棕棚鹅，宰杀后去除内脏、清洗干净，从鹅颈处插入气管打气，使鹅皮与鹅肉分离，便于后续上皮水和烤制。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">腌制入味</h3>
+              <p class="text-gray-600">将盐、糖、五香粉、八角、香叶等香料混合，从鹅腹填入并均匀涂抹内壁，再用姜片、葱段塞入鹅腔增香，静置30分钟让香料渗透。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">烫皮与上皮水</h3>
+              <p class="text-gray-600">用沸水均匀浇淋鹅身，使鹅皮收缩紧致；随后将麦芽糖、白醋、米酒按比例调成的上皮水刷满鹅身，确保每一处都覆盖到位。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">4</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">风干定型</h3>
+              <p class="text-gray-600">将鹅悬挂在通风处，风干4-6小时（或用风扇加速风干），直至鹅皮完全干燥、呈哑光状态，这是保证鹅皮酥脆的关键步骤。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">5</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">炭火烤制</h3>
+              <p class="text-gray-600">将风干后的鹅放入烤炉，用荔枝柴或龙眼柴明火烤制，温度控制在200-220℃，烤制过程中需不断转动鹅身，确保受热均匀，约1小时后出炉即可。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="order-1 md:order-2">
+        <img src="assets\images\food\shaoe-making.jpg" alt="烧鹅制作过程" class="w-full h-auto rounded-lg shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 推荐店铺 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">广州必吃推荐店铺</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">从老字号到人气名店，这些烧鹅店值得专程打卡</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\shaoe-shop1.jpg" alt="朱仔记烧鹅" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">朱仔记烧鹅</h3>
+          <p class="text-gray-600 mb-4">白云区老字号烧腊店，选用自家养殖120天的黑棕棚鹅，以传统古法瓦缸明火烤制，鹅皮金红酥脆，肉质嫩滑鲜甜，皮下脂肪含量低，吃起来不腻口。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>白云区太和镇（具体分店可查询就近门店）</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>10:00 - 20:00（建议提前电话确认）</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\shaoe-shop2.jpg" alt="大塘烧鹅（赤岗店）" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">大塘烧鹅（赤岗店）</h3>
+          <p class="text-gray-600 mb-4">广州连锁烧腊名店，赤岗店是人气分店，烧鹅每日现烤现卖，鹅腿部位肉质紧实，搭配秘制酸梅酱，酸甜解腻，烧鹅饭更是周边上班族的午餐首选。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>海珠区南洲街道大塘村聚德西路3号</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>9:30 - 21:00</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\shaoe-shop3.jpg" alt="兄弟至尊烧鹅" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">兄弟至尊烧鹅</h3>
+          <p class="text-gray-600 mb-4">白云区白云湖街道的人气烧腊店，以荔枝柴烧制烧鹅为特色，鹅皮带着淡淡果香，肉汁丰富，性价比高，深受周边街坊喜爱。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>白云区白云湖街道朗兴路与大朗朗环路新风街交叉口北40米</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>11:00 - 19:30（售完即止）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 搭配推荐 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">经典搭配推荐</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">烧鹅的最佳“搭档”，解锁更多美味吃法</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/shaoe-peiy1.jpg" alt="酸梅酱" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">秘制酸梅酱</h3>
+          <p class="text-gray-600 mb-4">广式烧鹅的“灵魂蘸料”，由酸梅、冰糖、陈皮熬制而成，酸甜口感能中和鹅皮的油脂，让每一口都清爽不腻。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/shaoe-peiy2.jpg" alt="白粥" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">生滚白粥</h3>
+          <p class="text-gray-600 mb-4">清淡的白粥搭配烧鹅，粥的绵密能平衡烧鹅的咸香，是老广早餐或夜宵的经典组合，尤其适合肠胃敏感人群。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/shaoe-peiy3.jpg" alt="炒青菜" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">蒜蓉炒时蔬</h3>
+          <p class="text-gray-600 mb-4">烧鹅搭配蒜蓉炒青菜（如菜心、芥兰），蔬菜的清爽能解腻，同时补充膳食纤维，让搭配更均衡。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 美食详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\food\xiajiao.webp" alt="广式虾饺" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">广式虾饺</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      皮薄如纸、鲜虾饱满的广式早茶“四大天王”之首，非遗级点心代表
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <<i class="fa fa-info-circle ml-2"></</i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 美食概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">美食概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          广式虾饺，又称“虾饺皇”，是广式早茶的“灵魂点心”，与叉烧包、干蒸烧卖、蛋挞并称为早茶“四大天王”。其起源可追溯至20世纪20年代的广州茶楼，最初是茶楼为满足食客对“鲜”的追求而创制，如今已成为广府饮食文化的标志性符号，2015年，点都德虾饺制作技艺更被列入非物质文化遗产名录。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          正宗广式虾饺讲究“皮薄、馅足、形美、味鲜”：饺皮需用澄面（小麦淀粉）与开水烫制，擀制后薄如蝉翼、透光可见内馅；馅料以新鲜虾仁为主，搭配少许猪肉、笋丁增香，每只虾饺至少包裹2-3颗完整虾仁，确保口感饱满；造型上则要捏出10-12道褶子，形似弯月，精致美观。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          蒸制虾饺的火候控制极为关键，通常用猛火蒸3-5分钟即可，时间过长会导致饺皮软烂、虾仁变老。食用时无需过多蘸料，只需少许醋提鲜，便能品尝到虾仁的清甜、笋丁的爽脆和饺皮的柔韧，一口下去，鲜味在口腔中迸发，是老广“一盅两件”早茶文化中不可或缺的美味。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-cutlery mr-2"></</i> 核心食材
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>新鲜青虾仁（每只约5-7cm）</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>澄面（小麦淀粉）+ 少量玉米淀粉</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>鲜笋丁（或马蹄丁）</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>少许猪肉末（或肥膘末）</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>调味料（盐、糖、白胡椒粉、香油等）</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <<i class="fa fa-star mr-2"></</i> 风味特点
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>饺皮：薄如蝉翼，柔韧透光，不粘牙</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>内馅：虾仁饱满Q弹，鲜甜味浓</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>口感：笋丁爽脆解腻，层次丰富</span>
+            </li>
+            <li class="flex items-start">
+              <<i class="fa fa-check-circle text-primary mt-1 mr-2"></</i>
+              <span>整体：清淡不腻，鲜味突出</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 美食图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">美食画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">从传统虾饺到创新品类，感受广式虾饺的多样魅力</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\xiajiao1.jpg" alt="经典虾饺皇" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">经典虾饺皇</h3>
+          <p class="text-gray-600 text-sm">每只包裹3颗完整虾仁，饺皮晶莹剔透，褶子清晰均匀，蒸制后虾仁粉嫩，一口咬下满是鲜甜。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\xiajiao2.jpg" alt="红米肠" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">金莎红米肠</h3>
+          <p class="text-gray-600 text-sm">创新虾饺品类，外层是红米制皮，中间裹着酥脆网皮和虾仁，三重口感，连续多年获“亚洲地标美食”。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\xiajiao3.jpg" alt="青芥虾饺" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">青芥虾饺</h3>
+          <p class="text-gray-600 text-sm">在传统馅料中加入少许青芥末，微辣口感刺激味蕾，中和虾仁的鲜甜，适合喜欢创新口味的食客。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\xiajiao4.jpg" alt="虾饺制作（擀皮）" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">虾饺制作（擀皮）</h3>
+          <p class="text-gray-600 text-sm">师傅用特制小擀杖将澄面皮擀成薄圆片，要求边缘薄、中间略厚，确保包馅时不易破皮。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\xiajiao5.jpg" alt="虾饺蒸制" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">虾饺蒸制</h3>
+          <p class="text-gray-600 text-sm">蒸锅水烧开后放入虾饺，猛火蒸3-5分钟，蒸好后及时取出，避免饺皮吸收过多水蒸气而变软。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\food\xiajiao6.jpg" alt="早茶虾饺搭配" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">早茶虾饺搭配</h3>
+          <p class="text-gray-600 text-sm">虾饺搭配普洱茶或菊花茶，是老广早茶的经典组合，茶的清香能解腻，提升虾饺的鲜味。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 制作工艺（非遗技艺） -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">非遗制作工艺</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">每一只正宗虾饺，都离不开这六道非遗级工序</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="order-2 md:order-1">
+        <ol class="space-y-6">
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">处理虾仁</h3>
+              <p class="text-gray-600">新鲜青虾仁去壳去虾线，用清水洗净后吸干水分，加入少许盐、白胡椒粉、料酒抓匀腌制10分钟，再加入少量淀粉锁住水分，确保虾仁Q弹。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">调制馅料</h3>
+              <p class="text-gray-600">将腌制好的虾仁与鲜笋丁（或马蹄丁）、少许猪肉末混合，加入适量糖、香油调味，搅拌均匀后放入冰箱冷藏30分钟，让馅料更入味。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">烫制澄面皮</h3>
+              <p class="text-gray-600">澄面与少量玉米淀粉按9:1比例混合，倒入沸水，边倒边搅拌至形成絮状，随后加入少许食用油揉成光滑面团，盖上湿布醒面20分钟。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">4</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">擀制饺皮</h3>
+              <p class="text-gray-600">醒好的面团分成小剂子（每个约10g），用特制小擀杖将剂子擀成直径约8cm的圆片，要求边缘薄、中间略厚，便于包馅和蒸制。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">5</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">包制虾饺</h3>
+              <p class="text-gray-600">每张饺皮放入约30g馅料（含2-3颗虾仁），用手指捏出10-12道褶子，封口处捏紧，确保蒸制时不漏水，造型呈弯月状。</p>
+            </div>
+          </li>
+          <li class="flex">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">6</div>
+            <div>
+              <h3 class="text-xl font-bold text-secondary mb-2">猛火蒸制</h3>
+              <p class="text-gray-600">蒸锅加水烧开，将虾饺放入蒸笼（垫上油纸或刷油防粘），猛火蒸3-5分钟，蒸好后立即取出，撒少许葱花点缀，即可上桌食用。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="order-1 md:order-2">
+        <img src="assets\images\food\xiajiao-making.jpg" alt="虾饺制作过程" class="w-full h-auto rounded-lg shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 推荐店铺 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">必吃推荐店铺</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">从老字号茶楼到人气名店，这些虾饺店值得打卡</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\xiajiao-shop1.jpg" alt="点都德（白云山地标店）" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">点都德（白云山地标店）</h3>
+          <p class="text-gray-600 mb-4">广州老字号茶楼，虾饺制作技艺获非遗认证，招牌虾饺皇选用超大虾仁，饺皮透光，口感鲜甜；创新红米肠更是桌桌必点，连续多年获“亚洲地标美食”。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>白云区白云山南门云山天地内</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>8:00 - 22:00（早茶时段8:00-11:00）</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\xiajiao-shop2.jpg" alt="半岛名轩（金控店）" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">半岛名轩（金控店）</h3>
+          <p class="text-gray-600 mb-4">米其林星厨团队主理的粤菜馆，虾饺选用青龙虾和麻虾制作，一味两食：虾肉做虾饺，虾头熬汤蒸蛋，虾肉爽甜弹牙，是高端虾饺的代表。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>白云区黄石东路588号白云金控大厦4楼</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>11:00 - 14:30，17:30 - 21:00</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\food\xiajiao-shop3.jpg" alt="雍裕餐厅" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">雍裕餐厅</h3>
+          <p class="text-gray-600 mb-4">以点心为主的老字号餐厅，虾饺是招牌必点，虾仁每天现购，新鲜紧实Q滑，饺皮现擀现包，香滑入口，汤汁丰富，深受周边街坊喜爱。</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <<i class="fa fa-map-marker text-primary mr-2"></</i>
+            <span>天河区中山大道西8号天河商贸大厦2楼</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-500">
+            <<i class="fa fa-clock-o text-primary mr-2"></</i>
+            <span>24小时营业（早茶时段6:30-10:30）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 搭配推荐 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">经典搭配推荐</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">遵循老广“一盅两件”传统，解锁虾饺的最佳吃法</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/xiajiao-peiy1.jpg" alt="普洱茶" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">普洱茶</h3>
+          <p class="text-gray-600 mb-4">老广早茶“标配”，普洱茶口感醇厚，能解腻助消化，与虾饺的鲜甜搭配，让每一口都更清爽，尤其适合搭配多份点心时饮用。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/xiajiao-peiy2.jpg" alt="蛋挞" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">酥皮蛋挞</h3>
+          <p class="text-gray-600 mb-4">虾饺的咸鲜与蛋挞的香甜形成互补，一咸一甜，一软一酥，是早茶“两件”的经典组合，满足不同口味需求。</p>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/food/xiajiao-peiy3.jpg" alt="皮蛋瘦肉粥" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">皮蛋瘦肉粥</h3>
+          <p class="text-gray-600 mb-4">绵密的粥底搭配虾饺，清淡暖胃，尤其适合早餐食用，皮蛋的独特风味与虾饺的鲜味相得益彰，是老广钟爱的“粥点组合”。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

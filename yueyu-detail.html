@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>粤语 - 岭南文化</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+  <!-- 引入Vuex Store和Router -->
+  <script src="js/store.js"></script>
+  <script src="js/router.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（代表广州的自然景观）
+            accent: '#8B0000', // 深红色（代表传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- 导航栏 -->
+    <navbar></navbar>
+
+    <!-- 文化详情头部 -->
+    <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="assets\images\culture\yueyu.webp" alt="粤语" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 z-10 text-center">
+        <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">粤语</h1>
+        <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+          传承千年的岭南语言文化瑰宝
+        </p>
+        <div class="flex justify-center">
+          <a href="#overview" class="btn-primary transform hover:scale-105">
+            了解详情 <i class="fa fa-info-circle ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文化概述 -->
+    <section id="overview" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+          <div class="lg:col-span-2">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">语言概述</h2>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              粤语，又称广东话、广府话，是汉藏语系汉语族的一种声调语言，主要分布于广东、广西、香港、澳门等地区，以及海外华人社区。其起源可追溯至古代中原汉语，在岭南地区与当地百越语融合发展，形成了独特的语言体系。
+            </p>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              粤语保留了大量古代汉语的语音、词汇和语法特征，被称为"活的古汉语"。它有九声六调，发音系统复杂，词汇丰富，表现力强。粤语不仅是一种交流工具，更是岭南文化的重要载体，承载着丰富的历史文化信息。
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              随着粤港澳大湾区的发展和粤语文化的传播，粤语在全球范围内的影响力不断扩大。如今，粤语已成为世界上使用人数最多的汉语方言之一，是中国语言文化多样性的重要组成部分。
+            </p>
+          </div>
+          <div class="space-y-6">
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-history mr-2"></i> 历史起源
+              </h3>
+              <p class="text-gray-600">
+                粤语起源于古代中原汉语，在秦始皇统一岭南后，中原人南迁，与当地百越族融合，逐渐形成了粤语的基础。经过长期的发展演变，粤语在唐宋时期基本定型，明清时期进一步发展成熟。
+              </p>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+              <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                <i class="fa fa-star mr-2"></i> 语言特点
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>九声六调，保留古汉语声调特征</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>词汇丰富，保留大量古汉语词汇</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>语法独特，保留古汉语语法结构</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>表现力强，有丰富的口语表达</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文化图片画廊 -->
+    <section class="py-16 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">粤语画廊</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">了解粤语的文化魅力和使用场景。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueyu1.jpg" alt="粤语交流" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤语交流</h3>
+              <p class="text-gray-600 text-sm">人们用粤语进行日常交流，体现了粤语的实用性和普及性。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueyu2.jpg" alt="粤语歌曲" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤语歌曲</h3>
+              <p class="text-gray-600 text-sm">粤语歌曲是华语乐坛的重要组成部分，具有独特的魅力。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueyu3.jpg" alt="粤语电影" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤语电影</h3>
+              <p class="text-gray-600 text-sm">粤语电影在世界影坛占有重要地位，展现了岭南文化的特色。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueyu4.jpg" alt="粤语书法" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤语书法</h3>
+              <p class="text-gray-600 text-sm">粤语汉字的书法艺术，体现了汉字文化的博大精深。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueyu5.jpg" alt="粤语教育" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">粤语教育</h3>
+              <p class="text-gray-600 text-sm">粤语教育的传承和发展，确保了这门语言文化的延续。</p>
+            </div>
+          </div>
+          
+          <div class="overflow-hidden rounded-lg shadow-md group">
+            <img src="assets\images\culture\yueyu6.jpg" alt="粤语文化活动" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="p-4 bg-white">
+              <h3 class="font-bold text-secondary">文化活动</h3>
+              <p class="text-gray-600 text-sm">各种粤语文化活动，如粤剧、粤曲表演等，丰富了人们的文化生活。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 语言特点 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">语言特点</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">粤语具有独特的语音、词汇和语法特点。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+              <i class="fa fa-volume-up text-6xl text-primary"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">语音系统</h3>
+              <p class="text-gray-600 mb-4">粤语有九声六调，比普通话的四声更加复杂多样。它保留了古汉语的入声，发音系统丰富，能够表达更加细腻的情感。</p>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+              <i class="fa fa-book text-6xl text-primary"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">词汇丰富</h3>
+              <p class="text-gray-600 mb-4">粤语保留了大量古汉语词汇，同时吸收了外来词汇和方言词汇，形成了丰富多样的词汇系统。许多词汇具有独特的文化内涵。</p>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+              <i class="fa fa-file-text text-6xl text-primary"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">语法独特</h3>
+              <p class="text-gray-600 mb-4">粤语的语法结构与普通话有所不同，保留了古汉语的一些语法特征。例如，定语后置、状语位置灵活等，体现了语言的多样性。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文化影响 -->
+    <section class="py-16 bg-secondary/5">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">文化影响</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">粤语对岭南文化和华语文化产生了深远的影响。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3 flex items-center">
+                <i class="fa fa-music text-primary mr-2"></i> 粤语音乐
+              </h3>
+              <p class="text-gray-600 mb-4">粤语歌曲是华语乐坛的重要组成部分，从上世纪七八十年代开始，粤语歌曲风靡全球华人社区，涌现了许多著名的歌手和经典曲目，对华语音乐的发展产生了深远影响。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3 flex items-center">
+                <i class="fa fa-film text-primary mr-2"></i> 粤语电影
+              </h3>
+              <p class="text-gray-600 mb-4">粤语电影在世界影坛占有重要地位，香港电影业曾经被誉为"东方好莱坞"，粤语电影以其独特的风格和题材，吸引了全球观众，对世界电影文化的发展做出了重要贡献。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3 flex items-center">
+                <i class="fa fa-theater-masks text-primary mr-2"></i> 粤剧粤曲
+              </h3>
+              <p class="text-gray-600 mb-4">粤剧和粤曲是岭南传统艺术的瑰宝，它们以粤语为表演语言，具有独特的艺术魅力。粤剧被列入联合国教科文组织人类非物质文化遗产代表作名录，是中国戏曲文化的重要组成部分。</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3 flex items-center">
+                <i class="fa fa-globe text-primary mr-2"></i> 全球传播
+              </h3>
+              <p class="text-gray-600 mb-4">随着粤港澳大湾区的发展和海外华人社区的壮大，粤语在全球范围内的影响力不断扩大。如今，粤语已成为世界上使用人数最多的汉语方言之一，是中国语言文化多样性的重要组成部分。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 学习资源 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">学习资源</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">如果你想学习粤语，这些资源可以帮助你。</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/culture/yueyu-learning1.jpg" alt="粤语课程" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">粤语课程</h3>
+              <p class="text-gray-600 mb-4">广州有许多机构提供粤语课程，从入门到高级，适合不同水平的学习者。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>越秀区北京路325号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-83336666</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/culture/yueyu-learning2.jpg" alt="粤语书籍" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">粤语书籍</h3>
+              <p class="text-gray-600 mb-4">有许多专门的粤语学习书籍，包括教材、词典、口语手册等，适合自学。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-map-marker text-primary mr-2"></i>
+                <span>天河区天河路123号</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-phone text-primary mr-2"></i>
+                <span>020-85558888</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+            <div class="h-64 overflow-hidden">
+              <img src="assets/images/culture/yueyu-learning3.jpg" alt="粤语应用" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary mb-3">粤语应用</h3>
+              <p class="text-gray-600 mb-4">现在有许多手机应用可以帮助学习粤语，包括语音识别、词汇学习、对话练习等功能。</p>
+              <div class="flex items-center text-sm text-gray-500 mb-4">
+                <i class="fa fa-mobile text-primary mr-2"></i>
+                <span>App Store/Google Play</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <i class="fa fa-download text-primary mr-2"></i>
+                <span>免费/付费</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer-component></footer-component>
+  </div>
+
+  <!-- 引入JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -26,7 +26,7 @@ const store = new Vuex.Store({
     carouselImages: [
       { src: 'assets/images/Attraction/guangzhouta.webp', alt: '广州塔' },
       { src: 'assets/images/Attraction/chenjiaci.png', alt: '陈家祠' },
-      { src: 'assets/images/food/广州早茶.webp', alt: '早茶' }
+      { src: 'assets/images/food/广州早茶.jpg', alt: '早茶' }
     ],
     // 全局数据
     attractions: [],
@@ -93,6 +93,8 @@ const store = new Vuex.Store({
     setFeedbacks(state, feedbacks) {
       state.feedbacks = feedbacks;
       state.loading.feedbacks = false;
+      // 保存到localStorage实现持久化
+      localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
     },
     // 设置加载状态
     setLoading(state, { type, isLoading }) {
@@ -212,8 +214,9 @@ const store = new Vuex.Store({
       
       // 直接在代码中定义美食数据，不再从JSON文件加载
       const foodsData = [
-        {"id":1,"name":"广州早茶","category":"dimsum","image":"/assets/images/food/广州早茶.jpg","description":"广州人喜爱的传统饮食方式","tags":["虾饺","烧卖","叉烧包","肠粉"],"rating":4.8},
-        {"id":2,"name":"烧腊","category":"roast","image":"/assets/images/food/shaoe.jpg","description":"广东地区极具特色的传统名菜","tags":["烧鹅","烧鸭","叉烧","乳鸽"],"rating":4.7},
+        {"id":7,"name":"肠粉","category":"dimsum","image":"/assets/images/food/changfen.jpg","description":"广州特色点心，薄如纸的米皮包裹丰富馅料","tags":["肠粉","早茶","米制品","清淡"],"rating":4.9},
+        {"id":8,"name":"烧鹅","category":"roast","image":"/assets/images/food/shaoe.webp","description":"粤菜经典，皮脆肉嫩的传统美食","tags":["烧鹅","烧腊","粤菜","皮脆肉嫩"],"rating":4.9},
+        {"id":9,"name":"虾饺","category":"dimsum","image":"/assets/images/food/xiaojiao.jpg","description":"广式早茶四大天王之一，水晶皮包裹鲜虾","tags":["虾饺","早茶","点心","鲜虾"],"rating":4.9},
         {"id":3,"name":"白切鸡","category":"specialty","image":"/assets/images/food/粤菜.jpg","description":"广东名菜，皮黄肉白，肥嫩鲜美","tags":["粤菜","清淡","原汁原味"],"rating":4.6},
         {"id":4,"name":"云吞面","category":"specialty","image":"/assets/images/food/yuntunmian.jpg","description":"广东特色面食，汤底浓郁","tags":["面食","汤面","鲜虾云吞"],"rating":4.5},
         {"id":5,"name":"艇仔粥","category":"specialty","image":"/assets/images/food/粤菜.jpg","description":"广东粥品，以新鲜的鱼片等熬制","tags":["粥品","海鲜","传统美食"],"rating":4.4},
@@ -255,44 +258,52 @@ const store = new Vuex.Store({
       console.log('loadFeedbacks action called');
       commit('setLoading', { type: 'feedbacks', isLoading: true });
       
-      // 直接在代码中定义留言数据，不再从JSON文件加载
-      const feedbacksData = [
-        {
-          "name": "李明",
-          "avatar": "assets/images/food/chashaobao.jpg",
-          "rating": 5,
-          "date": "2023年5月15日",
-          "content": "广州塔的夜景太美了！站在塔顶俯瞰整个城市，灯光璀璨，非常震撼。推荐大家晚上去，可以看到不一样的广州。",
-          "id": 1,
-          "likes": 12,
-          "replies": 3
-        },
-        {
-          "name": "张婷",
-          "avatar": "assets/images/food/xiaojiao.jpg",
-          "rating": 4,
-          "date": "2023年5月10日",
-          "content": "陈家祠的建筑艺术真的令人惊叹，每一处细节都展现了岭南文化的精髓。建议参观时请一位讲解员，能更深入了解其中的历史和文化。",
-          "id": 2,
-          "likes": 8,
-          "replies": 1
-        },
-        {
-          "name": "王强",
-          "avatar": "assets/images/food/yuntunmian.jpg",
-          "rating": 4.5,
-          "date": "2023年5月5日",
-          "content": "广州的早茶真是太好吃了！虾饺、烧卖、叉烧包都非常美味，尤其是在老字号茶楼里，氛围特别好。一定要尝试一下！",
-          "id": 3,
-          "likes": 15,
-          "replies": 4
-        }
-      ];
+      // 尝试从localStorage加载评论数据
+      const savedFeedbacks = localStorage.getItem('feedbacks');
       
-      console.log('Setting feedbacks in state:', feedbacksData);
-      commit('setFeedbacks', feedbacksData);
-      commit('setLoading', { type: 'feedbacks', isLoading: false });
-      return feedbacksData;
+      if (savedFeedbacks) {
+        // 如果localStorage中有数据，使用这些数据
+        try {
+          const feedbacksData = JSON.parse(savedFeedbacks);
+          console.log('Loaded feedbacks from localStorage:', feedbacksData);
+          commit('setFeedbacks', feedbacksData);
+          commit('setLoading', { type: 'feedbacks', isLoading: false });
+          return feedbacksData;
+        } catch (error) {
+          console.error('Failed to parse saved feedbacks:', error);
+          // 如果localStorage数据解析失败，从JSON文件加载
+        }
+      }
+      
+      // 从JSON文件加载初始数据
+      return fetch('assets/data/feedbacks.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to load feedbacks data');
+          }
+          return response.json();
+        })
+        .then(feedbacksData => {
+          // 为每条留言添加缺失的字段
+          const processedFeedbacks = feedbacksData.map((feedback, index) => ({
+            ...feedback,
+            id: feedback.id || index + 1,
+            likes: feedback.likes || 0,
+            replies: feedback.replies || 0
+          }));
+          
+          console.log('Loaded feedbacks from JSON file:', processedFeedbacks);
+          commit('setFeedbacks', processedFeedbacks);
+          commit('setLoading', { type: 'feedbacks', isLoading: false });
+          return processedFeedbacks;
+        })
+        .catch(error => {
+          console.error('Failed to load feedbacks from JSON file:', error);
+          // 如果加载失败，使用空数组
+          commit('setFeedbacks', []);
+          commit('setLoading', { type: 'feedbacks', isLoading: false });
+          return [];
+        });
     },
     // 提交留言
     submitFeedback({ commit, state }, feedback) {

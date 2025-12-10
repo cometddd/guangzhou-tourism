@@ -6,7 +6,7 @@
   <title>广州景点导航</title>
   <!-- 引入外部资源 -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
@@ -373,7 +373,7 @@
               <div class="p-6">
                 <h3 class="text-xl font-bold text-secondary mb-3">${attraction.name}</h3>
                 <p class="text-gray-600 mb-4">${attraction.description}</p>
-                <a href="attraction-detail.html?id=${attraction.id}" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+                <a href="${attraction.id === 1 ? 'guangzhouta-detail.html' : attraction.id === 2 ? 'chenjiaci-detail.html' : attraction.id === 3 ? 'shamiandao-detail.html' : 'guangzhouta-detail.html'}" class="inline-flex items-center text-primary hover:text-accent transition-colors">
                   查看详情 <i class="fa fa-arrow-right ml-1"></i>
                 </a>
               </div>
@@ -413,6 +413,19 @@
         },
         togglePasswordVisibility() {
           this.passwordVisible = !this.passwordVisible;
+        },
+        // 景点详情跳转功能
+        openAttractionDetail(id) {
+          // 根据不同景点ID跳转到对应的详情页
+          if (id === 1) {
+            window.location.href = 'guangzhouta-detail.html';
+          } else if (id === 2) {
+            window.location.href = 'chenjiaci-detail.html';
+          } else if (id === 3) {
+            window.location.href = 'shamiandao-detail.html';
+          } else {
+            window.location.href = 'guangzhouta-detail.html';
+          }
         },
         // 收藏功能相关方法
         toggleFavorite(type, id) {
