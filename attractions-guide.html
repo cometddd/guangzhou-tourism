@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>广州景点导航</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+  
+  <!-- 引入自定义样式 -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（代表广州的自然景观）
+            accent: '#8B0000', // 深红色（代表传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 shadow-md">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fa fa-map-marker text-primary text-2xl"></i>
+        <span class="text-title text-xl">广州</span>
+      </a>
+      
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
+        <a href="attractions-guide.html" class="font-medium text-primary transition-colors">景点</a>
+        <a href="food.html" class="font-medium hover:text-primary transition-colors">美食</a>
+        <a href="cultural.html" class="font-medium hover:text-primary transition-colors">文化</a>
+        <a href="discuss.html" class="font-medium hover:text-primary transition-colors">留言</a>
+      </nav>
+      
+      <!-- 登录按钮 -->
+      <button id="loginBtn" class="hidden md:block btn-primary" onclick="window.location.href='login.html'">
+        <i class="fa fa-user-circle mr-1"></i> 登录
+      </button>
+      
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary" @click="toggleMobileMenu">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" :class="{'hidden': !mobileMenuVisible}" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+        <a href="index.html#home" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">首页</a>
+        <a href="index.html#attractions" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">景点</a>
+        <a href="index.html#food" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">美食</a>
+        <a href="index.html#culture" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">文化</a>
+        <a href="index.html#feedback" class="py-2 font-medium hover:text-primary transition-colors">留言</a>
+        <button class="btn-primary mt-2" onclick="window.location.href='login.html'">
+              <i class="fa fa-user-circle mr-1"></i> 登录
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 景点列表页 -->
+  <section id="attractions" class="pt-24 pb-12 bg-gradient-to-b from-secondary/10 to-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="text-center mb-12">
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-secondary mb-4">广州景点</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">探索这座历史悠久的城市的标志性景点，从现代建筑到历史古迹，从自然风光到文化遗产。</p>
+      </div>
+      
+      <!-- 景点筛选 -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button class="px-4 py-2 rounded-full bg-primary text-white" 
+                @click="filterAttractions('all')">
+          全部
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterAttractions('modern')">
+          现代建筑
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterAttractions('history')">
+          历史古迹
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterAttractions('nature')">
+          自然景观
+        </button>
+      </div>
+      
+      <!-- 景点卡片 -->
+      <div id="attractionCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 卡片将通过JavaScript动态生成 -->
+      </div>
+      
+      <!-- 分页控件 -->
+      <div class="flex justify-center mt-12">
+        <nav class="flex items-center space-x-1">
+          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">
+            <i class="fa fa-angle-left"></i>
+          </a>
+          <a href="#" class="px-3 py-2 rounded-md bg-primary text-white">1</a>
+          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">2</a>
+          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">3</a>
+          <span class="px-3 py-2">...</span>
+          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">8</a>
+          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+<!-- 页脚 -->
+      <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">广州特色</h3>
+              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
+              <div class="flex space-x-4">
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-wechat text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-youtube-play text-xl"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">快速链接</h3>
+              <ul class="space-y-2">
+                <li><a href="index.html#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
+                <li><a href="index.html#attractions" class="text-white/80 hover:text-white transition-colors">景点</a></li>
+                <li><a href="food.html" class="text-white/80 hover:text-white transition-colors">美食</a></li>
+                <li><a href="index.html#culture" class="text-white/80 hover:text-white transition-colors">文化</a></li>
+                <li><a href="index.html#feedback" class="text-white/80 hover:text-white transition-colors">留言</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">联系我们</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fa fa-map-marker mr-2"></i>
+                  <span class="text-white/80">广州市天河区天河路520号</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-phone mr-2"></i>
+                  <span class="text-white/80">+86 20 12345678</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-envelope mr-2"></i>
+                  <span class="text-white/80">info@guangzhoutourism.com</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">订阅更新</h3>
+              <p class="text-white/80 mb-4">订阅我们的新闻通讯，获取最新的旅游信息和优惠。</p>
+              <form class="flex">
+                <input 
+                  type="email" 
+                  placeholder="你的邮箱地址" 
+                  class="px-4 py-2 rounded-l-md w-full focus:outline-none">
+                <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition-colors">
+                  订阅
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 text-sm">
+            <p>© 2025 广州特色展示. 保留所有权利.</p>
+          </div>
+        </div>
+      </footer>
+
+  <!-- 登录模态框 -->
+  <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-blur hidden"
+       :class="{ 'hidden': !loginModalVisible }">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-8 transform transition-all duration-300"
+         :class="{ 'opacity-0 scale-95': !modalReady, 'opacity-100 scale-100': modalReady }">
+      <div class="text-center mb-6">
+        <h3 class="text-2xl font-bold text-secondary">用户登录</h3>
+        <p class="text-gray-500">请输入您的账号和密码</p>
+      </div>
+      
+      <form class="space-y-4">
+        <div>
+          <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+          <input 
+            type="email" 
+            id="loginEmail" 
+            v-model="login.email" 
+            @blur="validateLoginField('email')" 
+            class="form-input" 
+            placeholder="your@email.com">
+          <p class="text-red-500 text-sm mt-1" v-if="login.errors.email">
+            {{ login.errors.email }}
+          </p>
+        </div>
+        
+        <div>
+          <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+          <input 
+            type="password" 
+            id="loginPassword" 
+            v-model="login.password" 
+            @blur="validateLoginField('password')" 
+            class="form-input" 
+            placeholder="••••••••">
+          <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600" @click="togglePasswordVisibility">
+            <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+          <p class="text-red-500 text-sm mt-1" v-if="login.errors.password">
+            {{ login.errors.password }}
+          </p>
+        </div>
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input 
+              type="checkbox" 
+              id="remember" 
+              v-model="login.remember" 
+              class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+            <label for="remember" class="ml-2 block text-sm text-gray-700">记住我</label>
+          </div>
+          <a href="#" class="text-sm text-primary hover:text-accent">忘记密码?</a>
+        </div>
+        
+        <div>
+          <button 
+            type="button" 
+            @click="loginUser" 
+            class="w-full btn-primary flex items-center justify-center"
+            :disabled="login.errors.email || login.errors.password || !login.email || !login.password">
+            <i class="fa fa-sign-in mr-2"></i> 登录
+          </button>
+        </div>
+        
+        <div class="flex items-center my-4">
+          <div class="flex-grow h-px bg-gray-300"></div>
+          <span class="px-4 text-sm text-gray-500">或使用以下方式登录</span>
+          <div class="flex-grow h-px bg-gray-300"></div>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-4">
+          <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+            <i class="fa fa-weixin text-green-600 text-xl"></i>
+          </button>
+          <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+            <i class="fa fa-qq text-blue-500 text-xl"></i>
+          </button>
+          <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+            <i class="fa fa-weibo text-red-500 text-xl"></i>
+          </button>
+        </div>
+        
+        <div class="text-center text-sm text-gray-600 mt-6">
+          还没有账号? <a href="#" class="text-primary hover:text-accent font-medium">立即注册</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        mobileMenuVisible: false,
+        loginModalVisible: false,
+        modalReady: false,
+        attractions: [
+          {
+            id: 1,
+            name: '广州塔',
+            type: 'modern',
+            image: 'assets/images/Attraction/广州塔2.webp',
+            description: '广州塔是广州的地标性建筑，也是中国第一高、世界第三高的旅游观光塔。',
+            url: 'attraction-detail.html'
+          },
+          {
+            id: 2,
+            name: '陈家祠',
+            type: 'history',
+            image: 'assets/images/Attraction/chenjiaci.png',
+            description: '陈家祠是广东规模最大、装饰最华丽、保存最完好的传统岭南祠堂式建筑。',
+            url: 'chen-family-temple.html'
+          },
+          {
+            id: 3,
+            name: '沙面岛',
+            type: 'history',
+            image: 'assets/images/Attraction/shamiandao.webp',
+            description: '沙面岛是广州重要的商埠，岛上有许多欧陆风情的建筑，是广州著名的外事游览区和历史文物保护区。',
+            url: 'shamian-island.html'
+          },
+          {
+            id: 4,
+            name: '白云山',
+            type: 'nature',
+            image: 'assets/images/Attraction/baiyunshan.jpg',
+            description: '白云山是南粤名山之一，自古就有“羊城第一秀”之称，山体相当宽阔，由30多座山峰组成。',
+            url: 'baiyun-mountain.html'
+          },
+          {
+            id: 5,
+            name: '越秀公园',
+            type: 'nature',
+            image: 'assets/images/Attraction/yuexiupark.png',
+            description: '越秀公园是广州最大的综合性公园，园内有镇海楼、五羊石像等著名景点。',
+            url: 'yuexiu-park.html'
+          },
+          {
+            id: 6,
+            name: '北京路步行街',
+            type: 'history',
+            image: 'https://picsum.photos/600/400?random=6',
+            description: '北京路步行街是广州最繁华的商业步行街，有着上千年的历史，是广州历史文化的重要标志。',
+            url: 'beijing-road.html'
+          },
+          {
+            id: 7,
+            name: '岭南印象园',
+            type: 'culture',
+            image: 'https://picsum.photos/600/400?random=7',
+            description: '岭南印象园是集观光、休闲、娱乐、餐饮、购物于一体的综合性文化旅游景区，展示了岭南传统文化的精髓。',
+            url: 'lingnan-garden.html'
+          },
+          {
+            id: 8,
+            name: '黄埔军校旧址',
+            type: 'history',
+            image: 'https://picsum.photos/600/400?random=8',
+            description: '黄埔军校旧址是中国近代史上著名的军事学校，培养了许多著名的军事家和政治家，在中国近代史上具有重要意义。',
+            url: 'huangpu-military-academy.html'
+          },
+          {
+            id: 9,
+            name: '南沙湿地公园',
+            type: 'nature',
+            image: 'https://picsum.photos/600/400?random=9',
+            description: '南沙湿地公园是广州市最大的湿地公园，也是候鸟迁徙的重要栖息地，是观鸟和生态旅游的好去处。',
+            url: 'nansha-wetland.html'
+          },
+          {
+            id: 10,
+            name: '长隆野生动物世界',
+            type: 'modern',
+            image: 'https://picsum.photos/600/400?random=10',
+            description: '长隆野生动物世界是亚洲最大的野生动物主题公园，拥有世界上最大的动物种群，是亲子游玩的绝佳选择。',
+            url: 'chimelong-zoo.html'
+          },
+          {
+            id: 11,
+            name: '广州动物园',
+            type: 'nature',
+            image: 'https://picsum.photos/600/400?random=11',
+            description: '广州动物园是中国三大动物园之一，拥有丰富的动物种类，是广州市民喜爱的休闲娱乐场所。',
+            url: 'guangzhou-zoo.html'
+          },
+          {
+            id: 12,
+            name: '广州科学中心',
+            type: 'modern',
+            image: 'https://picsum.photos/600/400?random=12',
+            description: '广州科学中心是广东省最大的科普教育基地，以“自然、人类、科学、文明”为主题，展示了科学技术的发展历程。',
+            url: 'guangzhou-science-center.html'
+          }
+        ],
+        filteredAttractions: [],
+        login: {
+          email: '',
+          password: '',
+          remember: false,
+          errors: {},
+          message: '',
+          isSuccess: false
+        },
+        passwordVisible: false
+      },
+      mounted() {
+        this.filterAttractions('all');
+      },
+      methods: {
+        toggleMobileMenu() {
+          this.mobileMenuVisible = !this.mobileMenuVisible;
+        },
+        openLoginModal() {
+          this.loginModalVisible = true;
+          setTimeout(() => {
+            this.modalReady = true;
+          }, 100);
+        },
+        closeLoginModal() {
+          this.modalReady = false;
+          setTimeout(() => {
+            this.loginModalVisible = false;
+          }, 300);
+        },
+        filterAttractions(type) {
+          if (type === 'all') {
+            this.filteredAttractions = this.attractions;
+          } else {
+            this.filteredAttractions = this.attractions.filter(attraction => attraction.type === type);
+          }
+          this.renderAttractionCards();
+        },
+        renderAttractionCards() {
+          const attractionCards = document.getElementById('attractionCards');
+          attractionCards.innerHTML = '';
+          this.filteredAttractions.forEach(attraction => {
+            const card = document.createElement('div');
+            card.classList.add('bg-white', 'rounded-lg', 'overflow-hidden', 'shadow-md', 'transition-all', 'duration-300', 'hover:shadow-lg', 'group');
+            
+            // 设置景点卡片的HTML内容
+            card.innerHTML = `
+              <div class="relative overflow-hidden">
+                <img src="${attraction.image}" alt="${attraction.name}" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                  <div class="p-6">
+                    <span class="px-3 py-1 bg-primary text-white text-sm rounded-full">${this.getTypeLabel(attraction.type)}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-3">${attraction.name}</h3>
+                <p class="text-gray-600 mb-4">${attraction.description}</p>
+                <a href="${attraction.url}" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            `;
+            
+            // 将卡片添加到容器中
+            attractionCards.appendChild(card);
+          });
+        },
+        getTypeLabel(type) {
+          const typeLabels = {
+            'modern': '现代建筑',
+            'history': '历史古迹',
+            'nature': '自然景观',
+            'culture': '文化体验'
+          };
+          return typeLabels[type] || type;
+        },
+        validateLoginField(field) {
+          if (field === 'email') {
+            if (!this.login.email) {
+              this.login.errors.email = '邮箱不能为空';
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
+              this.login.errors.email = '请输入有效的邮箱地址';
+            } else {
+              this.login.errors.email = '';
+            }
+          } else if (field === 'password') {
+            if (!this.login.password) {
+              this.login.errors.password = '密码不能为空';
+            } else if (this.login.password.length < 6) {
+              this.login.errors.password = '密码长度至少为6位';
+            } else {
+              this.login.errors.password = '';
+            }
+          }
+        },
+        togglePasswordVisibility() {
+          this.passwordVisible = !this.passwordVisible;
+        },
+        loginUser() {
+          // 先验证所有字段
+          this.validateLoginField('email');
+          this.validateLoginField('password');
+          
+          // 如果有错误，不继续执行
+          if (this.login.errors.email || this.login.errors.password) {
+            return;
+          }
+          
+          // 模拟登录验证
+          // 在实际应用中，这里应该是一个API调用
+          this.login.message = '正在登录...';
+          this.login.isSuccess = false;
+          
+          // 模拟API请求延迟
+          setTimeout(() => {
+            if (this.login.email === 'test@example.com' && this.login.password === '123456') {
+              this.login.message = '登录成功，正在跳转...';
+              this.login.isSuccess = true;
+              
+              // 模拟登录成功后的跳转
+              setTimeout(() => {
+                window.location.href = 'index.html';
+              }, 1500);
+            } else {
+              this.login.message = '邮箱或密码错误';
+              this.login.isSuccess = false;
+            }
+          }, 1000);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+  

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>广州旅游 - 用户登录</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- 配置Tailwind自定义主题 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37',
+            secondary: '#006400',
+            accent: '#8B0000',
+            light: '#F5F7FA',
+            dark: '#1D2129',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+
+
+</head>
+
+<body class="font-inter bg-light min-h-screen flex flex-col">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 shadow-md">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fa fa-map-marker text-primary text-2xl"></i>
+        <span class="text-title text-xl">广州</span>
+      </a>
+
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
+        <a href="attractions-guide.html" class="font-medium hover:text-primary transition-colors">景点</a>
+        <a href="food.html" class="font-medium hover:text-primary transition-colors">美食</a>
+        <a href="cultural.html" class="font-medium hover:text-primary transition-colors">文化</a>
+        <a href="discuss.html" class="font-medium hover:text-primary transition-colors">留言</a>
+      </nav>
+
+      <!-- 登录按钮 -->
+      <button id="loginBtn" class="hidden md:block btn-primary" onclick="window.location.href='login.html'">
+        <i class="fa fa-user-circle mr-1"></i> 登录
+      </button>
+
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary" @click="toggleMobileMenu">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" :class="{'hidden': !mobileMenuVisible}" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+        <a href="index.html#home" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">首页</a>
+        <a href="index.html#attractions" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">景点</a>
+        <a href="food.html" class="py-2 border-b border-gray-100 font-medium hover:text-primary text-primary">美食</a>
+        <a href="index.html#culture" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">文化</a>
+        <a href="index.html#feedback" class="py-2 font-medium hover:text-primary transition-colors">留言</a>
+        <button class="btn-primary mt-2" onclick="window.location.href='login.html'">
+          <i class="fa fa-user-circle mr-1"></i> 登录
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容区 -->
+  <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div class="w-full max-w-md">
+      <div class="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl">
+        <div class="relative h-40 bg-gradient-to-r from-primary to-secondary">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center text-white">
+              <i class="fa fa-user-circle text-5xl mb-2"></i>
+              <h3 class="text-2xl font-bold">用户登录</h3>
+              <p class="text-white/80">欢迎回来，探索广州之美</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 h-8 bg-white" style="clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 100%);"></div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div id="loginApp">
+            <div class="mb-6">
+              <!-- 登录结果提示信息 -->
+              <div v-if="login.message" class="p-3 rounded-md mb-4" :class="login.isSuccess ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'">
+                <div class="flex items-center">
+                  <i class="fa" :class="login.isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'"></i>
+                  <span class="ml-2">{{ login.message }}</span>
+                </div>
+              </div>
+            </div>
+
+            <form class="space-y-4">
+              <div>
+                <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa fa-envelope text-gray-400"></i>
+                  </div>
+                  <input
+                    type="email"
+                    id="loginEmail"
+                    v-model="login.email"
+                    @blur="validateLoginField('email')"
+                    class="form-input form-input-with-icon"
+                    placeholder="your@email.com">
+                </div>
+                <p class="text-red-500 text-sm mt-1" v-if="login.errors.email">
+                  {{ login.errors.email }}
+                </p>
+              </div>
+
+              <div>
+                <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa fa-lock text-gray-400"></i>
+                  </div>
+                  <input
+                    type="password"
+                    id="loginPassword"
+                    v-model="login.password"
+                    @blur="validateLoginField('password')"
+                    class="form-input form-input-with-icon"
+                    placeholder="••••••••">
+                  <button type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
+                    @click="togglePasswordVisibility">
+                    <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+                  </button>
+                </div>
+                <p class="text-red-500 text-sm mt-1" v-if="login.errors.password">
+                  {{ login.errors.password }}
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    v-model="login.remember"
+                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                  <label for="remember" class="ml-2 block text-sm text-gray-700">记住我</label>
+                </div>
+                <a href="#" class="text-sm text-primary hover:text-accent">忘记密码?</a>
+              </div>
+
+              <div>
+                <button
+                  type="button"
+                  @click="loginUser"
+                  class="w-full btn-primary flex items-center justify-center"
+                  :disabled="login.errors.email || login.errors.password || !login.email || !login.password">
+                  <i class="fa fa-sign-in mr-2"></i> 登录
+                </button>
+              </div>
+
+              <div class="flex items-center my-4">
+                <div class="flex-grow h-px bg-gray-300"></div>
+                <span class="px-4 text-sm text-gray-500">或使用以下方式登录</span>
+                <div class="flex-grow h-px bg-gray-300"></div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-4">
+                <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+                  <i class="fa fa-weixin text-green-600 text-xl"></i>
+                </button>
+                <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+                  <i class="fa fa-qq text-blue-500 text-xl"></i>
+                </button>
+                <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+                  <i class="fa fa-weibo text-red-500 text-xl"></i>
+                </button>
+              </div>
+            </form>
+
+            <!-- 登录表单底部的注册链接 -->
+            <div class="text-center text-sm text-gray-600 mt-6">
+              还没有账号? <button @click="goToRegister" class="text-primary hover:text-accent font-medium">立即注册</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<!-- 页脚 -->
+      <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">广州特色</h3>
+              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
+              <div class="flex space-x-4">
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-wechat text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-youtube-play text-xl"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">快速链接</h3>
+              <ul class="space-y-2">
+                <li><a href="index.html#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
+                <li><a href="index.html#attractions" class="text-white/80 hover:text-white transition-colors">景点</a></li>
+                <li><a href="food.html" class="text-white/80 hover:text-white transition-colors">美食</a></li>
+                <li><a href="index.html#culture" class="text-white/80 hover:text-white transition-colors">文化</a></li>
+                <li><a href="index.html#feedback" class="text-white/80 hover:text-white transition-colors">留言</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">联系我们</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fa fa-map-marker mr-2"></i>
+                  <span class="text-white/80">广州市天河区天河路520号</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-phone mr-2"></i>
+                  <span class="text-white/80">+86 20 12345678</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-envelope mr-2"></i>
+                  <span class="text-white/80">info@guangzhoutourism.com</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">订阅更新</h3>
+              <p class="text-white/80 mb-4">订阅我们的新闻通讯，获取最新的旅游信息和优惠。</p>
+              <form class="flex">
+                <input 
+                  type="email" 
+                  placeholder="你的邮箱地址" 
+                  class="px-4 py-2 rounded-l-md w-full focus:outline-none">
+                <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition-colors">
+                  订阅
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 text-sm">
+            <p>© 2025 广州特色展示. 保留所有权利.</p>
+          </div>
+        </div>
+      </footer>
+
+  <script>
+    new Vue({
+      el: '#loginApp',
+      data: {
+        mobileMenuVisible: false,
+        login: {
+          email: '',
+          password: '',
+          remember: false,
+          errors: {},
+          message: '',
+          isSuccess: false
+        },
+        passwordVisible: false
+      },
+      methods: {
+        toggleMobileMenu() {
+          this.mobileMenuVisible = !this.mobileMenuVisible;
+        },
+        validateLoginField(field) {
+          let error = '';
+          const value = this.login[field];
+          if (field === 'email') {
+            if (!value) {
+              error = '请输入邮箱';
+            } else if (!/\S+@\S+\.\S+/.test(value)) {
+              error = '请输入有效的邮箱地址';
+            }
+          } else if (field === 'password') {
+            if (!value) {
+              error = '请输入密码';
+            } else if (value.length < 6) {
+              error = '密码长度至少需要6个字符';
+            }
+          }
+          this.login.errors[field] = error;
+        },
+        loginUser() {
+          // 先验证所有字段
+          this.validateLoginField('email');
+          this.validateLoginField('password');
+          // 如果有错误，不继续执行
+          if (this.login.errors.email || this.login.errors.password) {
+            return;
+          }
+          // 显示加载状态
+          this.login.message = '正在登录...';
+          this.login.isSuccess = false;
+          
+          // 发送登录请求到后端
+          fetch('/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: this.login.email,
+              password: this.login.password
+            })
+          })
+          .then(response => {
+            console.log('响应状态码:', response.status);
+            console.log('响应头部:', response.headers);
+            
+            // 检查HTTP状态码
+            if (!response.ok) {
+              // 非200状态码，尝试解析错误信息
+              return response.json().then(errorData => {
+                throw new Error(errorData.message || `登录失败: HTTP ${response.status}`);
+              }).catch(() => {
+                // 如果解析JSON失败，抛出通用错误
+                throw new Error(`登录失败: HTTP ${response.status}`);
+              });
+            }
+            
+            // 200状态码，解析响应数据
+            return response.json();
+          })
+          .then(data => {
+            console.log('后端返回的数据:', data);
+            
+            if (data.success) {
+              this.login.message = '登录成功，正在跳转...';
+              this.login.isSuccess = true;
+              
+              // 保存用户信息到本地存储（如果选择了"记住我"）
+              if (this.login.remember) {
+                localStorage.setItem('user', JSON.stringify({
+                  email: this.login.email,
+                  // 注意：实际项目中不应存储明文密码
+                  // 可以存储token或其他认证信息
+                }));
+              }
+              
+              // 延迟跳转，让用户有时间看到成功消息
+              setTimeout(() => {
+                window.location.href = 'index.html';
+              }, 1500);
+            } else {
+              this.login.message = data.message || '登录失败，请重试';
+              this.login.isSuccess = false;
+            }
+          })
+          .catch(error => {
+            console.error('登录请求出错:', error);
+            this.login.message = error.message || '登录请求出错，请稍后重试';
+            this.login.isSuccess = false;
+          });
+        },
+        togglePasswordVisibility() {
+          this.passwordVisible = !this.passwordVisible;
+        },
+        // 跳转到注册页面
+        goToRegister() {
+          window.location.href = 'register.html';
+        }
+      },
+      mounted() {
+        // 尝试从本地存储加载用户信息
+        const savedUser = localStorage.getItem('user');
+        if (savedUser) {
+          try {
+            const userData = JSON.parse(savedUser);
+            this.login.email = userData.email || '';
+            this.login.remember = true;
+          } catch (e) {
+            console.error('解析本地存储的用户信息失败:', e);
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+/* ========================================================================== */
+/* 羊城乐游汇 - 全局样式文档 */
+/* ========================================================================== */
+
+/* 主题色说明 */
+/* primary: #D4AF37 - 金色（广州特色，代表岭南文化的辉煌） */
+/* secondary: #006400 - 深绿色（代表广州的自然景观和生态环境） */
+/* accent: #8B0000 - 深红色（代表广州的传统文化和历史底蕴） */
+/* light: #F5F7FA - 浅灰色（代表现代、简洁的设计风格） */
+/* dark: #1D2129 - 深灰色（用于文本和深色背景） */
+/* neutral: #F5F5DC - 米色（温暖色调，营造温馨的浏览体验） */
+
+/* 组件类命名规则 */
+/* 1. 基础组件：btn-* (按钮), form-* (表单), card-* (卡片), nav-* (导航) */
+/* 2. 工具类：text-* (文本), bg-* (背景), hover-* (悬停效果), transition-* (过渡动画) */
+/* 3. 布局类：grid-* (网格), flex-* (弹性布局), container-* (容器) */
+/* 4. 页面特定类：以页面名称开头，如：culture-* (文化页面), food-* (美食页面) */
+/* 5. 状态类：active-* (激活状态), disabled-* (禁用状态), focus-* (焦点状态) */
+
+/* 样式组织原则 */
+/* 1. 先引入Tailwind基础样式 */
+/* 2. 定义自定义工具类（@layer utilities） */
+/* 3. 定义全局样式（body, h1-h6等） */
+/* 4. 定义组件样式 */
+/* 5. 定义页面特定样式 */
+
+/* Tailwind配置 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义工具类 */
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  .carousel-item {
+    transition: opacity 1s ease-in-out;
+  }
+  .bg-blur {
+    backdrop-filter: blur(8px);
+  }
+  /* 自定义动画 */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* 全局样式 */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Georgia', serif;
+}
+
+/* Vue指令样式 */
+[v-cloak] {
+  display: none;
+}
+
+/* 导航栏滚动效果 */
+#navbar.scrolled {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 按钮样式 */
+.btn-primary {
+  @apply bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-md transition-all duration-300 font-medium;
+}
+
+.btn-outline {
+  @apply bg-white border border-gray-300 hover:bg-gray-50 text-dark font-medium py-2 px-4 rounded-md transition-all;
+}
+
+.btn-transparent {
+  @apply bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/50 px-4 py-2 rounded-md transition-colors;
+}
+
+/* 卡片样式 */
+.card-base {
+  @apply bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300;
+}
+
+/* 文本标题样式 */
+.text-title {
+  @apply font-serif font-bold text-secondary;
+}
+
+/* 表单输入样式 */
+.form-input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all;
+}
+
+.form-input-with-icon {
+  @apply pl-14 pr-10; /* 增加左侧内边距，确保图标和文本之间有足够空间 */
+}
+
+/* 评分星星样式 */
+.rating-star {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+/* 图片悬停效果 */
+.hover-scale {
+  transition: transform 0.5s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.1);
+}
+
+/* 文化页面网格样式 */
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}

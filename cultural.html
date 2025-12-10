@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>岭南文化 - 广州特色展示</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+  
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（自然景观）
+            accent: '#8B0000', // 深红色（传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 shadow-md">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fa fa-map-marker text-primary text-2xl"></i>
+        <span class="text-title text-xl">广州</span>
+      </a>
+      
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
+        <a href="attractions-guide.html" class="font-medium hover:text-primary transition-colors">景点</a>
+        <a href="food.html" class="font-medium hover:text-primary transition-colors">美食</a>
+        <a href="cultural.html" class="font-medium text-primary transition-colors">文化</a>
+        <a href="discuss.html" class="font-medium hover:text-primary transition-colors">留言</a>
+      </nav>
+      
+      <!-- 登录按钮 -->
+          <button id="loginBtn" class="hidden md:block btn-primary" onclick="window.location.href='login.html'">
+            <i class="fa fa-user-circle mr-1"></i> 登录
+          </button>
+      
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary" @click="toggleMobileMenu">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" :class="{'hidden': !mobileMenuVisible}" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+        <a href="index.html#home" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">首页</a>
+        <a href="index.html#attractions" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">景点</a>
+        <a href="food.html" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">美食</a>
+        <a href="culture.html" class="py-2 border-b border-gray-100 font-medium text-primary">文化</a>
+        <a href="index.html#feedback" class="py-2 font-medium hover:text-primary transition-colors">留言</a>
+        <button class="btn-primary mt-2" onclick="window.location.href='login.html'">
+          <i class="fa fa-user-circle mr-1"></i> 登录
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 文化页面头部 -->
+  <section class="pt-24 pb-12 bg-gradient-to-b from-secondary/10 to-white">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-secondary mb-4">岭南文化</h1>
+      <p class="text-gray-600 max-w-3xl mx-auto text-lg">探索广州深厚的文化底蕴，从传统艺术到现代创新，感受这座城市的独特魅力。</p>
+      
+      <!-- 文化分类筛选 -->
+      <div class="flex flex-wrap justify-center gap-4 mt-8 mb-12">
+        <button class="px-4 py-2 rounded-full bg-primary text-white" 
+                @click="filterCulture('all')">
+          全部文化
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterCulture('opera')">
+          传统戏曲
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterCulture('language')">
+          语言文字
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterCulture('handicraft')">
+          传统手工艺
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterCulture('festival')">
+          节日庆典
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文化内容区 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div id="cultureCards" class="culture-grid">
+        <!-- 文化卡片将通过JavaScript动态生成 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 文化专题区域 -->
+  <section class="py-16 bg-neutral-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-12 text-center">文化专题</h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="assets\images\culture\yueju.webp" alt="粤剧文化" class="w-full h-64 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-white">粤剧 - 南国红豆</h3>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 mb-4">粤剧是广东地区最具代表性的传统戏曲，被誉为"南国红豆"，2009年被列入世界非物质文化遗产名录。粤剧融合了唱、做、念、打等艺术形式，角色分为生、旦、净、末、丑。</p>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="assets\images\food\粤菜.webp" alt="粤菜" class="w-full h-64 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-white">粤菜 - 舌尖上的岭南滋味</h3>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 mb-4">粤菜是中国八大菜系之一，以鲜、嫩、滑、爽、脆、香、脆为特色，讲究清而不淡，鲜而不俗，嫩而不生，油而不腻。</p>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="assets\images\culture\粤语.webp" alt="粤语文化" class="w-full h-64 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-white">粤语 - 岭南之声</h3>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 mb-4">粤语是汉语的一种方言，主要分布在广东、广西、香港和澳门等地，是岭南文化的重要组成部分。粤语保留了大量古汉语词汇，拥有九声六调，是世界上声调最复杂的语言之一。</p>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文化活动推荐 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-12 text-center">文化活动推荐</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="https://picsum.photos/600/400?random=42" alt="广府庙会" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">广府庙会</h3>
+            <p class="text-gray-600 mb-4">广府庙会是广州传统的大型民俗活动，每年元宵节前后举行，包含舞狮、舞龙、粤剧表演、传统手工艺展示等内容，是体验广府文化的绝佳机会。</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-sm text-gray-500">每年2月</span>
+              <a href="#" class="text-primary hover:text-accent">详情 <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="https://picsum.photos/600/400?random=43" alt="广州国际灯光节" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">广州国际灯光节</h3>
+            <p class="text-gray-600 mb-4">广州国际灯光节是融合了现代科技与传统文化的大型灯光艺术盛会，每年在花城广场举办，展示各种创意灯光作品，打造梦幻的光影世界。</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-sm text-gray-500">每年11-12月</span>
+              <a href="#" class="text-primary hover:text-accent">详情 <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="https://picsum.photos/600/400?random=44" alt="陈家祠传统工艺展" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-secondary mb-3">陈家祠传统工艺展</h3>
+            <p class="text-gray-600 mb-4">陈家祠定期举办传统工艺展览，展示广彩、广绣、木雕等岭南传统手工艺作品，游客可以近距离观赏工匠现场制作，感受传统工艺的魅力。</p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-sm text-gray-500">常年举办</span>
+              <a href="#" class="text-primary hover:text-accent">详情 <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- 页脚 -->
+      <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">广州特色</h3>
+              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
+              <div class="flex space-x-4">
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-wechat text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-youtube-play text-xl"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">快速链接</h3>
+              <ul class="space-y-2">
+                <li><a href="index.html#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
+                <li><a href="index.html#attractions" class="text-white/80 hover:text-white transition-colors">景点</a></li>
+                <li><a href="food.html" class="text-white/80 hover:text-white transition-colors">美食</a></li>
+                <li><a href="index.html#culture" class="text-white/80 hover:text-white transition-colors">文化</a></li>
+                <li><a href="index.html#feedback" class="text-white/80 hover:text-white transition-colors">留言</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">联系我们</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fa fa-map-marker mr-2"></i>
+                  <span class="text-white/80">广州市天河区天河路520号</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-phone mr-2"></i>
+                  <span class="text-white/80">+86 20 12345678</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-envelope mr-2"></i>
+                  <span class="text-white/80">info@guangzhoutourism.com</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">订阅更新</h3>
+              <p class="text-white/80 mb-4">订阅我们的新闻通讯，获取最新的旅游信息和优惠。</p>
+              <form class="flex">
+                <input 
+                  type="email" 
+                  placeholder="你的邮箱地址" 
+                  class="px-4 py-2 rounded-l-md w-full focus:outline-none">
+                <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition-colors">
+                  订阅
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 text-sm">
+            <p>© 2025 广州特色展示. 保留所有权利.</p>
+          </div>
+        </div>
+      </footer>
+  <!-- 登录模态框 -->
+  <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-blur hidden"
+       :class="{ 'hidden': !loginModalVisible }">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-8 transform transition-all duration-300"
+         :class="{ 'opacity-0 scale-95': !modalReady, 'opacity-100 scale-100': modalReady }">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-secondary">用户登录</h3>
+            <p class="text-gray-500">请输入您的账号和密码</p>
+          </div>
+          
+          <form class="space-y-4">
+            <div>
+              <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+              <input 
+                type="email" 
+                id="loginEmail" 
+                v-model="login.email" 
+                @blur="validateLoginField('email')" 
+                class="form-input" 
+                placeholder="your@email.com">
+              <p class="text-red-500 text-sm mt-1" v-if="login.errors.email">
+                {{ login.errors.email }}
+              </p>
+            </div>
+            
+            <div>
+              <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+              <input 
+                type="password" 
+                id="loginPassword" 
+                v-model="login.password" 
+                @blur="validateLoginField('password')" 
+                class="form-input" 
+                placeholder="••••••••">
+              <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600" @click="togglePasswordVisibility">
+                <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+              </button>
+              <p class="text-red-500 text-sm mt-1" v-if="login.errors.password">
+                {{ login.errors.password }}
+              </p>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  id="remember" 
+                  v-model="login.remember" 
+                  class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                <label for="remember" class="ml-2 block text-sm text-gray-700">记住我</label>
+              </div>
+              <a href="#" class="text-sm text-primary hover:text-accent">忘记密码?</a>
+            </div>
+            
+            <div>
+              <button 
+                type="button" 
+                @click="loginUser" 
+                class="w-full btn-primary flex items-center justify-center"
+                :disabled="login.errors.email || login.errors.password || !login.email || !login.password">
+                <i class="fa fa-sign-in mr-2"></i> 登录
+              </button>
+            </div>
+            
+            <div class="flex items-center my-4">
+              <div class="flex-grow h-px bg-gray-300"></div>
+              <span class="px-4 text-sm text-gray-500">或使用以下方式登录</span>
+              <div class="flex-grow h-px bg-gray-300"></div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4">
+              <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+                <i class="fa fa-weixin text-green-600 text-xl"></i>
+              </button>
+              <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+                <i class="fa fa-qq text-blue-500 text-xl"></i>
+              </button>
+              <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+                <i class="fa fa-weibo text-red-500 text-xl"></i>
+              </button>
+            </div>
+            
+            <div class="text-center text-sm text-gray-600 mt-6">
+              还没有账号? <a href="#" class="text-primary hover:text-accent font-medium">立即注册</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        mobileMenuVisible: false,
+        loginModalVisible: false,
+        modalReady: false,
+        cultureItems: [
+          {
+            id: 1,
+            name: '粤剧',
+            type: 'opera',
+            image: 'assets/images/culture/yueju.webp',
+            description: '粤剧是广东地区最具代表性的传统戏曲，被誉为"南国红豆"，2009年被列入世界非物质文化遗产名录。',
+            tags: ['传统戏曲', '非物质文化遗产']
+          },
+          {
+            id: 2,
+            name: '粤语',
+            type: 'language',
+            image: 'assets/images/culture/粤语.webp',
+            description: '粤语是汉语的一种方言，主要分布在广东、广西、香港和澳门等地，是岭南文化的重要组成部分。',
+            tags: ['语言文字', '方言']
+          },
+          {
+            id: 3,
+            name: '广彩',
+            type: 'handicraft',
+            image: 'assets/images/culture/广彩.webp',
+            description: '广彩是广州地区特有的传统彩绘瓷器工艺，始于清康熙年间，以色彩艳丽、图案繁复著称。',
+            tags: ['传统手工艺', '瓷器']
+          },
+          {
+            id: 4,
+            name: '广绣',
+            type: 'handicraft',
+            image: 'assets/images/culture/guangxiu.webp',
+            description: '广绣是中国四大名绣之一，以构图饱满、色彩鲜艳、针法多样而闻名，常用于服饰和装饰品。',
+            tags: ['传统手工艺', '刺绣']
+          },
+          {
+            id: 5,
+            name: '舞狮',
+            type: 'festival',
+            image: 'assets/images/culture/xingshi.webp',
+            description: '舞狮是广州传统的民间表演艺术，每逢节日或庆典都会举行，象征着驱邪避灾、吉祥如意。',
+            tags: ['节日庆典', '民间艺术']
+          },
+          {
+            id: 6,
+            name: '龙舟节',
+            type: 'festival',
+            image: 'assets/images/culture/龙舟节.webp',
+            description: '广州龙舟节是岭南地区重要的传统节日活动，每年端午节期间举行，包括龙舟竞渡、祭龙仪式等内容。',
+            tags: ['节日庆典', '传统节日']
+          },
+          {
+            id: 7,
+            name: '岭南建筑',
+            type: 'handicraft',
+            image: 'assets/images/culture/lingnanjianzhu.webp',
+            description: '岭南建筑以其独特的风格和工艺著称，包括骑楼、镬耳屋、西关大屋等，体现了岭南地区的气候特点和文化特色。',
+            tags: ['传统手工艺', '建筑艺术']
+          },
+          {
+            id: 8,
+            name: '广东音乐',
+            type: 'opera',
+            image: 'https://picsum.photos/600/400?random=39',
+            description: '广东音乐是具有鲜明岭南特色的民间音乐，以轻快活泼、旋律优美为特点，常用乐器包括高胡、扬琴、琵琶等。',
+            tags: ['传统戏曲', '民间音乐']
+          }
+        ],
+        filteredCulture: [],
+        login: {
+          email: '',
+          password: '',
+          remember: false,
+          errors: {},
+          message: '',
+          isSuccess: false
+        },
+        passwordVisible: false
+      },
+      mounted() {
+        this.filterCulture('all');
+      },
+      methods: {
+        toggleMobileMenu() {
+          this.mobileMenuVisible = !this.mobileMenuVisible;
+        },
+        openLoginModal() {
+          this.loginModalVisible = true;
+          setTimeout(() => {
+            this.modalReady = true;
+          }, 100);
+        },
+        closeLoginModal() {
+          this.modalReady = false;
+          setTimeout(() => {
+            this.loginModalVisible = false;
+          }, 300);
+        },
+        filterCulture(type) {
+          if (type === 'all') {
+            this.filteredCulture = this.cultureItems;
+          } else {
+            this.filteredCulture = this.cultureItems.filter(item => item.type === type);
+          }
+          this.renderCultureCards();
+        },
+        renderCultureCards() {
+          const cultureCards = document.getElementById('cultureCards');
+          cultureCards.innerHTML = '';
+          
+          this.filteredCulture.forEach(item => {
+            const card = document.createElement('div');
+            card.classList.add('bg-white', 'rounded-lg', 'overflow-hidden', 'shadow-md', 'transition-all', 'duration-300', 'hover:shadow-xl');
+            
+            // 设置文化卡片的HTML内容
+            card.innerHTML = `
+              <div class="relative overflow-hidden">
+                <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 bg-primary text-white text-xs rounded-full">${this.getTypeLabel(item.type)}</span>
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="text-lg font-bold text-secondary mb-2">${item.name}</h3>
+                <p class="text-gray-600 text-sm mb-3 line-clamp-2">${item.description}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  ${item.tags.map(tag => `
+                    <span class="px-2 py-1 bg-neutral-100 text-gray-600 text-xs rounded-full">${tag}</span>
+                  `).join('')}
+                </div>
+                <a href="#" class="text-primary text-sm hover:text-accent transition-colors inline-flex items-center">
+                  了解更多 <i class="fa fa-angle-right ml-1 text-xs"></i>
+                </a>
+              </div>
+            `;
+                
+                // 将卡片添加到容器中
+                cultureCards.appendChild(card);
+              });
+            },
+            getTypeLabel(type) {
+              const typeLabels = {
+                'opera': '传统戏曲',
+                'language': '语言文字',
+                'handicraft': '传统手工艺',
+                'festival': '节日庆典'
+              };
+              return typeLabels[type] || type;
+            },
+            validateLoginField(field) {
+              if (field === 'email') {
+                if (!this.login.email) {
+                  this.login.errors.email = '邮箱不能为空';
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
+                  this.login.errors.email = '请输入有效的邮箱地址';
+                } else {
+                  this.login.errors.email = '';
+                }
+              } else if (field === 'password') {
+                if (!this.login.password) {
+                  this.login.errors.password = '密码不能为空';
+                } else if (this.login.password.length < 6) {
+                  this.login.errors.password = '密码长度至少为6位';
+                } else {
+                  this.login.errors.password = '';
+                }
+              }
+            },
+            togglePasswordVisibility() {
+              this.passwordVisible = !this.passwordVisible;
+            },
+            loginUser() {
+              // 先验证所有字段
+              this.validateLoginField('email');
+              this.validateLoginField('password');
+              
+              // 如果有错误，不继续执行
+              if (this.login.errors.email || this.login.errors.password) {
+                return;
+              }
+              
+              // 模拟登录验证
+              this.login.message = '正在登录...';
+              this.login.isSuccess = false;
+              
+              // 模拟API请求延迟
+              setTimeout(() => {
+                if (this.login.email === 'test@example.com' && this.login.password === '123456') {
+                  this.login.message = '登录成功，正在跳转...';
+                  this.login.isSuccess = true;
+                  
+                  // 模拟登录成功后的跳转
+                  setTimeout(() => {
+                    window.location.href = 'index.html';
+                  }, 1500);
+                } else {
+                  this.login.message = '邮箱或密码错误';
+                  this.login.isSuccess = false;
+                }
+              }, 1000);
+            }
+          }
+        });
+      </script>
+    </body>
+    </html>

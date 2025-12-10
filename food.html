@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>广州美食 - 广州特色展示</title>
+  <!-- 引入外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+
+  <!-- Tailwind配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D4AF37', // 金色（广州特色）
+            secondary: '#006400', // 深绿色（代表广州的自然景观）
+            accent: '#8B0000', // 深红色（代表传统文化）
+            neutral: '#F5F5DC', // 米色（温暖色调）
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          },
+        },
+      }
+    }
+  </script>
+
+
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 shadow-md">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fa fa-map-marker text-primary text-2xl"></i>
+        <span class="text-title text-xl">广州</span>
+      </a>
+
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
+        <a href="attractions-guide.html" class="font-medium hover:text-primary transition-colors">景点</a>
+        <a href="food.html" class="font-medium text-primary transition-colors">美食</a>
+        <a href="cultural.html" class="font-medium hover:text-primary transition-colors">文化</a>
+        <a href="discuss.html" class="font-medium hover:text-primary transition-colors">留言</a>
+      </nav>
+
+      <!-- 登录按钮 -->
+        <button id="loginBtn" class="hidden md:block btn-primary" onclick="window.location.href='login.html'">
+          <i class="fa fa-user-circle mr-1"></i> 登录
+        </button>
+
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary" @click="toggleMobileMenu">
+        <i class="fa fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" :class="{'hidden': !mobileMenuVisible}" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+        <a href="index.html#home" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">首页</a>
+        <a href="index.html#attractions" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">景点</a>
+        <a href="food.html" class="py-2 border-b border-gray-100 font-medium hover:text-primary text-primary">美食</a>
+        <a href="index.html#culture" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">文化</a>
+        <a href="index.html#feedback" class="py-2 font-medium hover:text-primary transition-colors">留言</a>
+        <button class="btn-primary mt-2" onclick="window.location.href='login.html'">
+          <i class="fa fa-user-circle mr-1"></i> 登录
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 美食页面头部 -->
+  <section class="pt-24 pb-12 bg-gradient-to-b from-secondary/10 to-white">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-secondary mb-4">广式美食</h1>
+      <p class="text-gray-600 max-w-3xl mx-auto text-lg">品味广州独特的美食文化，从精致的早茶点心到地道的烧腊卤味，每一道菜都展现了粤菜的精髓。</p>
+
+      <!-- 美食分类筛选 -->
+      <div class="flex flex-wrap justify-center gap-4 mt-8 mb-12">
+        <button class="px-4 py-2 rounded-full bg-primary text-white" 
+                @click="filterFoods('all')">
+          全部美食
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterFoods('dimsum')">
+          早茶点心
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterFoods('roast')">
+          烧腊卤味
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterFoods('specialty')">
+          特色小吃
+        </button>
+        <button class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" 
+                @click="filterFoods('dessert')">
+          甜品糕点
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食列表 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div id="foodCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- 肠粉卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative group">
+            <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+              <img src="assets\images\food\changfen.webp" alt="肠粉" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="absolute top-3 left-3 bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full">
+              特色小吃
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-secondary mb-3">肠粉</h3>
+            <p class="text-gray-600 mb-4">肠粉是广东著名的传统小吃，由米浆蒸制而成，口感嫩滑，根据馅料不同可分为牛肉肠、猪肉肠、鲜虾肠等。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">传统小吃</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">清淡</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">米制品</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 烧鹅卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative group">
+            <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+              <img src="assets\images\food\shaoe.webp" alt="烧鹅" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="absolute top-3 left-3 bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full">
+              烧腊卤味
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-secondary mb-3">烧鹅</h3>
+            <p class="text-gray-600 mb-4">烧鹅是广州传统名菜，选用本地鹅种，经腌制、吹气、烫皮、挂糖、晾皮等工序后烤制而成，皮脆肉嫩，肥而不腻。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">传统名菜</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">肉类</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">烤制</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+        <!-- 虾饺卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative group">
+            <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+              <img src="assets\images\food\xiaojiao.webp" alt="虾饺" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="absolute top-3 left-3 bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full">
+              早茶点心
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-secondary mb-3">虾饺</h3>
+            <p class="text-gray-600 mb-4">虾饺是广东茶楼、酒家的传统美点，以透明澄面皮包裹鲜嫩虾仁和猪肉馅蒸制而成，皮薄馅大，味道鲜美。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">传统美食</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">清淡</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">海鲜</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>        
+
+        <!-- 云吞面卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative group">
+            <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+              <img src="assets\images\food\yuntunmian.webp" alt="云吞面" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="absolute top-3 left-3 bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full">
+              特色小吃
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-secondary mb-3">云吞面</h3>
+            <p class="text-gray-600 mb-4">云吞面是广东的传统面食，以鲜虾云吞和竹升面为主料，配以高汤，口感丰富，汤鲜味美。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">传统小吃</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">汤面</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">海鲜</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 叉烧包卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative group">
+            <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+              <img src="assets\images\food\chashaobao.webp" alt="叉烧包" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="absolute top-3 left-3 bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full">
+              早茶点心
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-secondary mb-3">叉烧包</h3>
+            <p class="text-gray-600 mb-4">叉烧包是广东具代表性的点心之一，以发酵后的软滑面团包裹着炒制的小块叉烧肉，外皮松软，内馅鲜香。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">传统美食</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">甜咸</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">面点</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 姜撞奶卡片 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative group">
+            <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+              <img src="assets\images\food\jiangzhuangnai.webp" alt="姜撞奶" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="absolute top-3 left-3 bg-primary/90 text-white text-sm font-medium px-3 py-1 rounded-full">
+              甜品糕点
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-secondary mb-3">姜撞奶</h3>
+            <p class="text-gray-600 mb-4">姜撞奶是广东珠江三角洲一带的特色传统甜点，主要由鲜牛奶和姜汁制成，口感嫩滑，香甜微辣。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">传统甜点</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">甜辣</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">奶制品</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              了解更多 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐餐厅 -->
+  <section class="py-16 bg-neutral-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-12 text-center">推荐餐厅</h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://picsum.photos/800/400?random=7" alt="陶陶居" class="w-full h-64 object-cover">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <h3 class="text-xl font-bold text-white">陶陶居</h3>
+              <div class="flex items-center text-white/80">
+                <i class="fa fa-map-marker mr-2"></i>
+                <span>荔湾区第十甫路20号</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 mb-4">创立于1880年的百年老字号，以传统粤菜和精致点心闻名，是品尝正宗广式早茶的好去处。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">老字号</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">早茶</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">粤菜</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              查看详情 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://picsum.photos/800/400?random=8" alt="点都德" class="w-full h-64 object-cover">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <h3 class="text-xl font-bold text-white">点都德</h3>
+              <div class="flex items-center text-white/80">
+                <i class="fa fa-map-marker mr-2"></i>
+                <span>越秀区北京路295号</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 mb-4">广州知名连锁茶楼，以创新点心和亲民价格著称，虾饺、叉烧包、红米肠是其招牌美食。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">连锁</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">早茶</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">创新</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              查看详情 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://picsum.photos/800/400?random=9" alt="炳胜品味" class="w-full h-64 object-cover">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <h3 class="text-xl font-bold text-white">炳胜品味</h3>
+              <div class="flex items-center text-white/80">
+                <i class="fa fa-map-marker mr-2"></i>
+                <span>天河区天河路208号</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-600 mb-4">主打新派粤菜的高端餐厅，烧味、海鲜和炖汤是其特色，环境优雅，适合家庭聚餐和商务宴请。</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">高端</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">粤菜</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full">海鲜</span>
+            </div>
+            <a href="#" class="inline-flex items-center text-primary hover:text-accent transition-colors">
+              查看详情 <i class="fa fa-arrow-right ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 美食文化 -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-6">广式美食文化</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            粤菜是中国八大菜系之一，以鲜、嫩、滑、爽、香、脆为特点，讲究清而不淡，鲜而不俗，嫩而不生，油而不腻。广州作为粤菜的发源地之一，拥有丰富多样
+          </p>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            广式美食文化历史悠久，可追溯至两千多年前。早茶文化是广州饮食文化的重要组成部分，"食在广州"的说法闻名遐迩。广州人喜爱饮茶，不仅是为了解渴，更是一种社交和休闲方式。
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            除了早茶，广州还有许多特色小吃和名菜，如肠粉、云吞面、烧鹅、白切鸡等。这些美食不仅口味独特，还蕴含着丰富的文化内涵，是广州文化的重要象征。
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <img src="https://picsum.photos/600/400?random=10" alt="广式美食" class="rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+          <img src="https://picsum.photos/600/400?random=11" alt="广州早茶" class="rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 mt-8">
+          <img src="https://picsum.photos/600/400?random=12" alt="粤菜烹饪" class="rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+          <img src="https://picsum.photos/600/400?random=13" alt="广州美食街" class="rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 mt-8">
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- 页脚 -->
+      <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">广州特色</h3>
+              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
+              <div class="flex space-x-4">
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-wechat text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-youtube-play text-xl"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">快速链接</h3>
+              <ul class="space-y-2">
+                <li><a href="index.html#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
+                <li><a href="index.html#attractions" class="text-white/80 hover:text-white transition-colors">景点</a></li>
+                <li><a href="food.html" class="text-white/80 hover:text-white transition-colors">美食</a></li>
+                <li><a href="index.html#culture" class="text-white/80 hover:text-white transition-colors">文化</a></li>
+                <li><a href="index.html#feedback" class="text-white/80 hover:text-white transition-colors">留言</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">联系我们</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fa fa-map-marker mr-2"></i>
+                  <span class="text-white/80">广州市天河区天河路520号</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-phone mr-2"></i>
+                  <span class="text-white/80">+86 20 12345678</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-envelope mr-2"></i>
+                  <span class="text-white/80">info@guangzhoutourism.com</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">订阅更新</h3>
+              <p class="text-white/80 mb-4">订阅我们的新闻通讯，获取最新的旅游信息和优惠。</p>
+              <form class="flex">
+                <input 
+                  type="email" 
+                  placeholder="你的邮箱地址" 
+                  class="px-4 py-2 rounded-l-md w-full focus:outline-none">
+                <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition-colors">
+                  订阅
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 text-sm">
+            <p>© 2025 广州特色展示. 保留所有权利.</p>
+          </div>
+        </div>
+      </footer>
+
+  <!-- 登录模态框 -->
+  <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-blur hidden"
+       :class="{ 'hidden': !loginModalVisible }">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-8 transform transition-all duration-300"
+         :class="{ 'opacity-0 scale-95': !modalReady, 'opacity-100 scale-100': modalReady }">
+      <div class="text-center mb-6">
+        <h3 class="text-2xl font-bold text-secondary">用户登录</h3>
+        <p class="text-gray-500">请输入您的账号和密码</p>
+      </div>
+      
+      <form class="space-y-4">
+        <div>
+          <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+          <input 
+            type="email" 
+            id="loginEmail" 
+            v-model="login.email" 
+            @blur="validateLoginField('email')" 
+            class="form-input" 
+            placeholder="your@email.com">
+          <p class="text-red-500 text-sm mt-1" v-if="login.errors.email">
+            {{ login.errors.email }}
+          </p>
+        </div>
+        
+        <div>
+          <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+          <input 
+            type="password" 
+            id="loginPassword" 
+            v-model="login.password" 
+            @blur="validateLoginField('password')" 
+            class="form-input" 
+            placeholder="••••••••">
+          <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600" @click="togglePasswordVisibility">
+            <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+          <p class="text-red-500 text-sm mt-1" v-if="login.errors.password">
+            {{ login.errors.password }}
+          </p>
+        </div>
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input 
+              type="checkbox" 
+              id="remember" 
+              v-model="login.remember" 
+              class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+            <label for="remember" class="ml-2 block text-sm text-gray-700">记住我</label>
+          </div>
+          <a href="#" class="text-sm text-primary hover:text-accent">忘记密码?</a>
+        </div>
+        
+        <div>
+          <button 
+            type="button" 
+            @click="loginUser" 
+            class="w-full btn-primary flex items-center justify-center"
+            :disabled="login.errors.email || login.errors.password || !login.email || !login.password">
+            <i class="fa fa-sign-in mr-2"></i> 登录
+          </button>
+        </div>
+        
+        <div class="flex items-center my-4">
+          <div class="flex-grow h-px bg-gray-300"></div>
+          <span class="px-4 text-sm text-gray-500">或使用以下方式登录</span>
+          <div class="flex-grow h-px bg-gray-300"></div>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-4">
+          <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+            <i class="fa fa-weixin text-green-600 text-xl"></i>
+          </button>
+          <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+            <i class="fa fa-qq text-blue-500 text-xl"></i>
+          </button>
+          <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors">
+            <i class="fa fa-weibo text-red-500 text-xl"></i>
+          </button>
+        </div>
+        
+        <div class="text-center text-sm text-gray-600 mt-6">
+          还没有账号? <a href="#" class="text-primary hover:text-accent font-medium">立即注册</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        mobileMenuVisible: false,
+        loginModalVisible: false,
+        modalReady: false,
+        login: {
+          email: '',
+          password: '',
+          remember: false,
+          errors: {},
+          message: '',
+          isSuccess: false
+        },
+        passwordVisible: false
+      },
+      methods: {
+        toggleMobileMenu() {
+          this.mobileMenuVisible = !this.mobileMenuVisible;
+        },
+        openLoginModal() {
+          this.loginModalVisible = true;
+          setTimeout(() => {
+            this.modalReady = true;
+          }, 100);
+        },
+        closeLoginModal() {
+          this.modalReady = false;
+          setTimeout(() => {
+            this.loginModalVisible = false;
+          }, 300);
+        },
+        validateLoginField(field) {
+          if (field === 'email') {
+            if (!this.login.email) {
+              this.login.errors.email = '邮箱不能为空';
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
+              this.login.errors.email = '请输入有效的邮箱地址';
+            } else {
+              this.login.errors.email = '';
+            }
+          } else if (field === 'password') {
+            if (!this.login.password) {
+              this.login.errors.password = '密码不能为空';
+            } else if (this.login.password.length < 6) {
+              this.login.errors.password = '密码长度至少为6位';
+            } else {
+              this.login.errors.password = '';
+            }
+          }
+        },
+        togglePasswordVisibility() {
+          this.passwordVisible = !this.passwordVisible;
+        },
+        loginUser() {
+          // 先验证所有字段
+          this.validateLoginField('email');
+          this.validateLoginField('password');
+          
+          // 如果有错误，不继续执行
+          if (this.login.errors.email || this.login.errors.password) {
+            return;
+          }
+          
+          // 模拟登录验证
+          // 在实际应用中，这里应该是一个API调用
+          this.login.message = '正在登录...';
+          this.login.isSuccess = false;
+          
+          // 模拟API请求延迟
+          setTimeout(() => {
+            if (this.login.email === 'test@example.com' && this.login.password === '123456') {
+              this.login.message = '登录成功，正在跳转...';
+              this.login.isSuccess = true;
+              
+              // 模拟登录成功后的跳转
+              setTimeout(() => {
+                window.location.href = 'index.html';
+              }, 1500);
+            } else {
+              this.login.message = '邮箱或密码错误';
+              this.login.isSuccess = false;
+            }
+          }, 1000);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>  

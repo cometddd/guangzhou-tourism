@@ -1,0 +1,23 @@
+[
+  {
+    "name": "李明",
+    "avatar": "assets/images/users/user1.jpg",
+    "rating": 5,
+    "date": "2023年5月15日",
+    "content": "广州塔的夜景太美了！站在塔顶俯瞰整个城市，灯光璀璨，非常震撼。推荐大家晚上去，可以看到不一样的广州。"
+  },
+  {
+    "name": "张婷",
+    "avatar": "assets/images/users/user2.jpg",
+    "rating": 4,
+    "date": "2023年5月10日",
+    "content": "陈家祠的建筑艺术真的令人惊叹，每一处细节都展现了岭南文化的精髓。建议参观时请一位讲解员，能更深入了解其中的历史和文化。"
+  },
+  {
+    "name": "王强",
+    "avatar": "assets/images/users/user3.jpg",
+    "rating": 4.5,
+    "date": "2023年5月5日",
+    "content": "广州的早茶真是太好吃了！虾饺、烧卖、叉烧包都非常美味，尤其是在老字号茶楼里，氛围特别好。一定要尝试一下！"
+  }
+]

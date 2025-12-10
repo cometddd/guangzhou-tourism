@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>广州塔 - 广州特色景点</title>
+      <!-- 引入外部资源 -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+      
+      <!-- 引入自定义样式 -->
+      <link rel="stylesheet" href="css/style.css">
+
+      <!-- Tailwind配置 -->
+      <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#D4AF37', // 金色（广州特色）
+                secondary: '#006400', // 深绿色（代表广州的自然景观）
+                accent: '#8B0000', // 深红色（代表传统文化）
+                neutral: '#F5F5DC', // 米色（温暖色调）
+              },
+              fontFamily: {
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                serif: ['Georgia', 'serif'],
+              },
+            },
+          }
+        }
+      </script>
+
+
+    </head>
+    <body>
+      <!-- 导航栏 -->
+      <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+          <a href="index.html" class="flex items-center space-x-2">
+            <i class="fa fa-map-marker text-primary text-2xl"></i>
+            <span class="text-title text-xl">广州</span>
+          </a>
+          
+          <!-- 桌面导航 -->
+          <nav class="hidden md:flex space-x-8">
+            <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
+            <a href="attractions-guide.html" class="font-medium text-primary transition-colors">景点</a>
+            <a href="food.html" class="font-medium hover:text-primary transition-colors">美食</a>
+            <a href="cultural.html" class="font-medium hover:text-primary transition-colors">文化</a>
+            <a href="discuss.html" class="font-medium hover:text-primary transition-colors">留言</a>
+          </nav>
+          
+          <!-- 登录按钮 -->
+          <button id="loginBtn" class="hidden md:block btn-primary" onclick="window.location.href='login.html'">
+            <i class="fa fa-user-circle mr-1"></i> 登录
+          </button>
+          
+          <!-- 移动端菜单按钮 -->
+          <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary" @click="toggleMobileMenu">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" :class="{'hidden': !mobileMenuVisible}" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+          <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+            <a href="index.html#home" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">首页</a>
+            <a href="index.html#attractions" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">景点</a>
+            <a href="index.html#food" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">美食</a>
+            <a href="index.html#culture" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">文化</a>
+            <a href="index.html#feedback" class="py-2 font-medium hover:text-primary transition-colors">留言</a>
+            <button class="btn-primary mt-2" onclick="window.location.href='login.html'">
+              <i class="fa fa-user-circle mr-1"></i> 登录
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- 景点详情头部 -->
+      <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img src="assets\images\Attraction\guangzhouta.webp" alt="广州塔全景" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 z-10 text-center">
+          <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">广州塔</h1>
+          <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+            中国第一高、世界第三高的旅游观光塔
+          </p>
+          <div class="flex justify-center">
+            <a href="#overview" class="btn-primary transform hover:scale-105">
+              了解详情 <i class="fa fa-info-circle ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 景点概述 -->
+      <section id="overview" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+            <div class="lg:col-span-2">
+              <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">景点概述</h2>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                广州塔（Canton Tower）又称广州新电视塔，昵称小蛮腰，位于中国广州市海珠区（艺洲岛）赤岗塔附近，距离珠江南岸125米，与海心沙岛和广州市21世纪CBD区珠江新城隔江相望。
+              </p>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                广州塔塔身主体高454米，天线桅杆高146米，总高度600米。是中国第一高、世界第三高的旅游观光塔，仅次于阿联酋迪拜哈利法塔（828米）和日本东京晴空塔（634米）。
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                广州塔有5个功能区和多种游乐设施，包括488米观景平台、高空横向摩天轮、极速云霄跳楼机、蜘蛛侠栈道等，以及2个观光大厅，有悬空走廊、天梯、4D和3D动感影院、中西美食、会展设施、购物商场及科普展示厅。
+              </p>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-clock-o mr-2"></i> 开放时间
+                </h3>
+                <ul class="space-y-2">
+                  <li class="flex justify-between">
+                    <span>周一至周五</span>
+                    <span class="font-medium">9:30 - 22:30</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>周六至周日</span>
+                    <span class="font-medium">9:00 - 23:00</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>法定节假日</span>
+                    <span class="font-medium">9:00 - 23:00</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+                  <i class="fa fa-ticket mr-2"></i> 门票价格
+                </h3>
+                <ul class="space-y-2">
+                  <li class="flex justify-between">
+                    <span>观景平台（433米）</span>
+                    <span class="font-medium">150元/人</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>摩天轮游乐套票</span>
+                    <span class="font-medium">298元/人</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>极速云霄游乐套票</span>
+                    <span class="font-medium">298元/人</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>488米观景平台</span>
+                    <span class="font-medium">398元/人</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 景点图片画廊 -->
+      <section class="py-16 bg-neutral-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">景点画廊</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">欣赏广州塔的壮丽景色，从不同角度感受这座城市地标建筑的魅力。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\广州塔2.webp" alt="广州塔夜景" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">广州塔夜景</h3>
+                <p class="text-gray-600 text-sm">夜幕降临时，广州塔亮起绚丽多彩的灯光，成为珠江畔最耀眼的风景线。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\广州塔-高空俯瞰.webp" alt="广州塔高空俯瞰" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">高空俯瞰</h3>
+                <p class="text-gray-600 text-sm">站在433米高的观景平台上，可以俯瞰整个广州市区的壮丽景色。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\广州塔-摩天轮.webp" alt="广州塔摩天轮" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">高空横向摩天轮</h3>
+                <p class="text-gray-600 text-sm">全球最高的横向摩天轮，位于广州塔450米高空处，提供独特的观景体验。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets/images/canton-tower-4.jpg" alt="广州塔蜘蛛侠栈道" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">蜘蛛侠栈道</h3>
+                <p class="text-gray-600 text-sm">全球最高最长的空中漫步云梯，沿着塔体外围搭建，让您感受高空行走的刺激。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets/images/canton-tower-5.jpg" alt="广州塔内部装饰" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">内部装饰</h3>
+                <p class="text-gray-600 text-sm">广州塔内部设计现代简约，融合了岭南文化元素，营造出独特的空间体验。</p>
+              </div>
+            </div>
+            
+            <div class="overflow-hidden rounded-lg shadow-md group">
+              <img src="assets\images\Attraction\广州塔与珠江.webp" alt="广州塔与珠江" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+              <div class="p-4 bg-white">
+                <h3 class="font-bold text-secondary">与珠江相映</h3>
+                <p class="text-gray-600 text-sm">广州塔与珠江相互映衬，形成了独特的城市景观，是摄影爱好者的天堂。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 交通指南 -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">交通指南</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">无论您选择哪种交通方式，都能轻松抵达广州塔，开始您的探索之旅。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <i class="fa fa-subway text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary text-center mb-4">地铁</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>乘坐地铁3号线到赤岗塔站A出口，步行约5分钟可到达广州塔。</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>乘坐地铁APM线到广州塔站，直接抵达广州塔底部。</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <i class="fa fa-bus text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary text-center mb-4">公交</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>乘坐11路、262路、468路、旅游观光1线到广州塔西站。</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>乘坐121路、121A路、204路、旅游观光2线到赤岗塔站。</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <i class="fa fa-car text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary text-center mb-4">自驾</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>从天河区出发，沿临江大道向西行驶，经猎德大桥后即可到达。</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>广州塔设有多个停车场，提供充足的停车位，收费标准为10元/小时。</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <i class="fa fa-ship text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-secondary text-center mb-4">珠江游船</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>乘坐珠江游船，在广州塔码头下船，即可到达广州塔。</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                  <span>夜游珠江是欣赏广州塔夜景的最佳方式，沿途还可欣赏珠江两岸的美景。</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 推荐活动 -->
+      <section class="py-16 bg-secondary/5">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">推荐活动</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">除了观光游览，广州塔还有许多精彩的活动和体验等待您的参与。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="h-64 overflow-hidden">
+                <img src="assets/images/canton-tower-activity1.jpg" alt="高空横向摩天轮" class="w-full h-full object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-3">高空横向摩天轮</h3>
+                <p class="text-gray-600 mb-4">全球最高的横向摩天轮，位于广州塔450米高空处，每舱可容纳6-8人，运行一周约为20分钟，提供独特的观景体验。</p>
+                <a href="#" class="text-primary hover:text-accent transition-colors">
+                  了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="h-64 overflow-hidden">
+                <img src="assets/images/canton-tower-activity2.jpg" alt="极速云霄跳楼机" class="w-full h-full object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-3">极速云霄跳楼机</h3>
+                <p class="text-gray-600 mb-4">全球最高的跳楼机，位于广州塔488米高空处，从488米高空瞬间坠落至450米，体验前所未有的刺激与快感。</p>
+                <a href="#" class="text-primary hover:text-accent transition-colors">
+                  了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="h-64 overflow-hidden">
+                <img src="assets/images/canton-tower-activity3.jpg" alt="蜘蛛侠栈道" class="w-full h-full object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-3">蜘蛛侠栈道</h3>
+                <p class="text-gray-600 mb-4">全球最高最长的空中漫步云梯，沿着塔体外围搭建，全程约1000米，让您感受高空行走的刺激与乐趣。</p>
+                <a href="#" class="text-primary hover:text-accent transition-colors">
+                  了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 相关景点 -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">周边景点</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">游览广州塔后，不妨顺道参观附近的其他著名景点。</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="h-64 overflow-hidden">
+                <img src="assets/images/nearby-attraction1.jpg" alt="海心沙亚运公园" class="w-full h-full object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-3">海心沙亚运公园</h3>
+                <p class="text-gray-600 mb-4">2010年广州亚运会开幕式的举办地，位于珠江新城南侧，与广州塔隔江相望。</p>
+                <a href="#" class="text-primary hover:text-accent transition-colors">
+                  了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="h-64 overflow-hidden">
+                <img src="assets/images/nearby-attraction2.jpg" alt="珠江新城" class="w-full h-full object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-3">珠江新城</h3>
+                <p class="text-gray-600 mb-4">广州的新CBD，聚集了众多高层建筑和商业中心，是广州现代化的象征。</p>
+                <a href="#" class="text-primary hover:text-accent transition-colors">
+                  了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+              <div class="h-64 overflow-hidden">
+                <img src="assets/images/nearby-attraction3.jpg" alt="花城广场" class="w-full h-full object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-secondary mb-3">花城广场</h3>
+                <p class="text-gray-600 mb-4">广州最大的城市广场，被誉为广州的"城市客厅"，是市民休闲娱乐的好去处。</p>
+                <a href="#" class="text-primary hover:text-accent transition-colors">
+                  了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!-- 页脚 -->
+      <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">广州特色</h3>
+              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
+              <div class="flex space-x-4">
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-wechat text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-white/80 hover:text-white transition-colors">
+                  <i class="fa fa-youtube-play text-xl"></i>
+                </a>
+              </div>
+            </div>
+
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">快速链接</h3>
+              <ul class="space-y-2">
+                <li><a href="index.html#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
+                <li><a href="index.html#attractions" class="text-white/80 hover:text-white transition-colors">景点</a></li>
+                <li><a href="food.html" class="text-white/80 hover:text-white transition-colors">美食</a></li>
+                <li><a href="index.html#culture" class="text-white/80 hover:text-white transition-colors">文化</a></li>
+                <li><a href="index.html#feedback" class="text-white/80 hover:text-white transition-colors">留言</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">联系我们</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fa fa-map-marker mr-2"></i>
+                  <span class="text-white/80">广州市天河区天河路520号</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-phone mr-2"></i>
+                  <span class="text-white/80">+86 20 12345678</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fa fa-envelope mr-2"></i>
+                  <span class="text-white/80">info@guangzhoutourism.com</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-bold mb-4">订阅更新</h3>
+              <p class="text-white/80 mb-4">订阅我们的新闻通讯，获取最新的旅游信息和优惠。</p>
+              <form class="flex">
+                <input 
+                  type="email" 
+                  placeholder="你的邮箱地址" 
+                  class="px-4 py-2 rounded-l-md w-full focus:outline-none">
+                <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition-colors">
+                  订阅
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 text-sm">
+            <p>© 2025 广州特色展示. 保留所有权利.</p>
+          </div>
+        </div>
+      </footer>
+
+  <!-- 登录模态框 -->
+  <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-blur hidden"
+       :class="{ 'hidden': !loginModalVisible }">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-8 transform transition-all duration-300"
+         :class="{ 'opacity-0 scale-95': !modalReady, 'opacity-100 scale-100': modalReady }">
+      <div class="text-center mb-6">
+        <h3 class="text-2xl font-bold text-secondary">用户登录</h3>
+        <p class="text-gray-500">请输入您的账号和密码</p>
+      </div>
+      
+      <form class="space-y-4">
+        <div>
+          <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+          <input 
+            type="email" 
+            id="loginEmail" 
+            v-model="login.email" 
+            @blur="validateLoginField('email')" 
+            class="form-input" 
+            placeholder="your@email.com">
+          <p class="text-red-500 text-sm mt-1" v-if="login.errors.email">
+            {{ login.errors.email }}
+          </p>
+        </div>
+        
+        <div>
+          <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
+          <input 
+            type="password" 
+            id="loginPassword" 
+            v-model="login.password" 
+            @blur="validateLoginField('password')" 
+            class="form-input" 
+            placeholder="••••••••">
+          <p class="text-red-500 text-sm mt-1" v-if="login.errors.password">
+            {{ login.errors.password }}
+          </p>
+        </div>
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input 
+              type="checkbox" 
+              id="remember" 
+              v-model="login.remember" 
+              class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+            <label for="remember" class="ml-2 block text-sm text-gray-700">记住我</label>
+          </div>
+          <a href="#" class="text-sm text-primary hover:text-accent">忘记密码?</a>
+        </div>
+        
+        <div>
+          <button 
+            type="button" 
+            @click="loginUser" 
+            class="w-full btn-primary flex items-center justify-center"
+            :disabled="login.errors.email || login.errors.password || !login.email || !login.password">
+            <i class="fa fa-sign-in mr-2"></i> 登录
+          </button>
+        </div>
+        
+        <div class="text-center text-sm text-gray-600 mt-6">
+          还没有账号? <a href="#" class="text-primary hover:text-accent">立即注册</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#navbar',
+      data: {
+        mobileMenuVisible: false,
+        loginModalVisible: false,
+        modalReady: false,
+        login: {
+          email: '',
+          password: '',
+          remember: false,
+          errors: {},
+          message: '',
+          isSuccess: false
+        },
+        passwordVisible: false
+      },
+      methods: {
+        toggleMobileMenu() {
+          this.mobileMenuVisible = !this.mobileMenuVisible;
+        },
+        openLoginModal() {
+          this.loginModalVisible = true;
+          setTimeout(() => {
+            this.modalReady = true;
+          }, 100);
+        },
+        closeLoginModal() {
+          this.modalReady = false;
+          setTimeout(() => {
+            this.loginModalVisible = false;
+          }, 300);
+        },
+        validateLoginField(field) {
+          if (field === 'email') {
+            if (!this.login.email) {
+              this.login.errors.email = '邮箱不能为空';
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
+              this.login.errors.email = '请输入有效的邮箱地址';
+            } else {
+              this.login.errors.email = '';
+            }
+          } else if (field === 'password') {
+            if (!this.login.password) {
+              this.login.errors.password = '密码不能为空';
+            } else if (this.login.password.length < 6) {
+              this.login.errors.password = '密码长度至少为6位';
+            } else {
+              this.login.errors.password = '';
+            }
+          }
+        },
+        togglePasswordVisibility() {
+          this.passwordVisible = !this.passwordVisible;
+        },
+        loginUser() {
+          // 先验证所有字段
+          this.validateLoginField('email');
+          this.validateLoginField('password');
+          
+          // 如果有错误，不继续执行
+          if (this.login.errors.email || this.login.errors.password) {
+            return;
+          }
+          
+          // 发送登录请求到后端
+          fetch('/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: this.login.email,
+              password: this.login.password
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              this.login.message = '登录成功，正在跳转...';
+              this.login.isSuccess = true;
+              setTimeout(() => {
+                window.location.href = 'index.html';
+              }, 1500);
+            } else {
+              this.login.message = data.message;
+              this.login.isSuccess = false;
+            }
+          })
+          .catch(error => {
+            console.error('登录请求出错:', error);
+            this.login.message = '登录请求出错，请稍后重试';
+            this.login.isSuccess = false;
+          });
+        }
+      }
+    });
+  </script>
+    </body>
+    </html>
+  
