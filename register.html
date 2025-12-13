@@ -3,12 +3,22 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>广州旅游 - 用户注册</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- 引入Vuex Store和Router -->
+  <script src="js/store.js"></script>
+  <script src="js/router.js"></script>
+  <!-- 引入主JavaScript文件 -->
+  <script src="js/main.js"></script>
 
   <!-- 配置Tailwind自定义主题 -->
   <script>
@@ -34,48 +44,9 @@
 </head>
 
 <body class="font-inter bg-light min-h-screen flex flex-col">
-  <!-- 导航栏 -->
-  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 shadow-md">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" class="flex items-center space-x-2">
-        <i class="fa fa-map-marker text-primary text-2xl"></i>
-        <span class="text-title text-xl">广州</span>
-      </a>
-
-      <!-- 桌面导航 -->
-      <nav class="hidden md:flex space-x-8">
-        <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
-        <a href="attractions-guide.html" class="font-medium hover:text-primary transition-colors">景点</a>
-        <a href="food.html" class="font-medium hover:text-primary transition-colors">美食</a>
-        <a href="cultural.html" class="font-medium hover:text-primary transition-colors">文化</a>
-        <a href="discuss.html" class="font-medium hover:text-primary transition-colors">留言</a>
-      </nav>
-
-      <!-- 登录按钮 -->
-      <button id="loginBtn" class="hidden md:block btn-primary" onclick="window.location.href='login.html'">
-        <i class="fa fa-user-circle mr-1"></i> 登录
-      </button>
-
-      <!-- 移动端菜单按钮 -->
-      <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary" @click="toggleMobileMenu">
-        <i class="fa fa-bars text-xl"></i>
-      </button>
-    </div>
-
-    <!-- 移动端导航菜单 -->
-    <div id="mobileMenu" :class="{'hidden': !mobileMenuVisible}" class="hidden md:hidden bg-white shadow-lg absolute w-full">
-      <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-        <a href="index.html#home" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">首页</a>
-        <a href="index.html#attractions" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">景点</a>
-        <a href="food.html" class="py-2 border-b border-gray-100 font-medium hover:text-primary text-primary">美食</a>
-        <a href="index.html#culture" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">文化</a>
-        <a href="index.html#feedback" class="py-2 font-medium hover:text-primary transition-colors">留言</a>
-        <button class="btn-primary mt-2" onclick="window.location.href='login.html'">
-          <i class="fa fa-user-circle mr-1"></i> 登录
-        </button>
-      </div>
-    </div>
-  </header>
+  <div id="app">
+    <!-- 导航栏 -->
+    <navbar></navbar>
 
   <!-- 主内容区 -->
   <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -104,20 +75,18 @@
               </div>
             </div>
 
-            <form class="space-y-4">
+            <form class="space-y-6">
               <div>
                 <label for="registerName" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
                 <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <i class="fa fa-user text-gray-400"></i>
-                  </div>
                   <input
                     type="text"
                     id="registerName"
                     v-model="register.name"
-                    @blur="validateRegisterField('name')"
-                    class="form-input form-input-with-icon"
-                    placeholder="请输入您的姓名">
+                    @input="validateRegisterField('name')"
+                    class="form-input focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                    placeholder="请输入您的姓名"
+                    autocomplete="name">
                 </div>
                 <p class="text-red-500 text-sm mt-1" v-if="register.errors.name">
                   {{ register.errors.name }}
@@ -127,16 +96,14 @@
               <div>
                 <label for="registerEmail" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
                 <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <i class="fa fa-envelope text-gray-400"></i>
-                  </div>
                   <input
                     type="email"
                     id="registerEmail"
                     v-model="register.email"
-                    @blur="validateRegisterField('email')"
-                    class="form-input form-input-with-icon"
-                    placeholder="your@email.com">
+                    @input="validateRegisterField('email')"
+                    class="form-input focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                    placeholder="your@email.com"
+                    autocomplete="email">
                 </div>
                 <p class="text-red-500 text-sm mt-1" v-if="register.errors.email">
                   {{ register.errors.email }}
@@ -146,20 +113,14 @@
               <div>
                 <label for="registerPassword" class="block text-sm font-medium text-gray-700 mb-1">密码</label>
                 <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <i class="fa fa-lock text-gray-400"></i>
-                  </div>
                   <input
                     type="password"
                     id="registerPassword"
                     v-model="register.password"
-                    @blur="validateRegisterField('password')"
-                    class="form-input form-input-with-icon"
-                    placeholder="至少6个字符">
-                  <button type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
-                    @click="togglePasswordVisibility">
-                    <i class="fa" :class="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
-                  </button>
+                    @input="validateRegisterField('password')"
+                    class="form-input focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                    placeholder="至少6个字符"
+                    autocomplete="new-password">
                 </div>
                 <p class="text-red-500 text-sm mt-1" v-if="register.errors.password">
                   {{ register.errors.password }}
@@ -169,20 +130,14 @@
               <div>
                 <label for="registerConfirmPassword" class="block text-sm font-medium text-gray-700 mb-1">确认密码</label>
                 <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <i class="fa fa-lock text-gray-400"></i>
-                  </div>
                   <input
                     type="password"
                     id="registerConfirmPassword"
                     v-model="register.confirmPassword"
-                    @blur="validateRegisterField('confirmPassword')"
-                    class="form-input form-input-with-icon"
-                    placeholder="请再次输入密码">
-                  <button type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
-                    @click="toggleConfirmPasswordVisibility">
-                    <i class="fa" :class="confirmPasswordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
-                  </button>
+                    @input="validateRegisterField('confirmPassword')"
+                    class="form-input focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                    placeholder="请再次输入密码"
+                    autocomplete="new-password">
                 </div>
                 <p class="text-red-500 text-sm mt-1" v-if="register.errors.confirmPassword">
                   {{ register.errors.confirmPassword }}
@@ -196,10 +151,10 @@
                     id="terms"
                     v-model="register.terms"
                     @change="validateRegisterField('terms')"
-                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded transition-colors">
                 </div>
                 <div class="ml-3 text-sm">
-                  <label for="terms" class="text-gray-600">我已阅读并同意<a href="#" class="text-primary hover:text-accent">服务条款</a>和<a href="#" class="text-primary hover:text-accent">隐私政策</a></label>
+                  <label for="terms" class="text-gray-600 cursor-pointer">我已阅读并同意<a href="#" class="text-primary hover:text-accent transition-colors">服务条款</a>和<a href="#" class="text-primary hover:text-accent transition-colors">隐私政策</a></label>
                 </div>
               </div>
               <p class="text-red-500 text-sm mt-1" v-if="register.errors.terms">
@@ -210,9 +165,12 @@
                 <button
                   type="button"
                   @click="registerUser"
-                  class="w-full btn-primary flex items-center justify-center"
-                  :disabled="Object.values(register.errors).some(error => error) || !register.name || !register.email || !register.password || !register.confirmPassword || !register.terms">
-                  <i class="fa fa-user-plus mr-2"></i> 注册
+                  :disabled="register.isLoading || Object.values(register.errors).some(error => error) || !register.name || !register.email || !register.password || !register.confirmPassword || !register.terms"
+                  class="w-full btn-primary flex items-center justify-center transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  <i v-if="register.isLoading" class="fa fa-spinner fa-spin mr-2"></i>
+                  <i v-else class="fa fa-user-plus mr-2"></i>
+                  {{ register.isLoading ? '注册中...' : '注册' }}
                 </button>
               </div>
 
@@ -223,7 +181,7 @@
               </div>
 
               <div>
-                <button type="button" @click="goToLogin" class="w-full btn-secondary flex items-center justify-center">
+                <button type="button" @click="goToLogin" class="w-full btn-secondary flex items-center justify-center transition-colors hover:opacity-90">
                   <i class="fa fa-sign-in mr-2"></i> 登录
                 </button>
               </div>
@@ -235,81 +193,11 @@
   </main>
 
 <!-- 页脚 -->
-      <footer class="bg-secondary text-white py-12">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 class="text-xl font-bold mb-4">广州特色</h3>
-              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
-              <div class="flex space-x-4">
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-weibo text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-wechat text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-instagram text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-youtube-play text-xl"></i>
-                </a>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold mb-4">快速链接</h3>
-              <ul class="space-y-2">
-                <li><a href="index.html#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
-                <li><a href="index.html#attractions" class="text-white/80 hover:text-white transition-colors">景点</a></li>
-                <li><a href="food.html" class="text-white/80 hover:text-white transition-colors">美食</a></li>
-                <li><a href="index.html#culture" class="text-white/80 hover:text-white transition-colors">文化</a></li>
-                <li><a href="index.html#feedback" class="text-white/80 hover:text-white transition-colors">留言</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold mb-4">联系我们</h3>
-              <ul class="space-y-2">
-                <li class="flex items-center">
-                  <i class="fa fa-map-marker mr-2"></i>
-                  <span class="text-white/80">广州市天河区天河路520号</span>
-                </li>
-                <li class="flex items-center">
-                  <i class="fa fa-phone mr-2"></i>
-                  <span class="text-white/80">+86 20 12345678</span>
-                </li>
-                <li class="flex items-center">
-                  <i class="fa fa-envelope mr-2"></i>
-                  <span class="text-white/80">info@guangzhoutourism.com</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold mb-4">订阅更新</h3>
-              <p class="text-white/80 mb-4">订阅我们的新闻通讯，获取最新的旅游信息和优惠。</p>
-              <form class="flex">
-                <input 
-                  type="email" 
-                  placeholder="你的邮箱地址" 
-                  class="px-4 py-2 rounded-l-md w-full focus:outline-none">
-                <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition-colors">
-                  订阅
-                </button>
-              </form>
-            </div>
-          </div>
-          
-          <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 text-sm">
-            <p>© 2025 广州特色展示. 保留所有权利.</p>
-          </div>
-        </div>
-      </footer>
+
 
   <script>
     new Vue({
-      el: '#registerApp',
+      el: '#app',
       data: {
         mobileMenuVisible: false,
         register: {
@@ -320,7 +208,8 @@
           terms: false,
           errors: {},
           message: '',
-          isSuccess: false
+          isSuccess: false,
+          isLoading: false
         },
         passwordVisible: false,
         confirmPasswordVisible: false
@@ -333,7 +222,7 @@
           let error = '';
           const value = this.register[field];
           
-          switch (field) {
+          switch(field) {
             case 'name':
               if (!value) {
                 error = '请输入姓名';
@@ -342,7 +231,7 @@
             case 'email':
               if (!value) {
                 error = '请输入邮箱';
-              } else if (!/\S+@\S+\.\S+/.test(value)) {
+              } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
                 error = '请输入有效的邮箱地址';
               }
               break;
@@ -369,6 +258,12 @@
           
           this.register.errors[field] = error;
         },
+        togglePasswordVisibility() {
+          this.passwordVisible = !this.passwordVisible;
+        },
+        toggleConfirmPasswordVisibility() {
+          this.confirmPasswordVisible = !this.confirmPasswordVisible;
+        },
         registerUser() {
           // 验证所有字段
           this.validateRegisterField('name');
@@ -382,12 +277,13 @@
             return;
           }
           
-          // 显示加载状态
+          // 显示加载状态和注册消息
+          this.register.isLoading = true;
           this.register.message = '正在注册...';
           this.register.isSuccess = false;
           
-          // 发送注册请求到后端
-          fetch('/register', {
+          // 调用注册API
+          fetch('http://localhost:3000/api/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -398,59 +294,42 @@
               password: this.register.password
             })
           })
-          .then(response => {
-            console.log('响应状态码:', response.status);
-            console.log('响应头部:', response.headers);
-            
-            // 检查HTTP状态码
-            if (!response.ok) {
-              // 非200状态码，尝试解析错误信息
-              return response.json().then(errorData => {
-                throw new Error(errorData.message || `注册失败: HTTP ${response.status}`);
-              }).catch(() => {
-                // 如果解析JSON失败，抛出通用错误
-                throw new Error(`注册失败: HTTP ${response.status}`);
-              });
-            }
-            
-            // 200状态码，解析响应数据
-            return response.json();
-          })
+          .then(response => response.json())
           .then(data => {
-            console.log('后端返回的数据:', data);
+            this.register.isLoading = false;
             
             if (data.success) {
-              this.register.message = '注册成功！即将跳转到登录页面...';
+              this.register.message = '注册成功！正在跳转到登录页面...';
               this.register.isSuccess = true;
               
-              // 延迟跳转，让用户有时间看到成功消息
+              // 延迟跳转
               setTimeout(() => {
                 window.location.href = 'login.html';
               }, 2000);
             } else {
-              this.register.message = data.message || '注册失败，请重试';
+              this.register.message = data.message;
               this.register.isSuccess = false;
             }
           })
           .catch(error => {
-            console.error('注册请求出错:', error);
-            this.register.message = error.message || '注册请求出错，请稍后重试';
+            console.error('注册失败:', error);
+            this.register.isLoading = false;
+            this.register.message = '注册失败，请检查网络连接或稍后重试';
             this.register.isSuccess = false;
           });
         },
-        togglePasswordVisibility() {
-          this.passwordVisible = !this.passwordVisible;
-        },
-        toggleConfirmPasswordVisibility() {
-          this.confirmPasswordVisible = !this.confirmPasswordVisible;
-        },
-        // 跳转到登录页面
         goToLogin() {
           window.location.href = 'login.html';
         }
       }
     });
   </script>
+  <!-- 引入主脚本文件 -->
+  <script src="js/main.js"></script>
+  
+  <!-- 页脚 -->
+  <footer-component></footer-component>
+  </div>
 </body>
 
 </html>

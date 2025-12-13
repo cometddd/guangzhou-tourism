@@ -6,8 +6,17 @@
       <title>广州塔 - 广州特色景点</title>
       <!-- 引入外部资源 -->
       <script src="https://cdn.tailwindcss.com"></script>
-      <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.min.js"></script>
+      <script src="js/store.js"></script>
+      <script src="js/router.js"></script>
+      <script src="js/main.js"></script>
+      
+      <!-- 引入Inter字体 -->
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
       
       <!-- 引入自定义样式 -->
       <link rel="stylesheet" href="css/style.css">
@@ -35,48 +44,9 @@
 
     </head>
     <body>
+      <div id="app">
       <!-- 导航栏 -->
-      <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-          <a href="index.html" class="flex items-center space-x-2">
-            <i class="fa fa-map-marker text-primary text-2xl"></i>
-            <span class="text-title text-xl">广州</span>
-          </a>
-          
-          <!-- 桌面导航 -->
-          <nav class="hidden md:flex space-x-8">
-            <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
-            <a href="attractions-guide.html" class="font-medium text-primary transition-colors">景点</a>
-            <a href="food.html" class="font-medium hover:text-primary transition-colors">美食</a>
-            <a href="cultural.html" class="font-medium hover:text-primary transition-colors">文化</a>
-            <a href="discuss.html" class="font-medium hover:text-primary transition-colors">留言</a>
-          </nav>
-          
-          <!-- 登录按钮 -->
-          <button id="loginBtn" class="hidden md:block btn-primary" onclick="window.location.href='login.html'">
-            <i class="fa fa-user-circle mr-1"></i> 登录
-          </button>
-          
-          <!-- 移动端菜单按钮 -->
-          <button id="menuBtn" class="md:hidden text-gray-700 hover:text-primary" @click="toggleMobileMenu">
-            <i class="fa fa-bars text-xl"></i>
-          </button>
-        </div>
-        
-        <!-- 移动端导航菜单 -->
-        <div id="mobileMenu" :class="{'hidden': !mobileMenuVisible}" class="hidden md:hidden bg-white shadow-lg absolute w-full">
-          <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-            <a href="index.html#home" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">首页</a>
-            <a href="index.html#attractions" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">景点</a>
-            <a href="index.html#food" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">美食</a>
-            <a href="index.html#culture" class="py-2 border-b border-gray-100 font-medium hover:text-primary transition-colors">文化</a>
-            <a href="index.html#feedback" class="py-2 font-medium hover:text-primary transition-colors">留言</a>
-            <button class="btn-primary mt-2" onclick="window.location.href='login.html'">
-              <i class="fa fa-user-circle mr-1"></i> 登录
-            </button>
-          </div>
-        </div>
-      </header>
+      <navbar></navbar>
 
       <!-- 景点详情头部 -->
       <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
@@ -233,7 +203,7 @@
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
-              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <i class="fa fa-subway text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-bold text-secondary text-center mb-4">地铁</h3>
@@ -250,7 +220,7 @@
             </div>
             
             <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
-              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <i class="fa fa-bus text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-bold text-secondary text-center mb-4">公交</h3>
@@ -267,7 +237,7 @@
             </div>
             
             <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
-              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <i class="fa fa-car text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-bold text-secondary text-center mb-4">自驾</h3>
@@ -284,7 +254,7 @@
             </div>
             
             <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
-              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
                 <i class="fa fa-ship text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-bold text-secondary text-center mb-4">珠江游船</h3>
@@ -314,7 +284,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
               <div class="h-64 overflow-hidden">
-                <img src="assets/images/canton-tower-activity1.jpg" alt="高空横向摩天轮" class="w-full h-full object-cover">
+                <img src="assets/images/Attraction/广州塔-摩天轮.webp" alt="高空横向摩天轮" class="w-full h-full object-cover">
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold text-secondary mb-3">高空横向摩天轮</h3>
@@ -327,7 +297,7 @@
             
             <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
               <div class="h-64 overflow-hidden">
-                <img src="assets/images/canton-tower-activity2.jpg" alt="极速云霄跳楼机" class="w-full h-full object-cover">
+                <img src="assets/images/Attraction/广州塔-高空俯瞰.webp" alt="极速云霄跳楼机" class="w-full h-full object-cover">
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold text-secondary mb-3">极速云霄跳楼机</h3>
@@ -340,7 +310,7 @@
             
             <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
               <div class="h-64 overflow-hidden">
-                <img src="assets/images/canton-tower-activity3.jpg" alt="蜘蛛侠栈道" class="w-full h-full object-cover">
+                <img src="assets/images/Attraction/广州塔与珠江.webp" alt="蜘蛛侠栈道" class="w-full h-full object-cover">
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold text-secondary mb-3">蜘蛛侠栈道</h3>
@@ -365,7 +335,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
               <div class="h-64 overflow-hidden">
-                <img src="assets/images/nearby-attraction1.jpg" alt="海心沙亚运公园" class="w-full h-full object-cover">
+                <img src="assets/images/Attraction/yuexiupark.png" alt="海心沙亚运公园" class="w-full h-full object-cover">
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold text-secondary mb-3">海心沙亚运公园</h3>
@@ -378,7 +348,7 @@
             
             <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
               <div class="h-64 overflow-hidden">
-                <img src="assets/images/nearby-attraction2.jpg" alt="珠江新城" class="w-full h-full object-cover">
+                <img src="assets/images/Attraction/shamiandao.webp" alt="珠江新城" class="w-full h-full object-cover">
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold text-secondary mb-3">珠江新城</h3>
@@ -391,7 +361,7 @@
             
             <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
               <div class="h-64 overflow-hidden">
-                <img src="assets/images/nearby-attraction3.jpg" alt="花城广场" class="w-full h-full object-cover">
+                <img src="assets/images/Attraction/baiyunshan.jpg" alt="花城广场" class="w-full h-full object-cover">
               </div>
               <div class="p-6">
                 <h3 class="text-xl font-bold text-secondary mb-3">花城广场</h3>
@@ -404,29 +374,641 @@
           </div>
         </div>
       </section>
+      <!-- 景点详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\Attraction\chenjiaci.png" alt="陈家祠全景" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">陈家祠</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      广东规模最大、装饰最华丽、保存最完好的传统岭南祠堂式建筑
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <i class="fa fa-info-circle ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 景点概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">景点概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          陈家祠又称陈氏书院，建于清光绪十四年（1888年），落成于光绪二十年（1894年），是广东各地陈氏宗族共同捐资兴建的合族祠堂。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          建筑占地面积15000平方米，主体建筑面积6400平方米，由大小十九座单体建筑组成，以中路为主线，两边厅堂、厢房对称排列，通过青云巷、廊、庑、庭院相连，形成严谨完整的建筑群。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          陈家祠以其精湛的三雕（石雕、砖雕、木雕）、二塑（陶塑、灰塑）、铁铸工艺闻名于世，被誉为"岭南建筑艺术的明珠"，1988年被列为全国重点文物保护单位，2002年被评为国家AAAA级旅游景区。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-clock-o mr-2"></i> 开放时间
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between">
+              <span>周二至周日</span>
+              <span class="font-medium">9:00 - 17:30（17:00停止入场）</span>
+            </li>
+            <li class="flex justify-between">
+              <span>周一</span>
+              <span class="font-medium">闭馆（法定节假日除外）</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-ticket mr-2"></i> 门票价格
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between">
+              <span>成人票</span>
+              <span class="font-medium">10元/人</span>
+            </li>
+            <li class="flex justify-between">
+              <span>学生票（凭学生证）</span>
+              <span class="font-medium">5元/人</span>
+            </li>
+            <li class="flex justify-between">
+              <span>65岁以上老人（凭身份证）</span>
+              <span class="font-medium">免费</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 景点图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">景点画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">欣赏陈家祠的建筑艺术，感受岭南传统工艺的魅力。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\chenjiaci1.jpg" alt="陈家祠正门" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">陈家祠正门</h3>
+          <p class="text-gray-600 text-sm">气势恢宏的正门，门额上悬挂着"陈氏书院"匾额，体现了岭南建筑的庄重典雅。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\chenjiaci2.jpg" alt="砖雕艺术" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">砖雕艺术</h3>
+          <p class="text-gray-600 text-sm">精美的砖雕作品，题材丰富，包括人物故事、花鸟鱼虫等，工艺精湛。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\chenjiaci3.jpg" alt="木雕装饰" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">木雕装饰</h3>
+          <p class="text-gray-600 text-sm">梁架上的木雕装饰，刀法细腻，造型生动，体现了岭南木雕的高超技艺。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\chenjiaci4.jpg" alt="陶塑脊饰" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">陶塑脊饰</h3>
+          <p class="text-gray-600 text-sm">屋顶上的陶塑脊饰，色彩鲜艳，人物造型栩栩如生，具有很高的艺术价值。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\chenjiaci5.jpg" alt="庭院景观" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">庭院景观</h3>
+          <p class="text-gray-600 text-sm">陈家祠内的庭院，布局精巧，绿树成荫，营造出宁静雅致的氛围。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\chenjiaci6.jpg" alt="石雕柱础" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">石雕柱础</h3>
+          <p class="text-gray-600 text-sm">精美的石雕柱础，造型多样，纹饰繁复，是陈家祠石雕艺术的代表。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 交通指南 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">交通指南</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">便捷的交通让您轻松抵达陈家祠，感受岭南建筑艺术的魅力。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-subway text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">地铁</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐地铁1号线到陈家祠站D出口，步行约3分钟可到达。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐地铁8号线到陈家祠站，直接抵达景区附近。</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-bus text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">公交</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐17路、85路、88路、104路、107路到陈家祠站。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐205路、233路、250路、286路到康王中路站，步行约5分钟。</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-car text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">自驾</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>从广州市中心出发，沿中山七路向西行驶，即可到达陈家祠。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>陈家祠周边有停车场，收费标准为8元/小时。</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-bicycle text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">共享单车</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>广州市区有多家共享单车企业运营，可骑行至陈家祠周边停放点。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>陈家祠附近设有多个共享单车停放区，方便游客使用。</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 推荐活动 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">推荐活动</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">在陈家祠，您可以参与这些活动，深入了解岭南文化。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\Attraction\chenjiaci7.jpg" alt="岭南工艺体验" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">岭南工艺体验</h3>
+          <p class="text-gray-600 mb-4">定期举办的岭南传统工艺体验活动，包括剪纸、陶艺、广绣等，让您亲手感受传统工艺的魅力。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\Attraction\chenjiaci8.jpg" alt="文化讲座" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">文化讲座</h3>
+          <p class="text-gray-600 mb-4">邀请专家学者举办的岭南文化讲座，内容包括建筑艺术、民俗风情、历史典故等，深入解读陈家祠的文化内涵。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\Attraction\chenjiaci9.jpg" alt="摄影比赛" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">摄影比赛</h3>
+          <p class="text-gray-600 mb-4">每年举办的陈家祠建筑艺术摄影比赛，吸引众多摄影爱好者参与，用镜头记录陈家祠的美。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 相关景点 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">周边景点</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">参观陈家祠后，不妨到附近的这些景点继续您的文化之旅。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/Attraction/shangxiajiu.jpg" alt="上下九步行街" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">上下九步行街</h3>
+          <p class="text-gray-600 mb-4">广州著名的商业步行街，保留了大量骑楼建筑，是品尝广州美食和购买特色商品的好去处。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/Attraction/xiguan.webp" alt="西关大屋" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">西关大屋</h3>
+          <p class="text-gray-600 mb-4">广州传统民居的代表，具有浓郁的岭南特色，展现了广州西关地区的历史风貌。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/Attraction/liwanhu.jpg" alt="荔湾湖公园" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">荔湾湖公园</h3>
+          <p class="text-gray-600 mb-4">广州历史悠久的公园，湖水清澈，绿树成荫，周边有许多老字号茶楼，可体验广州早茶文化。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 景点详情头部 -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets\images\Attraction\shamiandao.webp" alt="沙面岛全景" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-[clamp(2.5rem,8vw,4rem)] text-title text-white text-shadow mb-4">沙面岛</h1>
+    <p class="text-[clamp(1rem,3vw,1.5rem)] text-white text-shadow mb-8 max-w-2xl mx-auto">
+      广州重要的商埠，欧陆风情建筑的聚集地
+    </p>
+    <div class="flex justify-center">
+      <a href="#overview" class="btn-primary transform hover:scale-105">
+        了解详情 <i class="fa fa-info-circle ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 景点概述 -->
+<section id="overview" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+      <div class="lg:col-span-2">
+        <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-6">景点概述</h2>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          沙面岛，又称沙面，位于广州市荔湾区珠江白鹅潭北岸，是一个椭圆形的小岛，面积约0.3平方公里。
+        </p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          沙面岛在历史上曾是英、法两国的租界，从19世纪末开始，先后有10多个国家在这里设立领事馆、开办银行、洋行，形成了独特的欧陆风情建筑群。岛上有150多座欧洲风格建筑，其中有42座被列为全国重点文物保护单位。
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          如今，沙面岛已成为广州著名的外事游览区和历史文物保护区，岛上绿树成荫，环境幽雅，是市民和游客休闲散步、拍照留念的好去处，也是许多广州人拍摄婚纱照的首选之地。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-clock-o mr-2"></i> 开放时间
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between">
+              <span>全天开放</span>
+              <span class="font-medium">建议游览时间：2-3小时</span>
+            </li>
+            <li class="flex justify-between">
+              <span>最佳游览时段</span>
+              <span class="font-medium">9:00 - 17:00 或 19:00 - 21:00</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-neutral-50 rounded-lg p-6 shadow-md">
+          <h3 class="text-xl font-bold text-secondary mb-4 flex items-center">
+            <i class="fa fa-ticket mr-2"></i> 门票信息
+          </h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between">
+              <span>进入沙面岛</span>
+              <span class="font-medium">免费</span>
+            </li>
+            <li class="flex justify-between">
+              <span>部分景点</span>
+              <span class="font-medium">可能收费</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 景点图片画廊 -->
+<section class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">景点画廊</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">漫步沙面岛，欣赏欧陆风情建筑，感受历史与现代的交融。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\shamiandao1.jpg" alt="沙面岛建筑" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">欧陆风情建筑</h3>
+          <p class="text-gray-600 text-sm">沙面岛上的欧式建筑，风格多样，包括哥特式、巴洛克式、罗马式等。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\shamiandao2.jpg" alt="沙面岛街道" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">沙面岛街道</h3>
+          <p class="text-gray-600 text-sm">整洁的街道两旁绿树成荫，欧式建筑错落有致，营造出宁静的氛围。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\shamiandao3.jpg" alt="沙面岛教堂" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">沙面教堂</h3>
+          <p class="text-gray-600 text-sm">沙面岛上的教堂建筑，具有典型的哥特式风格，是岛上的标志性建筑之一。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\shamiandao4.jpg" alt="沙面岛公园" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">沙面岛公园</h3>
+          <p class="text-gray-600 text-sm">岛上的公园环境优美，草坪整洁，是市民休闲放松的好去处。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\shamiandao5.jpg" alt="沙面岛江边" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">沙面岛江边</h3>
+          <p class="text-gray-600 text-sm">沙面岛濒临珠江，江边风景优美，可欣赏珠江两岸的景色。</p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden rounded-lg shadow-md group">
+        <img src="assets\images\Attraction\shamiandao6.jpg" alt="沙面岛夜景" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="p-4 bg-white">
+          <h3 class="font-bold text-secondary">沙面岛夜景</h3>
+          <p class="text-gray-600 text-sm">夜晚的沙面岛灯火辉煌，欧式建筑在灯光的映衬下更具魅力。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 交通指南 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">交通指南</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">多种交通方式可到达沙面岛，开启您的欧陆风情之旅。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-subway text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">地铁</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐地铁1号线到黄沙站D出口，步行约10分钟可到达沙面岛。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐地铁6号线到文化公园站E出口，步行约15分钟可到达。</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-bus text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">公交</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐1路、9路、25路、57路、75路到市中医院站，步行约5分钟。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>乘坐64路、123路、188路、208路到黄沙码头站，步行约8分钟。</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-ship text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">轮渡</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>从广州塔码头乘坐渡轮至黄沙码头，下船后步行约10分钟可到达。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>渡轮运营时间为7:00-22:00，票价约2元/人。</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="w-16 h-16 bg-primary-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+          <i class="fa fa-car text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-secondary text-center mb-4">自驾</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>从广州市中心出发，沿六二三路向西行驶，即可到达沙面岛。</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+            <span>沙面岛周边有停车场，收费标准为10元/小时。</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 推荐活动 -->
+<section class="py-16 bg-secondary/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">推荐活动</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">在沙面岛，您可以参与这些活动，感受独特的文化氛围。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\Attraction\shamiandao7.jpg" alt="摄影采风" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">摄影采风</h3>
+          <p class="text-gray-600 mb-4">沙面岛是摄影爱好者的天堂，欧陆风情的建筑、优美的环境，都是拍摄的好题材。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\Attraction\shamiandao8.jpg" alt="咖啡品鉴" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">咖啡品鉴</h3>
+          <p class="text-gray-600 mb-4">岛上有许多特色咖啡馆，您可以在这里品尝咖啡，享受悠闲的时光，感受异国风情。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets\images\Attraction\shamiandao9.jpg" alt="历史文化讲解" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">历史文化讲解</h3>
+          <p class="text-gray-600 mb-4">参加沙面岛历史文化讲解活动，了解岛上建筑的历史背景和文化内涵，深入感受沙面的魅力。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 相关景点 -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] text-title mb-4">周边景点</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">游览沙面岛后，这些周边景点也值得一游。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/Attraction/huangsha.jpg" alt="黄沙水产市场" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">黄沙水产市场</h3>
+          <p class="text-gray-600 mb-4">广州最大的水产市场，这里海鲜种类繁多，新鲜便宜，可现场购买后到附近餐厅加工。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/Attraction/liwanmuseum.jpg" alt="荔湾博物馆" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">荔湾博物馆</h3>
+          <p class="text-gray-600 mb-4">位于荔湾区龙津西路，馆内展示了广州西关地区的历史文化、民俗风情等内容。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+        <div class="h-64 overflow-hidden">
+          <img src="assets/images/Attraction/chenjiaci.png" alt="陈家祠" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-3">陈家祠</h3>
+          <p class="text-gray-600 mb-4">广东规模最大、装饰最华丽、保存最完好的传统岭南祠堂式建筑，距离沙面岛不远。</p>
+          <a href="#" class="text-primary hover:text-accent transition-colors">
+            了解详情 <i class="fa fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- 页脚 -->
-      <footer class="bg-secondary text-white py-12">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 class="text-xl font-bold mb-4">广州特色</h3>
-              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
-              <div class="flex space-x-4">
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-weibo text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-wechat text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-instagram text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-youtube-play text-xl"></i>
-                </a>
-              </div>
-            </div>
+      <footer-component></footer-component>
 
             
             <div>
@@ -548,103 +1130,157 @@
   </div>
 
   <script>
-    new Vue({
-      el: '#navbar',
-      data: {
-        mobileMenuVisible: false,
-        loginModalVisible: false,
-        modalReady: false,
-        login: {
-          email: '',
-          password: '',
-          remember: false,
-          errors: {},
-          message: '',
-          isSuccess: false
+      new Vue({
+        el: '#app',
+        data: {
+          mobileMenuVisible: false,
+          loginModalVisible: false,
+          modalReady: false,
+          login: {
+            email: '',
+            password: '',
+            remember: false,
+            errors: {},
+            message: '',
+            isSuccess: false
+          },
+          passwordVisible: false,
+          attraction: {
+            id: 1,
+            name: '广州塔',
+            category: 'modern',
+            image: 'assets/images/Attraction/guangzhouta.webp',
+            description: '中国第一高塔，世界第三高塔，可俯瞰珠江美景和城市天际线。',
+            location: '海珠区'
+          },
+          attractions: []
         },
-        passwordVisible: false
-      },
-      methods: {
-        toggleMobileMenu() {
-          this.mobileMenuVisible = !this.mobileMenuVisible;
+        store: store, // 引入Vuex Store
+        created() {
+          this.loadAttractions();
         },
-        openLoginModal() {
-          this.loginModalVisible = true;
-          setTimeout(() => {
-            this.modalReady = true;
-          }, 100);
-        },
-        closeLoginModal() {
-          this.modalReady = false;
-          setTimeout(() => {
-            this.loginModalVisible = false;
-          }, 300);
-        },
-        validateLoginField(field) {
-          if (field === 'email') {
-            if (!this.login.email) {
-              this.login.errors.email = '邮箱不能为空';
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
-              this.login.errors.email = '请输入有效的邮箱地址';
-            } else {
-              this.login.errors.email = '';
+        methods: {
+          toggleMobileMenu() {
+            this.mobileMenuVisible = !this.mobileMenuVisible;
+          },
+          openLoginModal() {
+            this.loginModalVisible = true;
+            setTimeout(() => {
+              this.modalReady = true;
+            }, 100);
+          },
+          closeLoginModal() {
+            this.modalReady = false;
+            setTimeout(() => {
+              this.loginModalVisible = false;
+            }, 300);
+          },
+          validateLoginField(field) {
+            if (field === 'email') {
+              if (!this.login.email) {
+                this.login.errors.email = '邮箱不能为空';
+              } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
+                this.login.errors.email = '请输入有效的邮箱地址';
+              } else {
+                this.login.errors.email = '';
+              }
+            } else if (field === 'password') {
+              if (!this.login.password) {
+                this.login.errors.password = '密码不能为空';
+              } else if (this.login.password.length < 6) {
+                this.login.errors.password = '密码长度至少为6位';
+              } else {
+                this.login.errors.password = '';
+              }
             }
-          } else if (field === 'password') {
-            if (!this.login.password) {
-              this.login.errors.password = '密码不能为空';
-            } else if (this.login.password.length < 6) {
-              this.login.errors.password = '密码长度至少为6位';
-            } else {
-              this.login.errors.password = '';
+          },
+          togglePasswordVisibility() {
+            this.passwordVisible = !this.passwordVisible;
+          },
+          loginUser() {
+            // 先验证所有字段
+            this.validateLoginField('email');
+            this.validateLoginField('password');
+            
+            // 如果有错误，不继续执行
+            if (this.login.errors.email || this.login.errors.password) {
+              return;
             }
-          }
-        },
-        togglePasswordVisibility() {
-          this.passwordVisible = !this.passwordVisible;
-        },
-        loginUser() {
-          // 先验证所有字段
-          this.validateLoginField('email');
-          this.validateLoginField('password');
-          
-          // 如果有错误，不继续执行
-          if (this.login.errors.email || this.login.errors.password) {
-            return;
-          }
-          
-          // 发送登录请求到后端
-          fetch('/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              email: this.login.email,
-              password: this.login.password
+            
+            // 发送登录请求到后端
+            fetch('/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                email: this.login.email,
+                password: this.login.password
+              })
             })
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              this.login.message = '登录成功，正在跳转...';
-              this.login.isSuccess = true;
-              setTimeout(() => {
-                window.location.href = 'index.html';
-              }, 1500);
-            } else {
-              this.login.message = data.message;
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                this.login.message = '登录成功，正在跳转...';
+                this.login.isSuccess = true;
+                setTimeout(() => {
+                  window.location.href = 'index.html';
+                }, 1500);
+              } else {
+                this.login.message = data.message;
+                this.login.isSuccess = false;
+              }
+            })
+            .catch(error => {
+              console.error('登录请求出错:', error);
+              this.login.message = '登录请求出错，请稍后重试';
               this.login.isSuccess = false;
+            });
+          },
+          loadAttractions() {
+            // 从Vuex Store加载所有景点数据
+            this.$store.dispatch('loadAttractions').then(() => {
+              this.loadAttractionById();
+            });
+          },
+          loadAttractionById() {
+            // 获取URL参数中的景点ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = parseInt(urlParams.get('id')) || 1;
+            
+            // 从Vuex Store中查找对应的景点
+            const selectedAttraction = this.$store.state.attractions.find(attr => attr.id === id);
+            if (selectedAttraction) {
+              this.attraction = selectedAttraction;
+              // 更新页面标题
+              document.title = selectedAttraction.name + ' - 广州特色景点';
+              // 更新轮播图背景
+              const heroElement = document.getElementById('hero');
+              if (heroElement) {
+                heroElement.style.backgroundImage = `url(${selectedAttraction.image})`;
+              }
+              // 更新标题
+              const heroTitle = document.querySelector('#hero h1');
+              if (heroTitle) {
+                heroTitle.textContent = selectedAttraction.name;
+              }
+              // 更新描述
+              const heroDesc = document.querySelector('#hero p');
+              if (heroDesc) {
+                heroDesc.textContent = selectedAttraction.description;
+              }
+              // 更新景点概述
+              const overviewDesc = document.querySelector('#overview p');
+              if (overviewDesc) {
+                overviewDesc.textContent = selectedAttraction.description;
+              }
             }
-          })
-          .catch(error => {
-            console.error('登录请求出错:', error);
-            this.login.message = '登录请求出错，请稍后重试';
-            this.login.isSuccess = false;
-          });
+          }
         }
-      }
-    });
-  </script>
-    </body>
-    </html>
+      });
+      </script>
   
+  <!-- 页脚 -->
+  <footer-component></footer-component>
+</body>
+</html>

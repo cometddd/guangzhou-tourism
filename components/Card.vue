@@ -1,5 +1,5 @@
 <template>
-  <div :class="['card-base', cardClass, 'card-hover']" @click="handleClick">
+  <div :class="['card-base', cardClass]" @click="handleClick">
     <!-- 图片部分 -->
     <div :class="imageContainerClass">
       <img :src="image" :alt="title" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
@@ -10,7 +10,7 @@
       <!-- 标题和分类 -->
       <div class="flex justify-between items-center mb-2">
         <h3 class="text-xl font-bold text-secondary">{{ title }}</h3>
-        <span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
+        <span class="bg-primary-opacity-10 text-primary text-xs px-2 py-1 rounded-full">
           {{ categoryLabel }}
         </span>
       </div>
@@ -84,7 +84,7 @@ export default {
   computed: {
     // 卡片基本类名
     cardClass() {
-      return this.type === 'food' ? 'flex flex-col md:flex-row food-card' : 'attraction-card';
+      return this.type === 'food' ? 'flex flex-col md:flex-row food-card food-card--hover' : 'attraction-card attraction-card--hover';
     },
     // 图片容器类名
     imageContainerClass() {

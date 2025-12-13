@@ -1,0 +1,26 @@
+{
+  "name": "guangzhou-tourism-guide",
+  "version": "1.0.0",
+  "description": "广州旅游指引网站",
+  "main": "index.html",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "vue",
+    "tourism",
+    "guangzhou"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-plugin-vue": "^9.15.1"
+  },
+  "dependencies": {
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.4",
+    "vuex": "^3.6.2"
+  }
+}

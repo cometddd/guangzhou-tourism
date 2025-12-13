@@ -1,62 +1,35 @@
-// 定义路由组件
-const Home = {
-  template: '<div>首页内容</div>'
-};
-
-const Attractions = {
-  template: '<div>景点指南</div>'
-};
-
-const Food = {
-  template: '<div>美食推荐</div>'
-};
-
-const Cultural = {
-  template: '<div>文化特色</div>'
-};
-
-const Discuss = {
-  template: '<div>讨论区</div>'
-};
-
-const Login = {
-  template: '<div>登录页面</div>'
-};
-
-// 创建路由实例
+// 创建路由实例（简化版，适合多页面应用）
 function createRouter() {
   return new VueRouter({
     mode: 'hash', // 使用hash模式，适合多页面应用
     routes: [
       {
         path: '/',
-        name: 'home',
-        component: Home
+        name: 'home'
       },
       {
         path: '/attractions',
-        name: 'attractions',
-        component: Attractions
+        name: 'attractions'
       },
       {
         path: '/food',
-        name: 'food',
-        component: Food
+        name: 'food'
       },
       {
         path: '/cultural',
-        name: 'cultural',
-        component: Cultural
+        name: 'cultural'
       },
       {
         path: '/discuss',
-        name: 'discuss',
-        component: Discuss
+        name: 'discuss'
       },
       {
         path: '/login',
-        name: 'login',
-        component: Login
+        name: 'login'
+      },
+      {
+        path: '/attraction-detail',
+        name: 'attraction-detail'
       }
     ]
   });
@@ -66,7 +39,16 @@ function createRouter() {
 function navigateTo(router, path) {
   // 先检查是否已经在目标页面
   const currentPath = window.location.pathname;
-  const targetPage = path.replace('/', '') + '.html';
+  let targetPage;
+  
+  // 特殊处理首页和景点页面
+  if (path === '/') {
+    targetPage = 'index.html';
+  } else if (path === '/attractions') {
+    targetPage = 'attractions-guide.html';
+  } else {
+    targetPage = path.replace('/', '') + '.html';
+  }
   
   if (currentPath.endsWith(targetPage)) {
     // 如果已经在目标页面，只更新路由状态
@@ -96,6 +78,8 @@ function initRouter(vueInstance) {
     initialRoute = '/discuss';
   } else if (currentPath.endsWith('login.html')) {
     initialRoute = '/login';
+  } else if (currentPath.endsWith('attraction-detail.html')) {
+    initialRoute = '/attraction-detail';
   }
   
   router.push(initialRoute);

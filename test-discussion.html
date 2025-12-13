@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试讨论页面</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Vue 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <!-- Vuex -->
+    <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+    <!-- Vue Router -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3.5.3/dist/vue-router.js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <h1 class="text-2xl font-bold text-center mt-8">讨论页面测试</h1>
+        <div class="container mx-auto px-4 py-8">
+            <!-- 测试feedbacks -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">留言列表测试</h2>
+                <div v-if="$store.state.feedbacks.length === 0" class="bg-gray-100 p-4 rounded">
+                    没有留言
+                </div>
+                <div v-else class="space-y-4">
+                    <div v-for="feedback in $store.state.feedbacks" :key="feedback.id" class="bg-white p-4 rounded shadow">
+                        <p>{{ feedback.content }}</p>
+                        <p class="text-sm text-gray-500">评分: {{ feedback.rating }}/5</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 测试feedback表单 -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">留言表单测试</h2>
+                <form @submit.prevent="submitFeedback" class="bg-white p-4 rounded shadow">
+                    <textarea v-model="feedback.content" class="w-full border border-gray-300 p-2 rounded mb-2" rows="3" placeholder="测试留言内容"></textarea>
+                    <p v-if="feedback.errors.content" class="text-red-500 text-sm mb-2">{{ feedback.errors.content }}</p>
+                    
+                    <div class="mb-2">
+                        <button type="button" v-for="star in 5" :key="star" @click="feedback.rating = star" class="text-xl">
+                            <i :class="star <= feedback.rating ? 'fa fa-star text-yellow-400' : 'fa fa-star-o text-gray-300'"></i>
+                        </button>
+                    </div>
+                    <p v-if="feedback.errors.rating" class="text-red-500 text-sm mb-2">{{ feedback.errors.rating }}</p>
+                    
+                    <button type="submit" class="bg-primary text-white px-4 py-2 rounded" :disabled="feedback.isSubmitting">
+                        <i v-if="!feedback.isSubmitting" class="fa fa-paper-plane"></i>
+                        <i v-else class="fa fa-spinner fa-spin"></i>
+                        {{ feedback.isSubmitting ? '提交中...' : '提交留言' }}
+                    </button>
+                </form>
+            </div>
+            
+            <!-- 测试scrollToFeedbackForm -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">滚动测试</h2>
+                <button @click="scrollToFeedbackForm" class="bg-primary text-white px-4 py-2 rounded">
+                    滚动到表单
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 引入store和router -->
+    <script src="js/store.js"></script>
+    <script src="js/router.js"></script>
+    <!-- 引入main.js -->
+    <script src="js/main.js"></script>
+</body>
+</html>

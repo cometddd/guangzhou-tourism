@@ -3,7 +3,7 @@
     "id": 1,
     "name": "广州塔",
     "category": "modern",
-    "image": "assets/images/guangzhouta.webp",
+    "image": "assets/images/Attraction/guangzhouta.webp",
     "description": "中国第一高塔，世界第三高塔，可俯瞰珠江美景和城市天际线。",
     "location": "海珠区"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "name": "陈家祠",
     "category": "history",
-    "image": "assets/images/chenjiaci.jpg",
+    "image": "assets/images/Attraction/chenjiaci.png",
     "description": "广东民间工艺博物馆，集岭南建筑艺术之大成，被誉为“岭南建筑明珠”。",
     "location": "荔湾区"
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "name": "沙面岛",
     "category": "history",
-    "image": "assets/images/shamian.jpg",
+    "image": "assets/images/Attraction/shamiandao.webp",
     "description": "历史租界区，保存了大量欧式建筑，是广州著名的外事游览区和历史文物保护区。",
     "location": "荔湾区"
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "name": "白云山",
     "category": "nature",
-    "image": "assets/images/baiyun-mountain.jpg",
+    "image": "assets/images/Attraction/baiyunshan.jpg",
     "description": "南粤名山之一，自古就有“羊城第一秀”之称，是广州著名的风景区。",
     "location": "白云区"
   },
@@ -35,7 +35,7 @@
     "id": 5,
     "name": "越秀公园",
     "category": "nature",
-    "image": "assets/images/yuexiu-park.jpg",
+    "image": "assets/images/Attraction/yuexiupark.png",
     "description": "广州最大的综合性公园，以西汉时南越王赵佗曾在山上建“朝汉台”而得名。",
     "location": "越秀区"
   },
@@ -43,7 +43,7 @@
     "id": 6,
     "name": "广州大剧院",
     "category": "modern",
-    "image": "assets/images/guangzhou-opera.jpg",
+    "image": "assets/images/Attraction/guangzhouta2.webp",
     "description": "由英国设计师扎哈·哈迪德设计，被称为“圆润双砾”，是广州的新地标。",
     "location": "天河区"
   }
