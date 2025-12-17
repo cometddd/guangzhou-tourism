@@ -215,11 +215,11 @@ const store = new Vuex.Store({
       // 直接在代码中定义美食数据，不再从JSON文件加载
       const foodsData = [
         {"id":7,"name":"肠粉","category":"dimsum","image":"/assets/images/food/changfen.jpg","description":"广州特色点心，薄如纸的米皮包裹丰富馅料","tags":["肠粉","早茶","米制品","清淡"],"rating":4.9},
-        {"id":8,"name":"烧鹅","category":"roast","image":"/assets/images/food/shaoe.webp","description":"粤菜经典，皮脆肉嫩的传统美食","tags":["烧鹅","烧腊","粤菜","皮脆肉嫩"],"rating":4.9},
+        {"id":8,"name":"烧鹅","category":"roast","image":"/assets/images/food/shaoe.jpg","description":"粤菜经典，皮脆肉嫩的传统美食","tags":["烧鹅","烧腊","粤菜","皮脆肉嫩"],"rating":4.9},
         {"id":9,"name":"虾饺","category":"dimsum","image":"/assets/images/food/xiaojiao.jpg","description":"广式早茶四大天王之一，水晶皮包裹鲜虾","tags":["虾饺","早茶","点心","鲜虾"],"rating":4.9},
-        {"id":3,"name":"白切鸡","category":"specialty","image":"/assets/images/food/粤菜.jpg","description":"广东名菜，皮黄肉白，肥嫩鲜美","tags":["粤菜","清淡","原汁原味"],"rating":4.6},
+        {"id":3,"name":"白切鸡","category":"specialty","image":"/assets/images/food/白切鸡.png","description":"广东名菜，皮黄肉白，肥嫩鲜美","tags":["粤菜","清淡","原汁原味"],"rating":4.6},
         {"id":4,"name":"云吞面","category":"specialty","image":"/assets/images/food/yuntunmian.jpg","description":"广东特色面食，汤底浓郁","tags":["面食","汤面","鲜虾云吞"],"rating":4.5},
-        {"id":5,"name":"艇仔粥","category":"specialty","image":"/assets/images/food/粤菜.jpg","description":"广东粥品，以新鲜的鱼片等熬制","tags":["粥品","海鲜","传统美食"],"rating":4.4},
+        {"id":5,"name":"艇仔粥","category":"specialty","image":"/assets/images/food/艇仔粥.png","description":"广东粥品，以新鲜的鱼片等熬制","tags":["粥品","海鲜","传统美食"],"rating":4.4},
         {"id":6,"name":"姜撞奶","category":"dessert","image":"/assets/images/food/jiangzhuangnai.jpg","description":"广东甜品，香甜微辣","tags":["甜品","牛奶","姜味"],"rating":4.3}
       ];
       
