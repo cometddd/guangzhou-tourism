@@ -82,21 +82,21 @@
                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
           </div>
           <div class="p-6">
-            <div class="flex justify-between items-center mb-2">
-              <h3 class="text-xl font-bold text-secondary">{{ attraction.name }}</h3>
+            <div class="flex items-center justify-between mb-2">
               <div class="flex items-center space-x-2">
-                <span class="bg-primary-opacity-10 text-primary text-xs px-2 py-1 rounded-full">
-                  {{ attraction.category === 'modern' ? '现代建筑' : attraction.category === 'history' ? '历史古迹' : '自然景观' }}
-                </span>
                 <button 
-                  @click="toggleFavorite('attraction', attraction.id)" 
+                  @click="toggleFavorite(attraction)" 
                   class="text-gray-400 hover:text-red-500 transition-colors"
-                  :class="{ 'text-red-500': isFavorite('attraction', attraction.id) }"
+                  :class="{ 'text-red-500': isFavorite(attraction) }"
                   title="收藏"
                 >
                   <i class="fa fa-heart"></i>
                 </button>
+                <h3 class="text-xl font-bold text-secondary">{{ attraction.name }}</h3>
               </div>
+              <span class="bg-primary-opacity-10 text-primary text-xs px-2 py-1 rounded-full">
+                {{ attraction.category === 'modern' ? '现代建筑' : attraction.category === 'history' ? '历史古迹' : '自然景观' }}
+              </span>
             </div>
             <p class="text-gray-600 mb-4">
               {{ attraction.description }}
@@ -115,96 +115,55 @@
       </div>
       
       <!-- 分页控件 -->
-      <div class="flex justify-center mt-12">
+      <div class="flex justify-center mt-12" v-if="totalPages > 1">
         <nav class="flex items-center space-x-1">
-          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">
+          <!-- 上一页 -->
+          <button 
+            @click="prevPage"
+            :disabled="pagination.currentPage === 1"
+            :class="[
+              'px-3 py-2 rounded-md transition-colors',
+              pagination.currentPage === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-gray-100 hover:bg-gray-200'
+            ]"
+          >
             <i class="fa fa-angle-left"></i>
-          </a>
-          <a href="#" class="px-3 py-2 rounded-md bg-primary text-white">1</a>
-          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">2</a>
-          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">3</a>
-          <span class="px-3 py-2">...</span>
-          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">8</a>
-          <a href="#" class="px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">
+          </button>
+          
+          <!-- 页码按钮 -->
+          <template v-for="(page, index) in pageNumbers" :key="index">
+            <!-- 省略号 -->
+            <span v-if="page === '...'" class="px-3 py-2">...</span>
+            <!-- 页码 -->
+            <button 
+              v-else
+              @click="goToPage(page)"
+              :class="[
+                'px-3 py-2 rounded-md transition-colors',
+                pagination.currentPage === page ? 'bg-primary text-white' : 'bg-gray-100 hover:bg-gray-200'
+              ]"
+            >
+              {{ page }}
+            </button>
+          </template>
+          
+          <!-- 下一页 -->
+          <button 
+            @click="nextPage"
+            :disabled="pagination.currentPage === totalPages"
+            :class="[
+              'px-3 py-2 rounded-md transition-colors',
+              pagination.currentPage === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-gray-100 hover:bg-gray-200'
+            ]"
+          >
             <i class="fa fa-angle-right"></i>
-          </a>
+          </button>
         </nav>
       </div>
     </div>
   </section>
 
 <!-- 页脚 -->
-      <footer class="bg-secondary text-white py-12">
-        <div class="container mx-auto px-4">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 class="text-xl font-bold mb-4">广州特色</h3>
-              <p class="text-white/80 mb-4">探索千年商都的魅力，品味岭南文化的精髓。</p>
-              <div class="flex space-x-4">
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-weibo text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-wechat text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-instagram text-xl"></i>
-                </a>
-                <a href="#" class="text-white/80 hover:text-white transition-colors">
-                  <i class="fa fa-youtube-play text-xl"></i>
-                </a>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold mb-4">快速链接</h3>
-              <ul class="space-y-2">
-                <li><a href="index.html#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
-                <li><a href="index.html#attractions" class="text-white/80 hover:text-white transition-colors">景点</a></li>
-                <li><a href="food.html" class="text-white/80 hover:text-white transition-colors">美食</a></li>
-                <li><a href="index.html#culture" class="text-white/80 hover:text-white transition-colors">文化</a></li>
-                <li><a href="index.html#feedback" class="text-white/80 hover:text-white transition-colors">留言</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold mb-4">联系我们</h3>
-              <ul class="space-y-2">
-                  <li class="flex items-center">
-                    <i class="fa fa-map-marker mr-2"></i>
-                    <span class="text-white/80">广州市天河区天河路520号</span>
-                  </li>
-                <li class="flex items-center">
-                  <i class="fa fa-phone mr-2"></i>
-                  <span class="text-white/80">+86 20 12345678</span>
-                </li>
-                <li class="flex items-center">
-                  <i class="fa fa-envelope mr-2"></i>
-                  <span class="text-white/80">info@guangzhoutourism.com</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 class="text-lg font-bold mb-4">订阅更新</h3>
-              <p class="text-white/80 mb-4">订阅我们的新闻通讯，获取最新的旅游信息和优惠。</p>
-              <form class="flex">
-                <input 
-                  type="email" 
-                  placeholder="你的邮箱地址" 
-                  class="px-4 py-2 rounded-l-md w-full focus:outline-none">
-                <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md transition-colors">
-                  订阅
-                </button>
-              </form>
-            </div>
-          </div>
-          
-          <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 text-sm">
-            <p>© 2025 广州特色展示. 保留所有权利.</p>
-          </div>
-        </div>
-      </footer>
+      <footer-component></footer-component>
 
   <!-- 登录模态框 -->
   <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-blur hidden"
@@ -294,193 +253,6 @@
       </form>
     </div>
   </div>
-
-  <!-- 引入主脚本文件 -->
-  <script src="js/main.js"></script>
-  <script>
-    new Vue({
-      el: '#app',
-      data: {
-        mobileMenuVisible: false,
-        loginModalVisible: false,
-        modalReady: false,
-        favorites: JSON.parse(localStorage.getItem('favorites')) || {},
-        filteredAttractions: [],
-        login: {
-          email: '',
-          password: '',
-          remember: false,
-          errors: {},
-          message: '',
-          isSuccess: false
-        },
-        passwordVisible: false
-      },
-      store: store,
-      created() {
-        // 从Vuex Store加载景点数据
-        this.$store.dispatch('loadAttractions');
-      },
-      mounted() {
-        this.filterAttractions('all');
-      },
-      computed: {
-        attractions() {
-          return this.$store.state.attractions;
-        }
-      },
-      methods: {
-        toggleMobileMenu() {
-          this.mobileMenuVisible = !this.mobileMenuVisible;
-        },
-        openLoginModal() {
-          this.loginModalVisible = true;
-          setTimeout(() => {
-            this.modalReady = true;
-          }, 100);
-        },
-        closeLoginModal() {
-          this.modalReady = false;
-          setTimeout(() => {
-            this.loginModalVisible = false;
-          }, 300);
-        },
-        filterAttractions(category) {
-          if (category === 'all') {
-            this.filteredAttractions = this.attractions;
-          } else {
-            this.filteredAttractions = this.attractions.filter(attraction => attraction.category === category);
-          }
-          this.renderAttractionCards();
-        },
-        renderAttractionCards() {
-          const attractionCards = document.getElementById('attractionCards');
-          attractionCards.innerHTML = '';
-          this.filteredAttractions.forEach(attraction => {
-            const card = document.createElement('div');
-            card.classList.add('bg-white', 'rounded-lg', 'overflow-hidden', 'shadow-md', 'transition-all', 'duration-300', 'hover:shadow-lg', 'group');
-            
-            // 设置景点卡片的HTML内容
-            card.innerHTML = `
-              <div class="relative overflow-hidden">
-                <img src="${attraction.image}" alt="${attraction.name}" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div class="p-6">
-                    <span class="px-3 py-1 bg-primary text-white text-sm rounded-full">${this.getTypeLabel(attraction.category)}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-secondary mb-3">${attraction.name}</h3>
-                <p class="text-gray-600 mb-4">${attraction.description}</p>
-                <a href="${attraction.id === 1 ? 'guangzhouta-detail.html' : attraction.id === 2 ? 'chenjiaci-detail.html' : attraction.id === 3 ? 'shamiandao-detail.html' : 'guangzhouta-detail.html'}" class="inline-flex items-center text-primary hover:text-accent transition-colors">
-                  查看详情 <i class="fa fa-arrow-right ml-1"></i>
-                </a>
-              </div>
-            `;
-            
-            // 将卡片添加到容器中
-            attractionCards.appendChild(card);
-          });
-        },
-        getTypeLabel(type) {
-          const typeLabels = {
-            'modern': '现代建筑',
-            'history': '历史古迹',
-            'nature': '自然景观',
-            'culture': '文化体验'
-          };
-          return typeLabels[type] || type;
-        },
-        validateLoginField(field) {
-          if (field === 'email') {
-            if (!this.login.email) {
-              this.login.errors.email = '邮箱不能为空';
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
-              this.login.errors.email = '请输入有效的邮箱地址';
-            } else {
-              this.login.errors.email = '';
-            }
-          } else if (field === 'password') {
-            if (!this.login.password) {
-              this.login.errors.password = '密码不能为空';
-            } else if (this.login.password.length < 6) {
-              this.login.errors.password = '密码长度至少为6位';
-            } else {
-              this.login.errors.password = '';
-            }
-          }
-        },
-        togglePasswordVisibility() {
-          this.passwordVisible = !this.passwordVisible;
-        },
-        // 景点详情跳转功能
-        openAttractionDetail(id) {
-          // 根据不同景点ID跳转到对应的详情页
-          if (id === 1) {
-            window.location.href = 'guangzhouta-detail.html';
-          } else if (id === 2) {
-            window.location.href = 'chenjiaci-detail.html';
-          } else if (id === 3) {
-            window.location.href = 'shamiandao-detail.html';
-          } else {
-            window.location.href = 'guangzhouta-detail.html';
-          }
-        },
-        // 收藏功能相关方法
-        toggleFavorite(type, id) {
-          if (!this.favorites[type]) {
-            this.favorites[type] = [];
-          }
-          
-          const index = this.favorites[type].indexOf(id);
-          if (index > -1) {
-            // 移除收藏
-            this.favorites[type].splice(index, 1);
-          } else {
-            // 添加收藏
-            this.favorites[type].push(id);
-          }
-          
-          // 保存到localStorage
-          localStorage.setItem('favorites', JSON.stringify(this.favorites));
-        },
-        isFavorite(type, id) {
-          return this.favorites[type] && this.favorites[type].includes(id);
-        },
-        loginUser() {
-          // 先验证所有字段
-          this.validateLoginField('email');
-          this.validateLoginField('password');
-          
-          // 如果有错误，不继续执行
-          if (this.login.errors.email || this.login.errors.password) {
-            return;
-          }
-          
-          // 模拟登录验证
-          // 在实际应用中，这里应该是一个API调用
-          this.login.message = '正在登录...';
-          this.login.isSuccess = false;
-          
-          // 模拟API请求延迟
-          setTimeout(() => {
-            if (this.login.email === 'test@example.com' && this.login.password === '123456') {
-              this.login.message = '登录成功，正在跳转...';
-              this.login.isSuccess = true;
-              
-              // 模拟登录成功后的跳转
-              setTimeout(() => {
-                window.location.href = 'index.html';
-              }, 1500);
-            } else {
-              this.login.message = '邮箱或密码错误';
-              this.login.isSuccess = false;
-            }
-          }, 1000);
-        }
-      }
-    });
-  </script>
+  </div>
 </body>
 </html>

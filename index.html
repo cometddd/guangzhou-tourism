@@ -96,7 +96,19 @@
             <img src="assets/images/Attraction/广州塔2.webp" alt="广州塔" class="w-full h-full object-cover">
           </div>
           <div class="p-4 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2">广州塔</h3>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center space-x-2">
+                <button 
+                  @click="toggleFavorite({id: 1, category: 'attractions', name: '广州塔', image: 'assets/images/Attraction/广州塔2.webp', description: '广州塔是广州的地标性建筑，也是中国第一高、世界第三高的旅游观光塔。', url: 'guangzhouta-detail.html'})" 
+                  class="text-gray-400 hover:text-red-500 transition-colors"
+                  :class="{ 'text-red-500': isFavorite({id: 1, category: 'attractions', name: '广州塔'}) }"
+                  title="收藏"
+                >
+                  <i class="fa fa-heart"></i>
+                </button>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary">广州塔</h3>
+              </div>
+            </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">广州塔是广州的地标性建筑，也是中国第一高、世界第三高的旅游观光塔。</p>
             <a href="guangzhouta-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
               了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -109,7 +121,19 @@
             <img src="assets\images\Attraction\chenjiaci.png" alt="陈家祠" class="w-full h-full object-cover">
           </div>
           <div class="p-4 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2">陈家祠</h3>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center space-x-2">
+                <button 
+                  @click="toggleFavorite({id: 2, category: 'attractions', name: '陈家祠', image: 'assets/images/Attraction/chenjiaci.png', description: '陈家祠是广东规模最大、装饰最华丽、保存最完好的传统岭南祠堂式建筑。', url: 'chenjiaci-detail.html'})" 
+                  class="text-gray-400 hover:text-red-500 transition-colors"
+                  :class="{ 'text-red-500': isFavorite({id: 2, category: 'attractions', name: '陈家祠'}) }"
+                  title="收藏"
+                >
+                  <i class="fa fa-heart"></i>
+                </button>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary">陈家祠</h3>
+              </div>
+            </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">陈家祠是广东规模最大、装饰最华丽、保存最完好的传统岭南祠堂式建筑。</p>
             <a href="chenjiaci-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
               了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -122,7 +146,19 @@
             <img src="assets\images\Attraction\沙面教堂.png" alt="沙面岛" class="w-full h-full object-cover">
           </div>
           <div class="p-4 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2">沙面岛</h3>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center space-x-2">
+                <button 
+                  @click="toggleFavorite({id: 3, category: 'attractions', name: '沙面岛', image: 'assets/images/Attraction/沙面教堂.png', description: '沙面岛是广州重要的商埠，岛上有许多欧陆风情的建筑，是广州著名的外事游览区和历史文物保护区。', url: 'shamiandao-detail.html'})" 
+                  class="text-gray-400 hover:text-red-500 transition-colors"
+                  :class="{ 'text-red-500': isFavorite({id: 3, category: 'attractions', name: '沙面岛'}) }"
+                  title="收藏"
+                >
+                  <i class="fa fa-heart"></i>
+                </button>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary">沙面岛</h3>
+              </div>
+            </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">沙面岛是广州重要的商埠，岛上有许多欧陆风情的建筑，是广州著名的外事游览区和历史文物保护区。</p>
             <a href="shamiandao-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
               了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -155,7 +191,19 @@
       <img src="assets\images\food\changfen.jpg" alt="肠粉" class="w-full h-full object-cover">
     </div>
     <div class="p-4 sm:p-6">
-      <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2 sm:mb-3">肠粉</h3>
+      <div class="flex items-center justify-between mb-2 sm:mb-3">
+        <div class="flex items-center space-x-2">
+          <button 
+            @click="toggleFavorite({id: 1, category: 'foods', name: '肠粉', image: 'assets/images/food/changfen.jpg', description: '肠粉是广东著名的传统小吃，由米浆蒸制而成，口感嫩滑，根据馅料不同可分为牛肉肠、猪肉肠、鲜虾肠等。', url: 'changfen-detail.html'})" 
+            class="text-gray-400 hover:text-red-500 transition-colors"
+            :class="{ 'text-red-500': isFavorite({id: 1, category: 'foods', name: '肠粉'}) }"
+            title="收藏"
+          >
+            <i class="fa fa-heart"></i>
+          </button>
+          <h3 class="text-lg sm:text-xl font-bold text-secondary">肠粉</h3>
+        </div>
+      </div>
       <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">肠粉是广东著名的传统小吃，由米浆蒸制而成，口感嫩滑，根据馅料不同可分为牛肉肠、猪肉肠、鲜虾肠等。</p>
       <a href="changfen-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
         了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -169,7 +217,19 @@
       <img src="assets\images\food\shaoe.jpg" alt="烧鹅" class="w-full h-full object-cover">
     </div>
     <div class="p-4 sm:p-6">
-      <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2 sm:mb-3">烧鹅</h3>
+      <div class="flex items-center justify-between mb-2 sm:mb-3">
+        <div class="flex items-center space-x-2">
+          <button 
+            @click="toggleFavorite({id: 2, category: 'foods', name: '烧鹅', image: 'assets/images/food/shaoe.jpg', description: '烧鹅是广州传统名菜，选用本地鹅种，经腌制、吹气、烫皮、挂糖、晾皮等工序后烤制而成，皮脆肉嫩，肥而不腻。', url: 'shaoe-detail.html'})" 
+            class="text-gray-400 hover:text-red-500 transition-colors"
+            :class="{ 'text-red-500': isFavorite({id: 2, category: 'foods', name: '烧鹅'}) }"
+            title="收藏"
+          >
+            <i class="fa fa-heart"></i>
+          </button>
+          <h3 class="text-lg sm:text-xl font-bold text-secondary">烧鹅</h3>
+        </div>
+      </div>
       <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">烧鹅是广州传统名菜，选用本地鹅种，经腌制、吹气、烫皮、挂糖、晾皮等工序后烤制而成，皮脆肉嫩，肥而不腻。</p>
       <a href="shaoe-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
         了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -183,7 +243,19 @@
       <img src="assets\images\food\xiaojiao.jpg" alt="虾饺" class="w-full h-full object-cover">
     </div>
     <div class="p-4 sm:p-6">
-      <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2 sm:mb-3">虾饺</h3>
+      <div class="flex items-center justify-between mb-2 sm:mb-3">
+        <div class="flex items-center space-x-2">
+          <button 
+            @click="toggleFavorite({id: 3, category: 'foods', name: '虾饺', image: 'assets/images/food/xiaojiao.jpg', description: '虾饺是广东茶楼、酒家的传统美点，以透明澄面皮包裹鲜嫩虾仁和猪肉馅蒸制而成，皮薄馅大，味道鲜美。', url: 'xiaojiao-detail.html'})" 
+            class="text-gray-400 hover:text-red-500 transition-colors"
+            :class="{ 'text-red-500': isFavorite({id: 3, category: 'foods', name: '虾饺'}) }"
+            title="收藏"
+          >
+            <i class="fa fa-heart"></i>
+          </button>
+          <h3 class="text-lg sm:text-xl font-bold text-secondary">虾饺</h3>
+        </div>
+      </div>
       <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">虾饺是广东茶楼、酒家的传统美点，以透明澄面皮包裹鲜嫩虾仁和猪肉馅蒸制而成，皮薄馅大，味道鲜美。</p>
       <a href="xiaojiao-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
         了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -213,7 +285,19 @@
             <img src="assets\images\culture\yueju.webp" alt="粤剧" class="w-full h-full object-cover">
           </div>
           <div class="p-4 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2 sm:mb-3">粤剧</h3>
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center space-x-2">
+                <button 
+                  @click="toggleFavorite({id: 1, category: 'culture', name: '粤剧', image: 'assets/images/culture/yueju.webp', description: '粤剧是广东地区最具代表性的传统戏曲，被誉为\'南国红豆\'，2009年被列入世界非物质文化遗产名录。', url: 'yueju-detail.html'})" 
+                  class="text-gray-400 hover:text-red-500 transition-colors"
+                  :class="{ 'text-red-500': isFavorite({id: 1, category: 'culture', name: '粤剧'}) }"
+                  title="收藏"
+                >
+                  <i class="fa fa-heart"></i>
+                </button>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary">粤剧</h3>
+              </div>
+            </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">粤剧是广东地区最具代表性的传统戏曲，被誉为"南国红豆"，2009年被列入世界非物质文化遗产名录。</p>
             <a href="yueju-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
               了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -226,7 +310,19 @@
             <img src="assets\images\food\粤菜.jpg" alt="粤菜" class="w-full h-full object-cover">
           </div>
           <div class="p-4 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2 sm:mb-3">粤菜</h3>
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center space-x-2">
+                <button 
+                  @click="toggleFavorite({id: 2, category: 'culture', name: '粤菜', image: 'assets/images/food/粤菜.jpg', description: '粤菜是中国八大菜系之一，以鲜、嫩、滑、爽、脆、香、脆为特色，讲究清而不淡，鲜而不俗，嫩而不生，油而不腻。', url: 'yuecai-detail.html'})" 
+                  class="text-gray-400 hover:text-red-500 transition-colors"
+                  :class="{ 'text-red-500': isFavorite({id: 2, category: 'culture', name: '粤菜'}) }"
+                  title="收藏"
+                >
+                  <i class="fa fa-heart"></i>
+                </button>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary">粤菜</h3>
+              </div>
+            </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">粤菜是中国八大菜系之一，以鲜、嫩、滑、爽、脆、香、脆为特色，讲究清而不淡，鲜而不俗，嫩而不生，油而不腻。</p>
             <a href="yuecai-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
               了解更多 <i class="fa fa-arrow-right ml-1"></i>
@@ -239,7 +335,19 @@
             <img src="assets\images\culture\粤语.webp" alt="粤语" class="w-full h-full object-cover">
           </div>
           <div class="p-4 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-secondary mb-2 sm:mb-3">粤语</h3>
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center space-x-2">
+                <button 
+                  @click="toggleFavorite({id: 3, category: 'culture', name: '粤语', image: 'assets/images/culture/粤语.webp', description: '粤语是汉语的一种方言，主要分布在广东、广西、香港和澳门等地，是岭南文化的重要组成部分。', url: 'yueyu-detail.html'})" 
+                  class="text-gray-400 hover:text-red-500 transition-colors"
+                  :class="{ 'text-red-500': isFavorite({id: 3, category: 'culture', name: '粤语'}) }"
+                  title="收藏"
+                >
+                  <i class="fa fa-heart"></i>
+                </button>
+                <h3 class="text-lg sm:text-xl font-bold text-secondary">粤语</h3>
+              </div>
+            </div>
             <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">粤语是汉语的一种方言，主要分布在广东、广西、香港和澳门等地，是岭南文化的重要组成部分。</p>
             <a href="yueyu-detail.html" class="text-primary hover:text-accent transition-colors text-sm sm:text-base">
               了解更多 <i class="fa fa-arrow-right ml-1"></i>

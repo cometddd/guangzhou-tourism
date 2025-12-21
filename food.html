@@ -137,10 +137,12 @@
           </div>
           <div class="p-6">
             <div class="flex items-center justify-between mb-3">
-              <h3 class="text-2xl font-bold text-secondary">{{ food.name }}</h3>
-              <button @click="toggleFavorite('food', food.id)" class="text-xl hover:text-primary transition-colors">
-                <i class="fa" :class="isFavorite('food', food.id) ? 'fa-heart text-red-500' : 'fa-heart-o text-gray-400'"></i>
-              </button>
+              <div class="flex items-center space-x-2">
+                <button @click="toggleFavorite(food)" class="text-xl hover:text-primary transition-colors">
+                  <i class="fa" :class="isFavorite(food) ? 'fa-heart text-red-500' : 'fa-heart-o text-gray-400'"></i>
+                </button>
+                <h3 class="text-2xl font-bold text-secondary">{{ food.name }}</h3>
+              </div>
             </div>
             <p class="text-gray-600 mb-4">{{ food.description }}</p>
             <div class="flex flex-wrap gap-2 mb-4">
@@ -374,171 +376,6 @@
       </form>
     </div>
   </div>
-
-  <!-- 引入主脚本文件 -->
-  <script src="js/main.js"></script>
-  <script>
-    new Vue({
-      el: '#app',
-      store: store,
-      data: {
-        mobileMenuVisible: false,
-        loginModalVisible: false,
-        modalReady: false,
-        login: {
-          email: '',
-          password: '',
-          remember: false,
-          errors: {},
-          message: '',
-          isSuccess: false
-        },
-        passwordVisible: false,
-        // 收藏功能数据
-        favorites: JSON.parse(localStorage.getItem('favorites') || '{}')
-      },
-      computed: {
-        foods() {
-          return this.$store.getters.filteredFoods;
-        },
-        isLoadingFoods() {
-          return this.$store.state.loading.foods;
-        }
-      },
-      created() {
-        console.log('Vue instance created, store:', this.$store);
-        console.log('Initial store state:', this.$store.state);
-        // 加载美食数据
-        this.$store.dispatch('loadFoods')
-          .then(data => {
-            console.log('loadFoods action completed, data:', data);
-            console.log('Store state after loading:', this.$store.state);
-          })
-          .catch(error => {
-            console.error('Error loading foods:', error);
-          });
-      },
-      mounted() {
-        // 初始化路由
-        initRouter(this);
-      },
-      methods: {
-        filterFoods(category) {
-          this.$store.commit('setFoodFilter', category);
-        },
-        toggleMobileMenu() {
-          this.mobileMenuVisible = !this.mobileMenuVisible;
-        },
-        openLoginModal() {
-          this.loginModalVisible = true;
-          setTimeout(() => {
-            this.modalReady = true;
-          }, 100);
-        },
-        closeLoginModal() {
-          this.modalReady = false;
-          setTimeout(() => {
-            this.loginModalVisible = false;
-          }, 300);
-        },
-        validateLoginField(field) {
-          if (field === 'email') {
-            if (!this.login.email) {
-              this.login.errors.email = '邮箱不能为空';
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.login.email)) {
-              this.login.errors.email = '请输入有效的邮箱地址';
-            } else {
-              this.login.errors.email = '';
-            }
-          } else if (field === 'password') {
-            if (!this.login.password) {
-              this.login.errors.password = '密码不能为空';
-            } else if (this.login.password.length < 6) {
-              this.login.errors.password = '密码长度至少为6位';
-            } else {
-              this.login.errors.password = '';
-            }
-          }
-        },
-        togglePasswordVisibility() {
-          this.passwordVisible = !this.passwordVisible;
-        },
-        loginUser() {
-          // 先验证所有字段
-          this.validateLoginField('email');
-          this.validateLoginField('password');
-          
-          // 如果有错误，不继续执行
-          if (this.login.errors.email || this.login.errors.password) {
-            return;
-          }
-          
-          // 模拟登录验证
-          // 在实际应用中，这里应该是一个API调用
-          this.login.message = '正在登录...';
-          this.login.isSuccess = false;
-          
-          // 模拟API请求延迟
-          setTimeout(() => {
-            if (this.login.email === 'test@example.com' && this.login.password === '123456') {
-              this.login.message = '登录成功，正在跳转...';
-              this.login.isSuccess = true;
-              
-              // 模拟登录成功后的跳转
-              setTimeout(() => {
-                window.location.href = 'index.html';
-              }, 1500);
-            } else {
-              this.login.message = '邮箱或密码错误';
-              this.login.isSuccess = false;
-            }
-          }, 1000);
-        },
-        // 收藏功能方法
-        toggleFavorite(type, id) {
-          // 确保favorites对象存在
-          if (!this.favorites) {
-            this.favorites = {};
-          }
-          
-          // 确保类型数组存在
-          if (!this.favorites[type]) {
-            this.favorites[type] = [];
-          }
-          
-          // 查找id在数组中的索引
-          const index = this.favorites[type].indexOf(id);
-          
-          if (index === -1) {
-            // 如果不存在，添加到收藏
-            this.favorites[type].push(id);
-          } else {
-            // 如果存在，从收藏中移除
-            this.favorites[type].splice(index, 1);
-          }
-          
-          // 保存到localStorage
-          localStorage.setItem('favorites', JSON.stringify(this.favorites));
-        },
-        isFavorite(type, id) {
-          // 检查是否收藏
-          return this.favorites && this.favorites[type] && this.favorites[type].includes(id);
-        },
-        // 路由导航方法
-        navigateTo(path) {
-          navigateTo(this.$router, path);
-        }
-      },
-      mounted() {
-        // 初始化路由
-        initRouter(this);
-        // 加载数据到store
-        this.$store.dispatch('loadFoods');
-      }
-    });
-  </script>
-  
-  <!-- 页脚 -->
-  <footer-component></footer-component>
+  </div>
 </body>
-</html>  
+</html>

@@ -28,6 +28,8 @@ const store = new Vuex.Store({
       { src: 'assets/images/Attraction/chenjiaci.png', alt: '陈家祠' },
       { src: 'assets/images/food/广州早茶.jpg', alt: '早茶' }
     ],
+    // 收藏数据
+    favorites: JSON.parse(localStorage.getItem('favorites')) || [],
     // 全局数据
     attractions: [],
     foods: [],
@@ -99,6 +101,18 @@ const store = new Vuex.Store({
     // 设置加载状态
     setLoading(state, { type, isLoading }) {
       state.loading[type] = isLoading;
+    },
+    // 添加收藏
+    addFavorite(state, favorite) {
+      state.favorites.push(favorite);
+      // 保存到localStorage
+      localStorage.setItem('favorites', JSON.stringify(state.favorites));
+    },
+    // 移除收藏
+    removeFavorite(state, favorite) {
+      state.favorites = state.favorites.filter(item => !(item.id === favorite.id && item.category === favorite.category));
+      // 更新localStorage
+      localStorage.setItem('favorites', JSON.stringify(state.favorites));
     }
   },
   actions: {
@@ -170,6 +184,62 @@ const store = new Vuex.Store({
           "image": "assets/images/Attraction/广州塔2.webp",
           "description": "由英国设计师扎哈·哈迪德设计，被称为“圆润双砾”，是广州的新地标。",
           "location": "天河区"
+        },
+        {
+          "id": 7,
+          "name": "石室圣心大教堂",
+          "category": "history",
+          "image": "assets/images/Attraction/guangzhouta.webp",
+          "description": "广州最宏伟的天主教堂，哥特式建筑风格，是广州的重要地标。",
+          "location": "越秀区"
+        },
+        {
+          "id": 8,
+          "name": "黄埔古港",
+          "category": "history",
+          "image": "assets/images/Attraction/chenjiaci.png",
+          "description": "古代海上丝绸之路的重要港口，保存了大量历史遗迹。",
+          "location": "海珠区"
+        },
+        {
+          "id": 9,
+          "name": "中山纪念堂",
+          "category": "history",
+          "image": "assets/images/Attraction/shamiandao.webp",
+          "description": "纪念孙中山先生的重要建筑，具有浓厚的民族风格。",
+          "location": "越秀区"
+        },
+        {
+          "id": 10,
+          "name": "广州长隆野生动物世界",
+          "category": "nature",
+          "image": "assets/images/Attraction/baiyunshan.jpg",
+          "description": "世界顶级的野生动物主题公园，拥有多种珍稀动物。",
+          "location": "番禺区"
+        },
+        {
+          "id": 11,
+          "name": "广州图书馆",
+          "category": "modern",
+          "image": "assets/images/Attraction/yuexiupark.png",
+          "description": "现代化的大型公共图书馆，是广州的文化地标。",
+          "location": "天河区"
+        },
+        {
+          "id": 12,
+          "name": "珠江夜游",
+          "category": "modern",
+          "image": "assets/images/Attraction/广州塔2.webp",
+          "description": "欣赏珠江两岸夜景的最佳方式，感受广州的现代化魅力。",
+          "location": "越秀区"
+        },
+        {
+          "id": 13,
+          "name": "陈家祠",
+          "category": "history",
+          "image": "assets/images/Attraction/guangzhouta.webp",
+          "description": "广东民间工艺博物馆，集岭南建筑艺术之大成，被誉为“岭南建筑明珠”。",
+          "location": "荔湾区"
         }
       ];
       
@@ -321,6 +391,14 @@ const store = new Vuex.Store({
           resolve(newFeedback);
         }, 500);
       });
+    },
+    // 添加收藏
+    addFavorite({ commit }, favorite) {
+      commit('addFavorite', favorite);
+    },
+    // 移除收藏
+    removeFavorite({ commit }, favorite) {
+      commit('removeFavorite', favorite);
     }
   },
   getters: {
@@ -357,7 +435,11 @@ const store = new Vuex.Store({
       return state.foods.find(food => food.id === state.selectedFoodId) || null;
     },
     // 获取轮播图数据
-    carouselImages: state => state.carouselImages
+    carouselImages: state => state.carouselImages,
+    // 检查项目是否已收藏
+    isFavorite: state => (item) => {
+      return state.favorites.some(favorite => favorite.id === item.id && favorite.category === (item.category || item.type || 'other'));
+    }
   }
 });
 
